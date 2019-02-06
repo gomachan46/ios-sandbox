@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 
 class SampleCollectionViewController: UIViewController {
-    private var collectionView: UICollectionView!
     private let minimumSpacing: CGFloat = 0.5
     private let columnCount = 3
 
