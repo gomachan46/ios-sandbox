@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		36EBC23E12BDB4726D96526F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */; };
 		CEFA974922098490005796AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974822098490005796AF /* AppDelegate.swift */; };
-		CEFA974B22098490005796AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974A22098490005796AF /* ViewController.swift */; };
+		CEFA974B22098490005796AF /* SampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974A22098490005796AF /* SampleCollectionViewController.swift */; };
 		CEFA975022098491005796AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFA974F22098491005796AF /* Assets.xcassets */; };
 		CEFA975322098491005796AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFA975122098491005796AF /* LaunchScreen.storyboard */; };
 		CEFA975E22098491005796AF /* ios_sandboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA975D22098491005796AF /* ios_sandboxTests.swift */; };
@@ -37,7 +37,7 @@
 		36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEFA974522098490005796AF /* ios-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFA974822098490005796AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEFA974A22098490005796AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEFA974A22098490005796AF /* SampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCollectionViewController.swift; sourceTree = "<group>"; };
 		CEFA974F22098491005796AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEFA975222098491005796AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEFA975422098491005796AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				CEFA974822098490005796AF /* AppDelegate.swift */,
-				CEFA974A22098490005796AF /* ViewController.swift */,
+				CEFA974A22098490005796AF /* SampleCollectionViewController.swift */,
 				CEFA974F22098491005796AF /* Assets.xcassets */,
 				CEFA975122098491005796AF /* LaunchScreen.storyboard */,
 				CEFA975422098491005796AF /* Info.plist */,
@@ -287,7 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEFA974B22098490005796AF /* ViewController.swift in Sources */,
+				CEFA974B22098490005796AF /* SampleCollectionViewController.swift in Sources */,
 				CEFA974922098490005796AF /* AppDelegate.swift in Sources */,
 				36EBC23E12BDB4726D96526F /* Extensions.swift in Sources */,
 			);

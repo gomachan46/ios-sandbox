@@ -1,10 +1,10 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
-    var collectionView: UICollectionView!
-    let minimumSpacing: CGFloat = 0.5
-    let columnCount = 3
+class SampleCollectionViewController: UIViewController {
+    private var collectionView: UICollectionView!
+    private let minimumSpacing: CGFloat = 0.5
+    private let columnCount = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension SampleCollectionViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 100
     }
@@ -37,7 +37,7 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension SampleCollectionViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let length = (self.view.frame.size.width / CGFloat(self.columnCount)) - self.minimumSpacing
         return CGSize(width: length, height: length)
