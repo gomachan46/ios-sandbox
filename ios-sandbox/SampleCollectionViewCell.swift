@@ -23,7 +23,8 @@ extension SampleCollectionViewCell {
             this.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            this.kf.setImage(with: URL(string: "https://picsum.photos/300/?random"))
+            let url = URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
+            this.kf.setImage(with: url)
         }
     }
 }
