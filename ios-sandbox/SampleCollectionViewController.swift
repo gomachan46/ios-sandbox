@@ -8,12 +8,7 @@ class SampleCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        UICollectionView(
-            frame: self.view.frame,
-            collectionViewLayout: UICollectionViewFlowLayout().apply { layout in
-                layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            }
-        ).apply { this in
+        UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
             this.register(SampleCollectionViewCell.self, forCellWithReuseIdentifier: SampleCollectionViewCell.identifier)
             this.dataSource = self
@@ -24,12 +19,17 @@ class SampleCollectionViewController: UIViewController {
 }
 
 extension SampleCollectionViewController: UICollectionViewDataSource {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 100
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: SampleCollectionViewCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SampleCollectionViewCell.identifier, for: indexPath) as! SampleCollectionViewCell
+        return cell
     }
 }
 
