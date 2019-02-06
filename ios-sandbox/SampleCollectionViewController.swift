@@ -16,7 +16,7 @@ class SampleCollectionViewController: UIViewController {
             }
         ).apply { this in
             view.addSubview(this)
-            this.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+            this.register(SampleCollectionViewCell.self, forCellWithReuseIdentifier: SampleCollectionViewCell.identifier)
             this.dataSource = self
             this.delegate = self
             this.backgroundColor = .white
@@ -30,10 +30,7 @@ extension SampleCollectionViewController: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = .lightGray
-
-        return cell
+        return collectionView.dequeueReusableCell(withReuseIdentifier: SampleCollectionViewCell.identifier, for: indexPath)
     }
 }
 

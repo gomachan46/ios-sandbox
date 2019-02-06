@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36EBC23E12BDB4726D96526F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */; };
+		36EBC822E3B5AFF152A14EDA /* SampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */; };
 		CEFA974922098490005796AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974822098490005796AF /* AppDelegate.swift */; };
 		CEFA974B22098490005796AF /* SampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974A22098490005796AF /* SampleCollectionViewController.swift */; };
 		CEFA975022098491005796AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFA974F22098491005796AF /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEFA974522098490005796AF /* ios-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFA974822098490005796AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				CEFA975122098491005796AF /* LaunchScreen.storyboard */,
 				CEFA975422098491005796AF /* Info.plist */,
 				36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */,
+				36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */,
 			);
 			path = "ios-sandbox";
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				CEFA974B22098490005796AF /* SampleCollectionViewController.swift in Sources */,
 				CEFA974922098490005796AF /* AppDelegate.swift in Sources */,
 				36EBC23E12BDB4726D96526F /* Extensions.swift in Sources */,
+				36EBC822E3B5AFF152A14EDA /* SampleCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
