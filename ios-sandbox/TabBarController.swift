@@ -9,18 +9,18 @@ class TabBarController: UITabBarController {
     }
 }
 
-extension TabBarController
-{
-    enum Tab: String
-    {
-        case home     = "ホーム"
-        case item     = "MYアイテム"
+extension TabBarController {
+    enum Tab: String {
+        case home = "ホーム"
+        case item = "MYアイテム"
         case settings = "設定"
-        case inquiry  = "ヘルプ"
+        case inquiry = "ヘルプ"
 
         static let order: [Tab] = [.home, .item, .settings, .inquiry]
 
-        var title: String { return rawValue }
+        var title: String {
+            return rawValue
+        }
 
         var viewController: UIViewController {
             switch self {
