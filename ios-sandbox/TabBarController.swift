@@ -11,12 +11,12 @@ class TabBarController: UITabBarController {
 
 extension TabBarController {
     enum Tab: String {
-        case home = "ホーム"
-        case item = "MYアイテム"
-        case settings = "設定"
-        case inquiry = "ヘルプ"
+        case a = "a"
+        case b = "b"
+        case c = "c"
+        case d = "d"
 
-        static let order: [Tab] = [.home, .item, .settings, .inquiry]
+        static let order: [Tab] = [.a, .b, .c, .d]
 
         var title: String {
             return rawValue
@@ -24,27 +24,27 @@ extension TabBarController {
 
         var viewController: UIViewController {
             switch self {
-            case .home:     return SampleCollectionViewController()
-            case .item:     return SampleCollectionViewController()
-            case .settings: return SampleCollectionViewController()
-            case .inquiry:  return SampleCollectionViewController()
+            case .a: return UINavigationController(rootViewController: SampleCollectionViewController())
+            case .b: return UINavigationController(rootViewController: SampleCollectionViewController())
+            case .c: return UINavigationController(rootViewController: SampleCollectionViewController())
+            case .d: return UINavigationController(rootViewController: SampleCollectionViewController())
             }
         }
 
         var image: (on: UIImage, off: UIImage) {
             switch self {
-            case .home:
-                return (R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal))
-            case .item:
-                return (R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal))
-            case .settings:
-                return (R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal))
-            case .inquiry:
-                return (R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabAOff_23x23()!.withRenderingMode(.alwaysOriginal))
+            case .a:
+                return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
+                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+            case .b:
+                return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
+                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+            case .c:
+                return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
+                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+            case .d:
+                return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
+                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
             }
         }
     }
