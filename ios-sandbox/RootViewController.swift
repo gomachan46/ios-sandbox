@@ -1,8 +1,3 @@
-//
-// Created by USER on 2019-02-07.
-// Copyright (c) 2019 gomachan46. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

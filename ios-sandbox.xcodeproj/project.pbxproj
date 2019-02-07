@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36EBC03181B66D38CF6F0CF1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC9739538312BABB7212C /* SplashViewController.swift */; };
 		36EBC23E12BDB4726D96526F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */; };
 		36EBC822E3B5AFF152A14EDA /* SampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */; };
 		36EBCA5AE4C69DEE1A5960AA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC98E350C7A85A8904591 /* TabBarController.swift */; };
@@ -42,6 +43,7 @@
 		36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBC38B5886667E5222E083 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		36EBC9739538312BABB7212C /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		36EBC98E350C7A85A8904591 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		36EBCA176BC69A3F293F9CD9 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		36EBCAD057512594EEBF5D61 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				36EBC38B5886667E5222E083 /* R.generated.swift */,
 				36EBCA176BC69A3F293F9CD9 /* NavigationController.swift */,
 				36EBCAD057512594EEBF5D61 /* RootViewController.swift */,
+				36EBC9739538312BABB7212C /* SplashViewController.swift */,
 			);
 			path = "ios-sandbox";
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */,
 				36EBCDB11F1D073738C99B71 /* NavigationController.swift in Sources */,
 				36EBCE1848C4D6F8B0C34B1E /* RootViewController.swift in Sources */,
+				36EBC03181B66D38CF6F0CF1 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
