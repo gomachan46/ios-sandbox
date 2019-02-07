@@ -11,6 +11,5 @@ class NavigationController: UINavigationController {
 
 extension NavigationController {
     private func setup() {
-        navigationBar.backgroundColor = .black
     }
 }
