@@ -17,9 +17,9 @@ class SampleCollectionViewCell: UICollectionViewCell {
 
 extension SampleCollectionViewCell {
     private func makeViews() {
-        self.contentView.backgroundColor = .lightGray
+        contentView.backgroundColor = .lightGray
         UIImageView().apply { this in
-            self.contentView.addSubview(this)
+            contentView.addSubview(this)
             this.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }

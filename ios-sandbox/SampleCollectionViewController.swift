@@ -8,8 +8,8 @@ class SampleCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.titleView = UIImageView(image: R.image.navigationLogo_116x34()!)
-        UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
+        navigationItem.titleView = UIImageView(image: R.image.navigationLogo_116x34()!)
+        UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
             this.register(SampleCollectionViewCell.self, forCellWithReuseIdentifier: SampleCollectionViewCell.identifier)
             this.dataSource = self
@@ -36,15 +36,15 @@ extension SampleCollectionViewController: UICollectionViewDataSource {
 
 extension SampleCollectionViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let length = (self.view.frame.size.width / CGFloat(self.columnCount)) - self.minimumSpacing
+        let length = (view.frame.size.width / CGFloat(columnCount)) - minimumSpacing
         return CGSize(width: length, height: length)
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return self.minimumSpacing
+        return minimumSpacing
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return self.minimumSpacing
+        return minimumSpacing
     }
 }
