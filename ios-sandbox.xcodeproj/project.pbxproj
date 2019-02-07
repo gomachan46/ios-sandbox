@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		36EBC23E12BDB4726D96526F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */; };
 		36EBC822E3B5AFF152A14EDA /* SampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */; };
+		36EBCA5AE4C69DEE1A5960AA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC98E350C7A85A8904591 /* TabBarController.swift */; };
+		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
 		CEFA974922098490005796AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974822098490005796AF /* AppDelegate.swift */; };
 		CEFA974B22098490005796AF /* SampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974A22098490005796AF /* SampleCollectionViewController.swift */; };
 		CEFA975022098491005796AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFA974F22098491005796AF /* Assets.xcassets */; };
@@ -36,7 +38,9 @@
 
 /* Begin PBXFileReference section */
 		36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCollectionViewCell.swift; sourceTree = "<group>"; };
+		36EBC38B5886667E5222E083 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		36EBC98E350C7A85A8904591 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CEFA974522098490005796AF /* ios-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFA974822098490005796AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEFA974A22098490005796AF /* SampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCollectionViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 				CEFA975422098491005796AF /* Info.plist */,
 				36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */,
 				36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */,
+				36EBC98E350C7A85A8904591 /* TabBarController.swift */,
+				36EBC38B5886667E5222E083 /* R.generated.swift */,
 			);
 			path = "ios-sandbox";
 			sourceTree = "<group>";
@@ -294,6 +300,8 @@
 				CEFA974922098490005796AF /* AppDelegate.swift in Sources */,
 				36EBC23E12BDB4726D96526F /* Extensions.swift in Sources */,
 				36EBC822E3B5AFF152A14EDA /* SampleCollectionViewCell.swift in Sources */,
+				36EBCA5AE4C69DEE1A5960AA /* TabBarController.swift in Sources */,
+				36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
