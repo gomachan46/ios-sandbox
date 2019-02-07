@@ -1,4 +1,3 @@
-# rili-ios
+# ios-sandbox
 
-RiLi村をつくる
-
+iOS関連をわちゃわちゃする砂場
