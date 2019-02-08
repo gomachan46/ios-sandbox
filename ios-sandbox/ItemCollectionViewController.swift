@@ -36,9 +36,11 @@ class ItemCollectionViewController: UIViewController {
 
 extension ItemCollectionViewController {
     @objc private func refresh(sender: UIRefreshControl) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         DispatchQueue.global(qos: .userInteractive).async {
             Thread.sleep(forTimeInterval: 2.0)
             DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.refreshControl.endRefreshing()
             }
         }
