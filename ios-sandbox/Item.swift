@@ -1,5 +1,5 @@
 import Foundation
 
-struct SampleItem {
+struct Item {
     var url : String = ""
 }

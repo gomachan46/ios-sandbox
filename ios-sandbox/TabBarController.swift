@@ -24,10 +24,10 @@ extension TabBarController {
 
         var viewController: UIViewController {
             switch self {
-            case .a: return UINavigationController(rootViewController: SampleCollectionViewController())
-            case .b: return UINavigationController(rootViewController: SampleCollectionViewController())
-            case .c: return UINavigationController(rootViewController: SampleCollectionViewController())
-            case .d: return UINavigationController(rootViewController: SampleCollectionViewController())
+            case .a: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .b: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .c: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .d: return UINavigationController(rootViewController: ItemCollectionViewController())
             }
         }
 
