@@ -13,7 +13,6 @@
 		36EBC822E3B5AFF152A14EDA /* SampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */; };
 		36EBCA5AE4C69DEE1A5960AA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC98E350C7A85A8904591 /* TabBarController.swift */; };
 		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
-		36EBCDB11F1D073738C99B71 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCA176BC69A3F293F9CD9 /* NavigationController.swift */; };
 		36EBCE1848C4D6F8B0C34B1E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCAD057512594EEBF5D61 /* RootViewController.swift */; };
 		CEA0504D220D57D400E26B76 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA0504C220D57D400E26B76 /* Lottie.framework */; };
 		CEFA974922098490005796AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974822098490005796AF /* AppDelegate.swift */; };
@@ -48,7 +47,6 @@
 		36EBC8EBAAD53AB33A9CCEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		36EBC9739538312BABB7212C /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		36EBC98E350C7A85A8904591 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		36EBCA176BC69A3F293F9CD9 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		36EBCAD057512594EEBF5D61 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CEA0504C220D57D400E26B76 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		CEFA974522098490005796AF /* ios-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +126,6 @@
 				36EBC06F62D9C1BE98A9A40F /* SampleCollectionViewCell.swift */,
 				36EBC98E350C7A85A8904591 /* TabBarController.swift */,
 				36EBC38B5886667E5222E083 /* R.generated.swift */,
-				36EBCA176BC69A3F293F9CD9 /* NavigationController.swift */,
 				36EBCAD057512594EEBF5D61 /* RootViewController.swift */,
 				36EBC9739538312BABB7212C /* SplashViewController.swift */,
 				36EBC3AE7006814DEEE822E1 /* sampleData.json */,
@@ -320,7 +317,6 @@
 				36EBC822E3B5AFF152A14EDA /* SampleCollectionViewCell.swift in Sources */,
 				36EBCA5AE4C69DEE1A5960AA /* TabBarController.swift in Sources */,
 				36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */,
-				36EBCDB11F1D073738C99B71 /* NavigationController.swift in Sources */,
 				36EBCE1848C4D6F8B0C34B1E /* RootViewController.swift in Sources */,
 				36EBC03181B66D38CF6F0CF1 /* SplashViewController.swift in Sources */,
 			);
