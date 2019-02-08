@@ -5,7 +5,7 @@ class RootViewController: UIViewController {
     private var current: UIViewController
 
     init () {
-        current = TabBarController()
+        current = SplashViewController()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -20,5 +20,21 @@ class RootViewController: UIViewController {
         current.view.frame = view.bounds
         view.addSubview(current.view)
         current.didMove(toParent: self)
+    }
+}
+
+extension RootViewController {
+    func switchToMainScreen() {
+        let new = TabBarController()
+        addChild(new)
+        new.view.frame = view.bounds
+        view.addSubview(new.view)
+        new.didMove(toParent: self)
+
+        current.willMove(toParent: nil)
+        current.view.removeFromSuperview()
+        current.removeFromParent()
+
+        current = new
     }
 }

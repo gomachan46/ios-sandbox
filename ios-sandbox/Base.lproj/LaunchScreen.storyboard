@@ -18,12 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="4GW-B5-fmt">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigationLogo_116x34" translatesAutoresizingMaskIntoConstraints="NO" id="B8k-zO-R2I">
+                                <rect key="frame" x="149" y="431" width="116" height="34"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="B8k-zO-R2I" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ITz-hW-j0I"/>
+                            <constraint firstItem="B8k-zO-R2I" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Vtq-Ks-KMN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -33,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchImage" width="1242" height="2208"/>
+        <image name="navigationLogo_116x34" width="116" height="34"/>
     </resources>
 </document>
