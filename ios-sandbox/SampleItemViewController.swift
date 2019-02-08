@@ -2,13 +2,14 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class SampleItemViewController: UIViewController {
-    private var item: SampleItem
+    private let item = BehaviorRelay<SampleItem>(value: SampleItem())
     private let disposeBag = DisposeBag()
 
     init(item i: SampleItem) {
-        item = i
+        item.accept(i)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -20,13 +21,16 @@ class SampleItemViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = .white
-        UILabel().apply { this in
+        UIImageView().apply { this in
             view.addSubview(this)
-            this.text = item.url
-            this.textColor = .black
             this.snp.makeConstraints { make in
-                make.center.equalToSuperview()
+                make.edges.equalToSuperview()
             }
+            this.contentMode = .scaleAspectFit
+            item.asDriver().drive(onNext: { item in
+                this.kf.setImage(with: URL(string: item.url))
+            })
+            .disposed(by: disposeBag)
         }
     }
 }
