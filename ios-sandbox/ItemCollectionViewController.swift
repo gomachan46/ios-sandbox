@@ -8,13 +8,15 @@ class ItemCollectionViewController: UIViewController {
     private let columnCount = 3
     private var items: [Item] = []
     private let disposeBag = DisposeBag()
+    private var collectionView: UICollectionView!
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.titleView = UIImageView(image: R.image.navigationLogo_116x34()!)
         items = (0..<30).map { _ in Item(url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
-        UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
+        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
             this.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
             this.dataSource = self
@@ -26,6 +28,19 @@ class ItemCollectionViewController: UIViewController {
                     self.navigationController?.pushViewController(ItemViewController(item: item), animated: true)
                 })
                 .disposed(by: disposeBag)
+        }
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+    }
+}
+
+extension ItemCollectionViewController {
+    @objc private func refresh(sender: UIRefreshControl) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            Thread.sleep(forTimeInterval: 2.0)
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 }
