@@ -1,9 +1,11 @@
 import Foundation
 import UIKit
 import SnapKit
+import Lottie
 
 class SplashViewController: UIViewController {
     var logoImageView: UIImageView!
+    var animationView: LOTAnimationView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,17 +16,22 @@ class SplashViewController: UIViewController {
                 make.center.equalToSuperview()
             }
         }
+        animationView = LOTAnimationView(filePath: R.file.sampleDataJson.path()!).apply { this in
+            view.addSubview(this)
+            this.snp.makeConstraints { make in
+                make.center.equalTo(logoImageView)
+                make.top.equalToSuperview()
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.animate(withDuration: 0.3, delay: 1.0, options: .curveEaseOut, animations: { () in
-            self.logoImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        })
-        UIView.animate(withDuration: 0.2, delay: 1.3, options: .curveEaseOut, animations: { () in
+        UIView.animate(withDuration: 0.2, delay: 0.4, options: .curveEaseOut, animations: { () in
             self.logoImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.logoImageView.alpha = 0
-        }, completion: { _ in
+        })
+        animationView.play(fromProgress: 0.0, toProgress: 0.7, withCompletion: { _ in
             AppDelegate.shared.rootViewController.switchToMainScreen()
         })
     }
