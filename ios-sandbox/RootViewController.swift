@@ -25,16 +25,19 @@ class RootViewController: UIViewController {
 
 extension RootViewController {
     func switchToMainScreen() {
-        let new = TabBarController()
-        addChild(new)
-        new.view.frame = view.bounds
-        view.addSubview(new.view)
-        new.didMove(toParent: self)
+        animateFadeTransition(to: TabBarController())
+    }
 
+    private func animateFadeTransition(to new: UIViewController, completion: (() -> Void)? = nil) {
         current.willMove(toParent: nil)
-        current.view.removeFromSuperview()
-        current.removeFromParent()
+        addChild(new)
 
-        current = new
+        transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: {
+        }) { completed in
+            self.current.removeFromParent()
+            new.didMove(toParent: self)
+            self.current = new
+            completion?()
+        }
     }
 }
