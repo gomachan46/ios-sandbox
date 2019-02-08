@@ -31,7 +31,7 @@ class SplashViewController: UIViewController {
             self.logoImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.logoImageView.alpha = 0
         })
-        animationView.play(fromProgress: 0.0, toProgress: 0.7, withCompletion: { _ in
+        animationView.play(fromProgress: 0.4, toProgress: 0.7, withCompletion: { _ in
             AppDelegate.shared.rootViewController.switchToMainScreen()
         })
     }
