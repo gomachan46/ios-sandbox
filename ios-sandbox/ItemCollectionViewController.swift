@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 
 class ItemCollectionViewController: UIViewController {
-    private let minimumSpacing: CGFloat = 0.5
+    private let minimumSpacing: CGFloat = 1
     private let columnCount = 3
     private var items: [Item] = []
     private let disposeBag = DisposeBag()
