@@ -57,7 +57,7 @@ class ItemViewController: UIViewController {
             view.addSubview(this)
             this.pageIndicatorTintColor = .lightGray
             this.currentPageIndicatorTintColor = .black
-            this.numberOfPages = 2
+            this.numberOfPages = 5
             this.currentPage = 0
             this.snp.makeConstraints { make in
                 make.top.equalTo(scrollView.snp.bottom)
