@@ -5,6 +5,8 @@ import RxCocoa
 import Kingfisher
 
 class ItemViewController: UIViewController {
+    private var scrollView: UIScrollView!
+    private var pageView: UIPageControl!
     private let item = BehaviorRelay<Item>(value: Item())
     private let disposeBag = DisposeBag()
 
@@ -21,16 +23,66 @@ class ItemViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = .white
-        UIImageView().apply { this in
+        let label = UILabel().apply { this in
+            view.addSubview(this)
+            this.text = item.value.username
+            this.snp.makeConstraints { make in
+                make.top.equalTo(view.safeAreaLayoutGuide)
+                make.left.equalToSuperview().inset(20)
+                make.right.equalToSuperview()
+                make.height.equalTo(50)
+            }
+        }
+        scrollView = UIScrollView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                make.top.equalTo(label.snp.bottom)
+                make.left.right.equalToSuperview()
+                make.width.equalToSuperview()
+                make.height.equalTo(this.snp.width)
             }
-            this.contentMode = .scaleAspectFit
-            item.asDriver().drive(onNext: { item in
-                this.kf.setImage(with: URL(string: item.url))
-            })
-            .disposed(by: disposeBag)
+            this.isPagingEnabled = true
+            this.delegate = self
         }
+        let stackView = UIStackView().apply { this in
+            scrollView.addSubview(this)
+            this.axis = .horizontal
+            this.alignment = .fill
+            this.distribution = .fill
+            this.snp.makeConstraints { make in
+                make.edges.height.equalToSuperview()
+            }
+        }
+        pageView = UIPageControl().apply { this in
+            view.addSubview(this)
+            this.pageIndicatorTintColor = .lightGray
+            this.currentPageIndicatorTintColor = .black
+            this.numberOfPages = 2
+            this.currentPage = 0
+            this.snp.makeConstraints { make in
+                make.top.equalTo(scrollView.snp.bottom)
+                make.left.right.equalToSuperview()
+                make.height.equalTo(50)
+            }
+        }
+        (1...5).forEach { _ in
+            UIImageView().apply { this in
+                stackView.addArrangedSubview(this)
+                this.snp.makeConstraints { make in
+                    make.size.equalTo(scrollView)
+                }
+                this.contentMode = .scaleAspectFit
+                item.asDriver().drive(onNext: { item in
+                        this.kf.setImage(with: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
+                    })
+                    .disposed(by: disposeBag)
+            }
+        }
+    }
+}
+
+extension ItemViewController: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }

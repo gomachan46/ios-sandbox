@@ -1,5 +1,6 @@
 import Foundation
 
 struct Item {
-    var url : String = ""
+    var username: String = ""
+    var url: String = ""
 }

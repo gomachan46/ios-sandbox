@@ -15,7 +15,7 @@ class ItemCollectionViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.titleView = UIImageView(image: R.image.navigationLogo_116x34()!)
-        items = (0..<30).map { _ in Item(url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
+        items = (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
             this.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
