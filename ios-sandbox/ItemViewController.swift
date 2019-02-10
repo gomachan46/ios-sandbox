@@ -7,6 +7,7 @@ import Kingfisher
 class ItemViewController: UIViewController {
     private var scrollView: UIScrollView!
     private var pageView: UIPageControl!
+    private var stackView: UIStackView!
     private let item = BehaviorRelay<Item>(value: Item())
     private let disposeBag = DisposeBag()
 
@@ -42,9 +43,11 @@ class ItemViewController: UIViewController {
                 make.height.equalTo(this.snp.width)
             }
             this.isPagingEnabled = true
+            this.minimumZoomScale = 1.0
+            this.maximumZoomScale = 4.0
             this.delegate = self
         }
-        let stackView = UIStackView().apply { this in
+        stackView = UIStackView().apply { this in
             scrollView.addSubview(this)
             this.axis = .horizontal
             this.alignment = .fill
@@ -85,6 +88,10 @@ class ItemViewController: UIViewController {
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+    }
+
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return stackView
     }
 
     @objc private func tappedPageControl() {
