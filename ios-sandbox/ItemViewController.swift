@@ -7,9 +7,9 @@ import Kingfisher
 class ItemViewController: UIViewController {
     private var scrollView: UIScrollView!
     private var pageView: UIPageControl!
-    private var stackView: UIStackView!
     private let item = BehaviorRelay<Item>(value: Item())
     private let disposeBag = DisposeBag()
+    private let imageTag = 1
 
     init(item i: Item) {
         item.accept(i)
@@ -45,11 +45,9 @@ class ItemViewController: UIViewController {
             this.isPagingEnabled = true
             this.showsHorizontalScrollIndicator = false
             this.showsVerticalScrollIndicator = false
-            this.minimumZoomScale = 1.0
-            this.maximumZoomScale = 4.0
             this.delegate = self
         }
-        stackView = UIStackView().apply { this in
+        let stackView = UIStackView().apply { this in
             scrollView.addSubview(this)
             this.axis = .horizontal
             this.alignment = .fill
@@ -71,8 +69,20 @@ class ItemViewController: UIViewController {
             }
         }
         (1...5).forEach { _ in
-            UIImageView().apply { this in
+            let pageScrollView = UIScrollView().apply { this in
                 stackView.addArrangedSubview(this)
+                this.snp.makeConstraints { make in
+                    make.size.equalTo(scrollView)
+                }
+                this.showsHorizontalScrollIndicator = false
+                this.showsVerticalScrollIndicator = false
+                this.minimumZoomScale = 1.0
+                this.maximumZoomScale = 4.0
+                this.delegate = self
+            }
+            UIImageView().apply { this in
+                pageScrollView.addSubview(this)
+                this.tag = imageTag
                 this.snp.makeConstraints { make in
                     make.size.equalTo(scrollView)
                 }
@@ -88,12 +98,11 @@ class ItemViewController: UIViewController {
 
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
         pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return stackView
+        return scrollView.viewWithTag(imageTag)
     }
 
     public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
