@@ -43,6 +43,8 @@ class ItemViewController: UIViewController {
                 make.height.equalTo(this.snp.width)
             }
             this.isPagingEnabled = true
+            this.showsHorizontalScrollIndicator = false
+            this.showsVerticalScrollIndicator = false
             this.minimumZoomScale = 1.0
             this.maximumZoomScale = 4.0
             this.delegate = self
@@ -62,7 +64,6 @@ class ItemViewController: UIViewController {
             this.currentPageIndicatorTintColor = .black
             this.numberOfPages = 5
             this.currentPage = 0
-            this.addTarget(self, action: #selector(self.tappedPageControl), for: .valueChanged)
             this.snp.makeConstraints { make in
                 make.top.equalTo(scrollView.snp.bottom)
                 make.left.right.equalToSuperview()
@@ -87,6 +88,7 @@ class ItemViewController: UIViewController {
 
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.x)
         pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 
@@ -94,9 +96,7 @@ extension ItemViewController: UIScrollViewDelegate {
         return stackView
     }
 
-    @objc private func tappedPageControl() {
-        var frame = scrollView.frame
-        frame.origin.x = frame.size.width * CGFloat(pageView.currentPage)
-        scrollView.scrollRectToVisible(frame, animated: true)
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        scrollView.setZoomScale(1.0, animated: true)
     }
 }
