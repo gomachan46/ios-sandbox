@@ -59,6 +59,7 @@ class ItemViewController: UIViewController {
             this.currentPageIndicatorTintColor = .black
             this.numberOfPages = 5
             this.currentPage = 0
+            this.addTarget(self, action: #selector(self.tappedPageControl), for: .valueChanged)
             this.snp.makeConstraints { make in
                 make.top.equalTo(scrollView.snp.bottom)
                 make.left.right.equalToSuperview()
@@ -84,5 +85,12 @@ class ItemViewController: UIViewController {
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+    }
+
+    @objc private func tappedPageControl() {
+        print("hello")
+        var frame = scrollView.frame
+        frame.origin.x = frame.size.width * CGFloat(pageView.currentPage)
+        scrollView.scrollRectToVisible(frame, animated: true)
     }
 }
