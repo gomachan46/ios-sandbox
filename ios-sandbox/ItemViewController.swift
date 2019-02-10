@@ -88,7 +88,6 @@ extension ItemViewController: UIScrollViewDelegate {
     }
 
     @objc private func tappedPageControl() {
-        print("hello")
         var frame = scrollView.frame
         frame.origin.x = frame.size.width * CGFloat(pageView.currentPage)
         scrollView.scrollRectToVisible(frame, animated: true)
