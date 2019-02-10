@@ -98,7 +98,10 @@ class ItemViewController: UIViewController {
 
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        if scrollView.isPagingEnabled {
+            // 本当はdelegateごと分けたほうが良さそう
+            pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        }
     }
 
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
