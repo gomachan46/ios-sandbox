@@ -7,9 +7,9 @@ import Kingfisher
 class ItemViewController: UIViewController {
     private var scrollView: UIScrollView!
     private var pageView: UIPageControl!
+    private var itemZoomViewControllers: [ItemZoomViewController]!
     private let item = BehaviorRelay<Item>(value: Item())
     private let disposeBag = DisposeBag()
-    private let imageTag = 1
 
     init(item i: Item) {
         item.accept(i)
@@ -47,15 +47,6 @@ class ItemViewController: UIViewController {
             this.showsVerticalScrollIndicator = false
             this.delegate = self
         }
-        let stackView = UIStackView().apply { this in
-            scrollView.addSubview(this)
-            this.axis = .horizontal
-            this.alignment = .fill
-            this.distribution = .fill
-            this.snp.makeConstraints { make in
-                make.edges.height.equalToSuperview()
-            }
-        }
         pageView = UIPageControl().apply { this in
             view.addSubview(this)
             this.pageIndicatorTintColor = .lightGray
@@ -68,47 +59,27 @@ class ItemViewController: UIViewController {
                 make.height.equalTo(50)
             }
         }
-        (1...5).forEach { _ in
-            let pageScrollView = UIScrollView().apply { this in
-                stackView.addArrangedSubview(this)
-                this.snp.makeConstraints { make in
-                    make.size.equalTo(scrollView)
-                }
-                this.showsHorizontalScrollIndicator = false
-                this.showsVerticalScrollIndicator = false
-                this.minimumZoomScale = 1.0
-                this.maximumZoomScale = 20.0
-                this.delegate = self
+        let stackView = UIStackView().apply { this in
+            scrollView.addSubview(this)
+            this.axis = .horizontal
+            this.alignment = .fill
+            this.distribution = .fill
+            this.snp.makeConstraints { make in
+                make.edges.height.equalToSuperview()
             }
-            UIImageView().apply { this in
-                pageScrollView.addSubview(this)
-                this.tag = imageTag
-                this.snp.makeConstraints { make in
-                    make.size.equalTo(scrollView)
-                }
-                this.contentMode = .scaleAspectFit
-                item.asDriver().drive(onNext: { item in
-                        this.kf.setImage(with: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
-                    })
-                    .disposed(by: disposeBag)
-            }
+        }
+        itemZoomViewControllers = (1...5).map { _ in
+            let vc = ItemZoomViewController(item: item.value)
+            return vc
+        }
+        itemZoomViewControllers.forEach { vc in
+            stackView.addArrangedSubview(vc.view)
         }
     }
 }
 
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isPagingEnabled {
-            // 本当はdelegateごと分けたほうが良さそう
-            pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        }
-    }
-
-    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return scrollView.viewWithTag(imageTag)
-    }
-
-    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        scrollView.setZoomScale(1.0, animated: true)
+        pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }
