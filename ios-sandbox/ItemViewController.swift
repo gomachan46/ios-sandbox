@@ -77,7 +77,7 @@ class ItemViewController: UIViewController {
                 this.showsHorizontalScrollIndicator = false
                 this.showsVerticalScrollIndicator = false
                 this.minimumZoomScale = 1.0
-                this.maximumZoomScale = 4.0
+                this.maximumZoomScale = 20.0
                 this.delegate = self
             }
             UIImageView().apply { this in
