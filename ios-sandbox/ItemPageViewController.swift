@@ -10,10 +10,9 @@ class ItemPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        view.backgroundColor = .black
         dataSource = self
 
-        (0..<3).forEach { i in
+        (1...5).forEach { i in
             let contentVC = ItemZoomViewController(item: Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: (1...100)))"))
             contentVCs.append(contentVC)
         }
