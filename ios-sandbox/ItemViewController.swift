@@ -34,7 +34,9 @@ class ItemViewController: UIViewController {
                 make.height.equalTo(50)
             }
         }
-        scrollView = UIScrollView().apply { this in
+        let pageVC = ItemPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        addChild(pageVC)
+        pageVC.view.apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(label.snp.bottom)
@@ -42,44 +44,7 @@ class ItemViewController: UIViewController {
                 make.width.equalToSuperview()
                 make.height.equalTo(this.snp.width)
             }
-            this.isPagingEnabled = true
-            this.showsHorizontalScrollIndicator = false
-            this.showsVerticalScrollIndicator = false
-            this.delegate = self
         }
-        pageView = UIPageControl().apply { this in
-            view.addSubview(this)
-            this.pageIndicatorTintColor = .lightGray
-            this.currentPageIndicatorTintColor = .black
-            this.numberOfPages = 5
-            this.currentPage = 0
-            this.snp.makeConstraints { make in
-                make.top.equalTo(scrollView.snp.bottom)
-                make.left.right.equalToSuperview()
-                make.height.equalTo(50)
-            }
-        }
-        let stackView = UIStackView().apply { this in
-            scrollView.addSubview(this)
-            this.axis = .horizontal
-            this.alignment = .fill
-            this.distribution = .fill
-            this.snp.makeConstraints { make in
-                make.edges.height.equalToSuperview()
-            }
-        }
-        itemZoomViewControllers = (1...5).map { _ in
-            let vc = ItemZoomViewController(item: item.value)
-            return vc
-        }
-        itemZoomViewControllers.forEach { vc in
-            stackView.addArrangedSubview(vc.view)
-        }
-    }
-}
-
-extension ItemViewController: UIScrollViewDelegate {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        pageVC.didMove(toParent: self)
     }
 }
