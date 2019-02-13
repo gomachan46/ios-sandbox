@@ -11,6 +11,7 @@ class ItemViewController: UIViewController {
     private let item = BehaviorRelay<Item>(value: Item())
     private let disposeBag = DisposeBag()
     private let imageTag = 1
+    private var backgroundAlpha: CGFloat = 1.0
 
     init(item i: Item) {
         item.accept(i)
@@ -99,18 +100,20 @@ extension ItemViewController {
     @objc func pinchGesture(_ gestureRecognizer: UIPinchGestureRecognizer) {
         guard let zoomingView = gestureRecognizer.view else { return }
         switch gestureRecognizer.state {
-        case .began:
+        case .began, .changed:
             zoomingView.transform = zoomingView.transform.scaledBy(x: gestureRecognizer.scale, y: gestureRecognizer.scale)
             scrollView.snp.removeConstraints()
             scrollView.snp.makeConstraints { make in
                 make.size.edges.equalTo(view)
             }
             view.isOpaque = false
-            view.backgroundColor = UIColor(white: 0.3, alpha: 1.0)
-        case .changed:
-            zoomingView.transform = zoomingView.transform.scaledBy(x: gestureRecognizer.scale, y: gestureRecognizer.scale)
-            view.isOpaque = false
-            view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
+            backgroundAlpha = backgroundAlpha / gestureRecognizer.scale
+            if backgroundAlpha > 1.0 {
+                backgroundAlpha = 1.0
+            } else if backgroundAlpha < 0.5 {
+                backgroundAlpha = 0.5
+            }
+            view.backgroundColor = UIColor(white: 0.4, alpha: backgroundAlpha)
         case .ended:
             scrollView.snp.removeConstraints()
             scrollView.snp.makeConstraints { make in
