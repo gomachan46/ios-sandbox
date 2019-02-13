@@ -28,9 +28,7 @@ class ItemZoomViewController: UIViewController {
             }
             this.showsHorizontalScrollIndicator = false
             this.showsVerticalScrollIndicator = false
-            this.minimumZoomScale = 1.0
-            this.maximumZoomScale = 20.0
-            this.delegate = self
+            this.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(self.pinchGesture(_:))))
         }
         imageView = UIImageView().apply { this in
             pageScrollView.addSubview(this)
@@ -47,12 +45,22 @@ class ItemZoomViewController: UIViewController {
     }
 }
 
-extension ItemZoomViewController: UIScrollViewDelegate {
-    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-
-    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        scrollView.setZoomScale(1.0, animated: true)
+extension ItemZoomViewController {
+    @objc func pinchGesture(_ gestureRecognizer: UIPinchGestureRecognizer) {
+        guard let zoomingView = gestureRecognizer.view else { return }
+        switch gestureRecognizer.state {
+        case .began:
+            zoomingView.transform = zoomingView.transform.scaledBy(x: gestureRecognizer.scale, y: gestureRecognizer.scale)
+            presentingViewController?.view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+        case .changed:
+            zoomingView.transform = zoomingView.transform.scaledBy(x: gestureRecognizer.scale, y: gestureRecognizer.scale)
+        case .ended:
+            UIView.animate(withDuration: 0.35, animations: {
+                zoomingView.transform = CGAffineTransform.identity
+            })
+        default:
+            break
+        }
+        gestureRecognizer.scale = 1.0
     }
 }
