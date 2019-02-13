@@ -6,6 +6,7 @@ import Kingfisher
 
 class ItemZoomViewController: UIViewController {
     private let item = BehaviorRelay<Item>(value: Item())
+    private var pageScrollView: UIScrollView!
     private var imageView: UIImageView!
     private let disposeBag = DisposeBag()
 
@@ -21,7 +22,7 @@ class ItemZoomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let pageScrollView = UIScrollView().apply { this in
+        pageScrollView = UIScrollView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.size.equalTo(view)
@@ -51,11 +52,19 @@ extension ItemZoomViewController {
         switch gestureRecognizer.state {
         case .began:
             zoomingView.transform = zoomingView.transform.scaledBy(x: gestureRecognizer.scale, y: gestureRecognizer.scale)
-            presentingViewController?.view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+            parent!.view.snp.removeConstraints()
+            parent!.view.snp.makeConstraints { make in
+                make.size.equalTo(parent!.parent!.view)
+            }
+            parent!.parent!.view.isOpaque = false
+            parent!.parent!.view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         case .changed:
             zoomingView.transform = zoomingView.transform.scaledBy(x: gestureRecognizer.scale, y: gestureRecognizer.scale)
+            parent!.parent!.view.isOpaque = false
+            parent!.parent!.view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         case .ended:
             UIView.animate(withDuration: 0.35, animations: {
+                self.parent!.parent!.view.backgroundColor = .white
                 zoomingView.transform = CGAffineTransform.identity
             })
         default:
