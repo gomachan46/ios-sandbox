@@ -7,15 +7,16 @@ import Kingfisher
 class ItemViewController: UIViewController {
     private var scrollView: UIScrollView!
     private var pageView: UIPageControl!
+    private var stackView: UIStackView!
     private var label: UILabel!
     private let item = BehaviorRelay<Item>(value: Item())
     private let disposeBag = DisposeBag()
-    private let imageTag = 1
     private var backgroundAlpha: CGFloat = 1.0
     private var currentTransform: CGAffineTransform!
     private var viewCenter: CGPoint!
     private var pinchCenter: CGPoint!
     private var isZooming: Bool = false
+    private var layerView: UIView!
 
     init(item i: Item) {
         item.accept(i)
@@ -42,25 +43,17 @@ class ItemViewController: UIViewController {
         }
         scrollView = UIScrollView().apply { this in
             view.addSubview(this)
+            this.translatesAutoresizingMaskIntoConstraints = false
             this.snp.makeConstraints { make in
                 make.top.equalTo(label.snp.bottom)
                 make.left.right.equalToSuperview()
-                make.width.equalToSuperview()
+                make.width.equalTo(view)
                 make.height.equalTo(this.snp.width)
             }
             this.isPagingEnabled = true
             this.showsHorizontalScrollIndicator = false
             this.showsVerticalScrollIndicator = false
             this.delegate = self
-        }
-        let stackView = UIStackView().apply { this in
-            scrollView.addSubview(this)
-            this.axis = .horizontal
-            this.alignment = .fill
-            this.distribution = .fill
-            this.snp.makeConstraints { make in
-                make.edges.height.equalToSuperview()
-            }
         }
         pageView = UIPageControl().apply { this in
             view.addSubview(this)
@@ -74,26 +67,28 @@ class ItemViewController: UIViewController {
                 make.height.equalTo(50)
             }
         }
-        (1...5).forEach { _ in
-            let pageScrollView = UIScrollView().apply { this in
-                stackView.addArrangedSubview(this)
-                this.snp.makeConstraints { make in
-                    make.size.equalTo(scrollView)
-                }
-                this.showsHorizontalScrollIndicator = false
-                this.showsVerticalScrollIndicator = false
+        stackView = UIStackView().apply { this in
+            scrollView.addSubview(this)
+            this.translatesAutoresizingMaskIntoConstraints = false
+            this.isUserInteractionEnabled = true
+            this.axis = .horizontal
+            this.alignment = .fill
+            this.distribution = .fillEqually
+            this.snp.makeConstraints { make in
+                make.edges.height.equalTo(scrollView)
+                make.width.equalTo(scrollView).multipliedBy(5)
             }
+        }
+        (1...5).forEach { _ in
             UIImageView().apply { this in
-                pageScrollView.addSubview(this)
-                this.tag = imageTag
-                this.snp.makeConstraints { make in
-                    make.size.equalTo(pageScrollView)
-                }
-                this.contentMode = .scaleAspectFit
+                stackView.addArrangedSubview(this)
+                this.contentMode = .scaleAspectFill
                 item.asDriver().drive(onNext: { item in
                         this.kf.setImage(with: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
                     })
                     .disposed(by: disposeBag)
+                this.clipsToBounds = false
+                this.translatesAutoresizingMaskIntoConstraints = false
                 this.isUserInteractionEnabled = true
                 let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinchGesture(_:)))
                 pinchGesture.delegate = self
@@ -131,6 +126,8 @@ extension ItemViewController {
             scrollView.snp.makeConstraints { make in
                 make.size.edges.equalTo(view)
             }
+            stackView.translatesAutoresizingMaskIntoConstraints = true
+            zoomingView.translatesAutoresizingMaskIntoConstraints = true
             currentTransform = zoomingView.transform
             viewCenter = zoomingView.center
             let touchPoint1 = gestureRecognizer.location(ofTouch: 0, in: view)
@@ -143,6 +140,7 @@ extension ItemViewController {
 
             zoomingView.center = newCenter
             zoomingView.transform = currentTransform.concatenating(CGAffineTransform(scaleX: scale, y: scale))
+
             view.isOpaque = false
             backgroundAlpha = backgroundAlpha / gestureRecognizer.scale
             if backgroundAlpha > 1.0 {
@@ -155,10 +153,12 @@ extension ItemViewController {
             scrollView.snp.removeConstraints()
             scrollView.snp.makeConstraints { make in
                 make.top.equalTo(label.snp.bottom)
-                make.left.right.equalToSuperview()
-                make.width.equalToSuperview()
+                make.left.right.equalTo(view)
+                make.width.equalTo(view)
                 make.height.equalTo(scrollView.snp.width)
             }
+            zoomingView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.translatesAutoresizingMaskIntoConstraints = false
             UIView.animate(withDuration: 0.35, animations: {
                 self.view.backgroundColor = .white
                 zoomingView.transform = CGAffineTransform.identity
@@ -171,10 +171,7 @@ extension ItemViewController {
 }
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isPagingEnabled {
-            // 本当はdelegateごと分けたほうが良さそう
-            pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        }
+        pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }
 
