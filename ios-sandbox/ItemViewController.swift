@@ -148,14 +148,19 @@ extension ItemViewController: UIGestureRecognizerDelegate {
     @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
         if gesture.state == .began {
             imageOriginalCenter = gesture.view!.center
+            self.scrollView.isScrollEnabled = false
         }
         switch gesture.state {
         case .began, .changed:
+            let transform = gesture.view!.transform
+            gesture.view!.transform = CGAffineTransform.identity
+
             // Get the touch position
             let translation = gesture.translation(in: gesture.view!)
 
             // Edit the center of the target by adding the gesture position
             gesture.view!.center = CGPoint(x: gesture.view!.center.x + translation.x, y: gesture.view!.center.y + translation.y)
+            gesture.view!.transform = transform
             gesture.setTranslation(.zero, in: gesture.view!)
 
             // Show the overlay
@@ -167,6 +172,7 @@ extension ItemViewController: UIGestureRecognizerDelegate {
             // Smoothly restore the transform to the "original"
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 gesture.view!.center = self.imageOriginalCenter
+                self.scrollView.isScrollEnabled = true
             }) { _ in
                 // Hide the overlay
                 UIView.animate(withDuration: 0.2) {
