@@ -5,18 +5,13 @@ import RxCocoa
 import Kingfisher
 
 class ItemViewController: UIViewController {
-    private var scrollView: UIScrollView!
-    private var pageView: UIPageControl!
-    private var stackView: UIStackView!
     private var label: UILabel!
     private let item = BehaviorRelay<Item>(value: Item())
+    private var pageView: UIPageControl!
     private let disposeBag = DisposeBag()
-    private var backgroundAlpha: CGFloat = 1.0
-    private var currentTransform: CGAffineTransform!
-    private var viewCenter: CGPoint!
-    private var pinchCenter: CGPoint!
-    private var isZooming: Bool = false
-    private var layerView: UIView!
+    private var scrollView: UIScrollView!
+    private var imageOriginalCenter: CGPoint!
+    private var overlay: UIView!
 
     init(item i: Item) {
         item.accept(i)
@@ -67,7 +62,7 @@ class ItemViewController: UIViewController {
                 make.height.equalTo(50)
             }
         }
-        stackView = UIStackView().apply { this in
+        let stackView = UIStackView().apply { this in
             scrollView.addSubview(this)
             this.translatesAutoresizingMaskIntoConstraints = false
             this.isUserInteractionEnabled = true
@@ -87,96 +82,102 @@ class ItemViewController: UIViewController {
                         this.kf.setImage(with: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
                     })
                     .disposed(by: disposeBag)
-                this.clipsToBounds = false
+                this.layer.masksToBounds = true
                 this.translatesAutoresizingMaskIntoConstraints = false
                 this.isUserInteractionEnabled = true
-                let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinchGesture(_:)))
-                pinchGesture.delegate = self
-                this.addGestureRecognizer(pinchGesture)
-                let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture(_:)))
-                panGesture.minimumNumberOfTouches = 1
+                let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
+                let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+                panGesture.minimumNumberOfTouches = 2
                 panGesture.maximumNumberOfTouches = 2
+                pinchGesture.delegate = self
                 panGesture.delegate = self
+                this.addGestureRecognizer(pinchGesture)
                 this.addGestureRecognizer(panGesture)
             }
         }
+        overlay = UIView().apply { this in
+            view.addSubview(this)
+            this.alpha = 0
+            this.backgroundColor = .black
+            this.snp.makeConstraints { make in
+                make.size.edges.equalTo(view)
+            }
+        }
+        view.bringSubviewToFront(scrollView)
     }
 }
 
-extension ItemViewController {
-    @objc func panGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
-        guard isZooming else { return }
-        guard let zoomingView = gestureRecognizer.view else { return }
+extension ItemViewController: UIGestureRecognizerDelegate {
 
-        let transform = zoomingView.transform
-        zoomingView.transform = CGAffineTransform.identity
-
-        let point = gestureRecognizer.translation(in: zoomingView)
-        let movedPoint = CGPoint(x: zoomingView.center.x + point.x, y: zoomingView.center.y + point.y)
-        zoomingView.center = movedPoint
-        zoomingView.transform = transform
+    // That method make it works
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 
-    @objc func pinchGesture(_ gestureRecognizer: UIPinchGestureRecognizer) {
-        guard let zoomingView = gestureRecognizer.view else { return }
+    @objc func handleZoom(_ gesture: UIPinchGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
 
-        switch gestureRecognizer.state {
-        case .began:
-            scrollView.snp.removeConstraints()
-            scrollView.snp.makeConstraints { make in
-                make.size.edges.equalTo(view)
-            }
-            stackView.translatesAutoresizingMaskIntoConstraints = true
-            zoomingView.translatesAutoresizingMaskIntoConstraints = true
-            currentTransform = zoomingView.transform
-            viewCenter = zoomingView.center
-            let touchPoint1 = gestureRecognizer.location(ofTouch: 0, in: view)
-            let touchPoint2 = gestureRecognizer.location(ofTouch: 1, in: view)
-            pinchCenter = CGPoint(x: (touchPoint1.x + touchPoint2.x) / 2, y: (touchPoint1.y + touchPoint2.y) / 2)
-            isZooming = true
-        case .changed:
-            let scale = gestureRecognizer.scale
-            let newCenter = CGPoint(x: viewCenter.x - ((pinchCenter.x - viewCenter.x) * scale - (pinchCenter.x - viewCenter.x)), y: viewCenter.y - ((pinchCenter.y - viewCenter.y) * scale - (pinchCenter.y - viewCenter.y)))
+            // Only zoom in, not out
+            if gesture.scale >= 1 {
 
-            zoomingView.center = newCenter
-            zoomingView.transform = currentTransform.concatenating(CGAffineTransform(scaleX: scale, y: scale))
+                // Get the scale from the gesture passed in the function
+                let scale = gesture.scale
 
-            view.isOpaque = false
-            backgroundAlpha = backgroundAlpha / gestureRecognizer.scale
-            if backgroundAlpha > 1.0 {
-                backgroundAlpha = 1.0
-            } else if backgroundAlpha < 0.5 {
-                backgroundAlpha = 0.5
+                gesture.view!.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
-            view.backgroundColor = UIColor(white: 0.4, alpha: backgroundAlpha)
-        case .ended:
-            scrollView.snp.removeConstraints()
-            scrollView.snp.makeConstraints { make in
-                make.top.equalTo(label.snp.bottom)
-                make.left.right.equalTo(view)
-                make.width.equalTo(view)
-                make.height.equalTo(scrollView.snp.width)
+
+            // Show the overlay
+            UIView.animate(withDuration: 0.2) {
+                self.overlay.alpha = 0.8
             }
-            zoomingView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            UIView.animate(withDuration: 0.35, animations: {
-                self.view.backgroundColor = .white
-                zoomingView.transform = CGAffineTransform.identity
-            })
-            isZooming = false
         default:
-            break
+            // If the gesture has cancelled/terminated/failed or everything else that's not performing
+            // Smoothly restore the transform to the "original"
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+                gesture.view!.transform = .identity
+            }) { _ in
+                // Hide the overlay
+                UIView.animate(withDuration: 0.2) {
+                    self.overlay.alpha = 0
+                }
+            }
+        }
+    }
+
+    @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
+        if gesture.state == .began {
+            imageOriginalCenter = gesture.view!.center
+        }
+        switch gesture.state {
+        case .began, .changed:
+            // Get the touch position
+            let translation = gesture.translation(in: gesture.view!)
+
+            // Edit the center of the target by adding the gesture position
+            gesture.view!.center = CGPoint(x: gesture.view!.center.x + translation.x, y: gesture.view!.center.y + translation.y)
+            gesture.setTranslation(.zero, in: gesture.view!)
+
+            // Show the overlay
+            UIView.animate(withDuration: 0.2) {
+                self.overlay.alpha = 0.8
+            }
+        default:
+            // If the gesture has cancelled/terminated/failed or everything else that's not performing
+            // Smoothly restore the transform to the "original"
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+                gesture.view!.center = self.imageOriginalCenter
+            }) { _ in
+                // Hide the overlay
+                UIView.animate(withDuration: 0.2) {
+                    self.overlay.alpha = 0
+                }
+            }
         }
     }
 }
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-    }
-}
-
-extension ItemViewController: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }
