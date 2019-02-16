@@ -1,4 +1,3 @@
-
 import Foundation
 import UIKit
 import Kingfisher
@@ -64,6 +63,11 @@ class SampleViewController: UIViewController {
         imageView.addGestureRecognizer(pan)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        imageOriginalCenter = imageView.center
+    }
+
     /// Setup imageView
     private func setupImageView() {
 
@@ -108,10 +112,6 @@ extension SampleViewController: UIGestureRecognizerDelegate {
     }
 
     @objc func handleZoom(_ gesture: UIPinchGestureRecognizer) {
-        if gesture.state == .began {
-            imageOriginalCenter = gesture.view!.center
-        }
-
         switch gesture.state {
         case .began, .changed:
 
@@ -165,7 +165,6 @@ extension SampleViewController: UIGestureRecognizerDelegate {
             // Smoothly restore the transform to the "original"
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 gesture.view!.center = self.imageOriginalCenter
-                gesture.setTranslation(.zero, in: self.view)
             }) { _ in
                 // Hide the overaly
                 UIView.animate(withDuration: 0.2) {
