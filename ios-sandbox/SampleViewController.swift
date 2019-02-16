@@ -8,7 +8,9 @@ class SampleViewController: UIViewController {
     // MARK: - UI Initialization
 
     // The image that we will zoom/drag
+    var label: UILabel!
     var imageView = UIImageView()
+    var imageOriginalCenter: CGPoint!
 
     // The dark overlay layer behind the image
     // that will be visible while gestures are recognized
@@ -25,6 +27,16 @@ class SampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        label = UILabel().apply { this in
+            view.addSubview(this)
+            this.text = "John"
+            this.snp.makeConstraints { make in
+                make.top.equalTo(view.safeAreaLayoutGuide)
+                make.left.equalToSuperview().inset(20)
+                make.right.equalToSuperview()
+                make.height.equalTo(50)
+            }
+        }
 
         view.addSubview(imageView)
         view.addSubview(overlay)
@@ -76,9 +88,10 @@ class SampleViewController: UIViewController {
 
         // Constraints
         imageView.snp.makeConstraints { make in
+            make.top.equalTo(label.snp.bottom)
             make.left.right.equalTo(view)
-            make.center.equalTo(view)
-            make.height.equalTo(250)
+            make.width.equalTo(view)
+            make.height.equalTo(imageView.snp.width)
         }
 
         view.layoutIfNeeded()
@@ -95,6 +108,10 @@ extension SampleViewController: UIGestureRecognizerDelegate {
     }
 
     @objc func handleZoom(_ gesture: UIPinchGestureRecognizer) {
+        if gesture.state == .began {
+            imageOriginalCenter = gesture.view!.center
+        }
+
         switch gesture.state {
         case .began, .changed:
 
@@ -147,7 +164,7 @@ extension SampleViewController: UIGestureRecognizerDelegate {
             // If the gesture has cancelled/terminated/failed or everything else that's not performing
             // Smoothly restore the transform to the "original"
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-                gesture.view!.center = self.view.center
+                gesture.view!.center = self.imageOriginalCenter
                 gesture.setTranslation(.zero, in: self.view)
             }) { _ in
                 // Hide the overaly
