@@ -166,7 +166,7 @@ extension SampleViewController: UIGestureRecognizerDelegate {
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 gesture.view!.center = self.imageOriginalCenter
             }) { _ in
-                // Hide the overaly
+                // Hide the overlay
                 UIView.animate(withDuration: 0.2) {
                     self.overlay.alpha = 0
                 }
