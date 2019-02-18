@@ -5,13 +5,10 @@ import RxCocoa
 import Kingfisher
 
 class ItemViewController: UIViewController {
-    private var label: UILabel!
     private let item = BehaviorRelay<Item>(value: Item())
     private var pageView: UIPageControl!
     private let disposeBag = DisposeBag()
     private var scrollView: UIScrollView!
-    private var imageOriginalCenter: CGPoint!
-    private var overlay: UIView!
 
     init(item i: Item) {
         item.accept(i)
@@ -26,7 +23,7 @@ class ItemViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = .white
-        label = UILabel().apply { this in
+        let label = UILabel().apply { this in
             view.addSubview(this)
             this.text = item.value.username
             this.snp.makeConstraints { make in
@@ -56,6 +53,7 @@ class ItemViewController: UIViewController {
             this.currentPageIndicatorTintColor = .black
             this.numberOfPages = 5
             this.currentPage = 0
+            this.addTarget(self, action: #selector(self.tappedPageControl), for: .valueChanged)
             this.snp.makeConstraints { make in
                 make.top.equalTo(scrollView.snp.bottom)
                 make.left.right.equalToSuperview()
@@ -64,8 +62,6 @@ class ItemViewController: UIViewController {
         }
         let stackView = UIStackView().apply { this in
             scrollView.addSubview(this)
-            this.translatesAutoresizingMaskIntoConstraints = false
-            this.isUserInteractionEnabled = true
             this.axis = .horizontal
             this.alignment = .fill
             this.distribution = .fillEqually
@@ -82,108 +78,20 @@ class ItemViewController: UIViewController {
                         this.kf.setImage(with: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
                     })
                     .disposed(by: disposeBag)
-                this.layer.masksToBounds = true
-                this.translatesAutoresizingMaskIntoConstraints = false
                 this.isUserInteractionEnabled = true
-                let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
-                let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-                panGesture.minimumNumberOfTouches = 2
-                panGesture.maximumNumberOfTouches = 2
-                pinchGesture.delegate = self
-                panGesture.delegate = self
-                this.addGestureRecognizer(pinchGesture)
-                this.addGestureRecognizer(panGesture)
-            }
-        }
-        overlay = UIView().apply { this in
-            view.addSubview(this)
-            this.alpha = 0
-            this.backgroundColor = .black
-            this.snp.makeConstraints { make in
-                make.size.edges.equalTo(view)
-            }
-        }
-        view.bringSubviewToFront(scrollView)
-    }
-}
-
-extension ItemViewController: UIGestureRecognizerDelegate {
-
-    // That method make it works
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-
-    @objc func handleZoom(_ gesture: UIPinchGestureRecognizer) {
-        switch gesture.state {
-        case .began, .changed:
-
-            // Only zoom in, not out
-            if gesture.scale >= 1 {
-
-                // Get the scale from the gesture passed in the function
-                let scale = gesture.scale
-
-                gesture.view!.transform = CGAffineTransform(scaleX: scale, y: scale)
-            }
-
-            // Show the overlay
-            UIView.animate(withDuration: 0.2) {
-                self.overlay.alpha = 0.8
-            }
-        default:
-            // If the gesture has cancelled/terminated/failed or everything else that's not performing
-            // Smoothly restore the transform to the "original"
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-                gesture.view!.transform = .identity
-            }) { _ in
-                // Hide the overlay
-                UIView.animate(withDuration: 0.2) {
-                    self.overlay.alpha = 0
-                }
-            }
-        }
-    }
-
-    @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
-        if gesture.state == .began {
-            imageOriginalCenter = gesture.view!.center
-            self.scrollView.isScrollEnabled = false
-        }
-        switch gesture.state {
-        case .began, .changed:
-            let transform = gesture.view!.transform
-            gesture.view!.transform = CGAffineTransform.identity
-
-            // Get the touch position
-            let translation = gesture.translation(in: gesture.view!)
-
-            // Edit the center of the target by adding the gesture position
-            gesture.view!.center = CGPoint(x: gesture.view!.center.x + translation.x, y: gesture.view!.center.y + translation.y)
-            gesture.view!.transform = transform
-            gesture.setTranslation(.zero, in: gesture.view!)
-
-            // Show the overlay
-            UIView.animate(withDuration: 0.2) {
-                self.overlay.alpha = 0.8
-            }
-        default:
-            // If the gesture has cancelled/terminated/failed or everything else that's not performing
-            // Smoothly restore the transform to the "original"
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-                gesture.view!.center = self.imageOriginalCenter
-                self.scrollView.isScrollEnabled = true
-            }) { _ in
-                // Hide the overlay
-                UIView.animate(withDuration: 0.2) {
-                    self.overlay.alpha = 0
-                }
             }
         }
     }
 }
+
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+    }
+
+    @objc private func tappedPageControl() {
+        var frame = scrollView.frame
+        frame.origin.x = frame.size.width * CGFloat(pageView.currentPage)
+        scrollView.scrollRectToVisible(frame, animated: true)
     }
 }
