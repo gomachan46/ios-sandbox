@@ -30,7 +30,7 @@ class FeedViewController: UIViewController {
                 make.height.equalTo(scrollView)
             }
         }
-        (1...50).forEach { _ in
+        (1...10).forEach { _ in
             let storyView = UIView().apply { this in
                 stackView.addArrangedSubview(this)
             }
