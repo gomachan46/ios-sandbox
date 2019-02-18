@@ -5,7 +5,7 @@ class RootViewController: UIViewController {
     private var current: UIViewController
 
     init () {
-        current = ItemViewController(item: Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
+        current = TabBarController()
         super.init(nibName: nil, bundle: nil)
     }
 
