@@ -86,7 +86,7 @@ class ItemViewController: UIViewController {
 
 extension ItemViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        pageView.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.width)
     }
 
     @objc private func tappedPageControl() {

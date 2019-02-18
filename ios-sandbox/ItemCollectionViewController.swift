@@ -65,7 +65,7 @@ extension ItemCollectionViewController: UICollectionViewDataSource {
 
 extension ItemCollectionViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let length = (view.frame.size.width / CGFloat(columnCount)) - minimumSpacing
+        let length = (view.frame.width / CGFloat(columnCount)) - minimumSpacing
         return CGSize(width: length, height: length)
     }
 
