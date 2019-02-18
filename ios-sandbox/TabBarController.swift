@@ -24,7 +24,7 @@ extension TabBarController {
 
         var viewController: UIViewController {
             switch self {
-            case .a: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .a: return UINavigationController(rootViewController: FeedViewController())
             case .b: return UINavigationController(rootViewController: ItemCollectionViewController())
             case .c: return UINavigationController(rootViewController: ItemCollectionViewController())
             case .d: return UINavigationController(rootViewController: ItemCollectionViewController())
