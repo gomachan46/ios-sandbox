@@ -78,6 +78,31 @@ extension TabBarController {
     }
 
     @objc private func tapCenterButton() {
-        selectedIndex = 2
+        let pickerController = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            pickerController.sourceType = .savedPhotosAlbum
+        } else if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            pickerController.sourceType = .camera
+        } else {
+            print("カメラ周りの許可がないです")
+            return
+        }
+        pickerController.delegate = self
+        present(pickerController, animated: true)
+    }
+}
+
+extension TabBarController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        let pickedImage = info[.originalImage] as! UIImage
+        if picker.sourceType == .camera {
+            UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
+        }
+
+        picker.dismiss(animated: true)
+    }
+
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }
