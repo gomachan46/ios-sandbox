@@ -1,6 +1,8 @@
 import UIKit
 
-class StoriesView: UIView {
+class StoriesView: UICollectionReusableView {
+    static let identifier = "StoriesView"
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white

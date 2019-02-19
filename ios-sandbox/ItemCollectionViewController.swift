@@ -15,13 +15,11 @@ class ItemCollectionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.titleView = UIImageView(image: R.image.navigationLogo_116x34()!)
-        items = (0..<100).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
-        let viewLayout = UICollectionViewFlowLayout().apply { this in
-            this.headerReferenceSize = CGSize(width: 100, height: 100)
-        }
-        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: viewLayout).apply { this in
+        items = (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
+        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
             this.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
+            this.register(StoriesView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StoriesView.identifier)
             this.dataSource = self
             this.delegate = self
             this.backgroundColor = .white
@@ -115,20 +113,21 @@ extension ItemCollectionViewController: UICollectionViewDataSource {
         return cell
     }
 
-//    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        if kind == "UICollectionElementKindSectionHeader" {
-//            //ヘッダーの場合
-//            let testSection = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
-//
-//            return testSection
-//        }
-//    }
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StoriesView.identifier, for: indexPath)
+
+        return header
+    }
 }
 
 extension ItemCollectionViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let length = (view.frame.width / CGFloat(columnCount)) - minimumSpacing
         return CGSize(width: length, height: length)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
