@@ -7,6 +7,20 @@ class TabBarController: UITabBarController {
         // Do any additional setup after loading the view, typically from a nib.
         setup()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        UIButton().apply { this in
+            tabBar.addSubview(this)
+            this.setTitle("+", for: .normal)
+            this.backgroundColor = .orange
+            this.sizeToFit()
+            this.addTarget(self, action: #selector(tapCenterButton), for: .touchUpInside)
+            this.snp.makeConstraints { make in
+                make.center.equalTo(tabBar)
+            }
+        }
+    }
 }
 
 extension TabBarController {
@@ -15,8 +29,9 @@ extension TabBarController {
         case b = "b"
         case c = "c"
         case d = "d"
+        case e = "e"
 
-        static let order: [Tab] = [.a, .b, .c, .d]
+        static let order: [Tab] = [.a, .b, .c, .d, .e]
 
         var title: String {
             return rawValue
@@ -24,10 +39,11 @@ extension TabBarController {
 
         var viewController: UIViewController {
             switch self {
-            case .a: return UINavigationController(rootViewController: FeedViewController())
-            case .b: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .a: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .b: return UINavigationController(rootViewController: TopicsCollectionViewController())
             case .c: return UINavigationController(rootViewController: ItemCollectionViewController())
             case .d: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .e: return UINavigationController(rootViewController: ItemCollectionViewController())
             }
         }
 
@@ -45,6 +61,9 @@ extension TabBarController {
             case .d:
                 return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
                     R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+            case .e:
+                return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
+                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
             }
         }
     }
@@ -56,5 +75,9 @@ extension TabBarController {
             }
         }
         setViewControllers(vcs, animated: false)
+    }
+
+    @objc private func tapCenterButton() {
+        selectedIndex = 2
     }
 }

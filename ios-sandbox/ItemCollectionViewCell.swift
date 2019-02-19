@@ -25,7 +25,7 @@ extension ItemCollectionViewCell {
     }
 
     private func makeViews() {
-        contentView.backgroundColor = .lightGray
+        contentView.backgroundColor = .white
         UIImageView().apply { this in
             contentView.addSubview(this)
             this.snp.makeConstraints { make in
