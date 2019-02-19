@@ -2,6 +2,11 @@ import UIKit
 
 class StoriesView: UICollectionReusableView {
     static let identifier = "StoriesView"
+    override var layer: CALayer {
+        let layer = super.layer
+        layer.zPosition = 0
+        return layer
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
