@@ -16,30 +16,30 @@ class ItemCollectionViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.titleView = UIImageView(image: R.image.navigationLogo_116x34()!)
         items = (0..<100).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
-
-        let scrollView = UIScrollView().apply { this in
+        let viewLayout = UICollectionViewFlowLayout().apply { this in
+            this.headerReferenceSize = CGSize(width: 100, height: 100)
+        }
+        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: viewLayout).apply { this in
             view.addSubview(this)
-            this.snp.makeConstraints{ make in
-                make.top.equalTo(view.safeAreaLayoutGuide)
-                make.left.right.bottom.equalTo(view)
+            this.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
+            this.dataSource = self
+            this.delegate = self
+            this.backgroundColor = .white
+            this.rx.itemSelected
+                .subscribe(onNext: { indexPath in
+                    let item = self.items[indexPath.row]
+                    self.navigationController?.pushViewController(ItemViewController(item: item), animated: true)
+                })
+                .disposed(by: disposeBag)
+            this.snp.makeConstraints { make in
+                make.edges.size.equalTo(view)
             }
             this.refreshControl = refreshControl
-        }
-        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
-        let stackView = UIStackView().apply { this in
-            scrollView.addSubview(this)
-            this.axis = .vertical
-            this.alignment = .fill
-            this.distribution = .fill
-
-            this.snp.makeConstraints { make in
-                make.edges.equalTo(scrollView)
-                make.width.equalTo(scrollView)
-            }
+            refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
         }
 
         let storiesScrollView = UIScrollView().apply { this in
-            stackView.addArrangedSubview(this)
+            collectionView.addSubview(this)
             this.snp.makeConstraints { make in
                 make.height.equalTo(100)
             }
@@ -84,23 +84,6 @@ class ItemCollectionViewController: UIViewController {
                 }
             }
         }
-
-        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
-            stackView.addArrangedSubview(this)
-            this.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
-            this.dataSource = self
-            this.delegate = self
-            this.backgroundColor = .white
-            this.rx.itemSelected
-                .subscribe(onNext: { indexPath in
-                    let item = self.items[indexPath.row]
-                    self.navigationController?.pushViewController(ItemViewController(item: item), animated: true)
-                })
-                .disposed(by: disposeBag)
-            this.snp.makeConstraints { make in
-                make.height.equalTo(scrollView)
-            }
-        }
     }
 }
 
@@ -131,6 +114,15 @@ extension ItemCollectionViewController: UICollectionViewDataSource {
         cell.update(item: items[indexPath.row])
         return cell
     }
+
+//    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        if kind == "UICollectionElementKindSectionHeader" {
+//            //ヘッダーの場合
+//            let testSection = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
+//
+//            return testSection
+//        }
+//    }
 }
 
 extension ItemCollectionViewController: UICollectionViewDelegateFlowLayout {
