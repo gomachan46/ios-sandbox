@@ -8,7 +8,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        let scrollView = UIScrollView().apply { this in
+        let storiesScrollView = UIScrollView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide)
@@ -18,21 +18,21 @@ class FeedViewController: UIViewController {
             this.showsVerticalScrollIndicator = false
             this.showsHorizontalScrollIndicator = false
         }
-        let stackView = UIStackView().apply { this in
-            scrollView.addSubview(this)
+        let storiesStackView = UIStackView().apply { this in
+            storiesScrollView.addSubview(this)
             this.axis = .horizontal
             this.alignment = .fill
             this.distribution = .fill
             this.spacing = 10
 
             this.snp.makeConstraints { make in
-                make.edges.equalTo(scrollView)
-                make.height.equalTo(scrollView)
+                make.edges.equalTo(storiesScrollView)
+                make.height.equalTo(storiesScrollView)
             }
         }
         (1...10).forEach { _ in
             let storyView = UIView().apply { this in
-                stackView.addArrangedSubview(this)
+                storiesStackView.addArrangedSubview(this)
             }
             let imageView = StoryImageView().apply { this in
                 storyView.addSubview(this)
