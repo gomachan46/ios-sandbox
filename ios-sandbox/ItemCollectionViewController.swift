@@ -15,19 +15,26 @@ class ItemCollectionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.titleView = UIImageView(image: R.image.navigationLogo_116x34()!)
-        items = (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
+        items = (0..<100).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
 
-        let stackView = UIStackView().apply { this in
+        let scrollView = UIScrollView().apply { this in
             view.addSubview(this)
+            this.snp.makeConstraints{ make in
+                make.top.equalTo(view.safeAreaLayoutGuide)
+                make.left.right.bottom.equalTo(view)
+            }
+            this.refreshControl = refreshControl
+        }
+        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+        let stackView = UIStackView().apply { this in
+            scrollView.addSubview(this)
             this.axis = .vertical
             this.alignment = .fill
             this.distribution = .fill
-            this.spacing = 10
 
             this.snp.makeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide)
-                make.left.right.equalTo(view)
-                make.bottom.equalTo(view)
+                make.edges.equalTo(scrollView)
+                make.width.equalTo(scrollView)
             }
         }
 
@@ -90,9 +97,10 @@ class ItemCollectionViewController: UIViewController {
                     self.navigationController?.pushViewController(ItemViewController(item: item), animated: true)
                 })
                 .disposed(by: disposeBag)
+            this.snp.makeConstraints { make in
+                make.height.equalTo(scrollView)
+            }
         }
-        collectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
     }
 }
 
