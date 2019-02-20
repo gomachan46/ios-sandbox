@@ -17,6 +17,7 @@
 		36EBC835BDA59C3F3DC36FCC /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC2943043B1DC560F85AA /* Item.swift */; };
 		36EBCA52B677CF0842BF340A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC0358ED32C0E4D48C31E /* FeedViewController.swift */; };
 		36EBCA5AE4C69DEE1A5960AA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC98E350C7A85A8904591 /* TabBarController.swift */; };
+		36EBCB97907853B31C4300B9 /* ImagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCEEFED12C3F33E95295F /* ImagePickerCell.swift */; };
 		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
 		36EBCE1848C4D6F8B0C34B1E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCAD057512594EEBF5D61 /* RootViewController.swift */; };
 		36EBCE8E54AA0B8451EDBE2B /* TopicsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC64B2EA4256B2FCE5A95 /* TopicsCollectionViewController.swift */; };
@@ -61,6 +62,7 @@
 		36EBCA4BBA9168BFBFBA8DB8 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		36EBCAD057512594EEBF5D61 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		36EBCE50BD26A16C2E55D2EC /* StoryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryImageView.swift; sourceTree = "<group>"; };
+		36EBCEEFED12C3F33E95295F /* ImagePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCell.swift; sourceTree = "<group>"; };
 		36EBCFDBA71A787C271F2595 /* StoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
 		CEA0504C220D57D400E26B76 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		CEFA974522098490005796AF /* ios-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 				36EBCFDBA71A787C271F2595 /* StoriesView.swift */,
 				36EBC64B2EA4256B2FCE5A95 /* TopicsCollectionViewController.swift */,
 				36EBC8C1ED148FCF5B3AB841 /* ImagePickerController.swift */,
+				36EBCEEFED12C3F33E95295F /* ImagePickerCell.swift */,
 			);
 			path = "ios-sandbox";
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				36EBC7CF3305D627BCB95858 /* StoriesView.swift in Sources */,
 				36EBCE8E54AA0B8451EDBE2B /* TopicsCollectionViewController.swift in Sources */,
 				36EBCF53F6D4AD04364E2641 /* ImagePickerController.swift in Sources */,
+				36EBCB97907853B31C4300B9 /* ImagePickerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
