@@ -12,12 +12,14 @@ class TabBarController: UITabBarController {
         super.viewDidLayoutSubviews()
         UIButton().apply { this in
             tabBar.addSubview(this)
-            this.setTitle("+", for: .normal)
+            this.setTitle("＋", for: .normal)
             this.backgroundColor = .orange
             this.sizeToFit()
             this.addTarget(self, action: #selector(tapCenterButton), for: .touchUpInside)
             this.snp.makeConstraints { make in
                 make.center.equalTo(tabBar)
+                make.width.equalTo(tabBar).dividedBy(5)
+                make.height.equalTo(tabBar)
             }
         }
     }
@@ -78,31 +80,7 @@ extension TabBarController {
     }
 
     @objc private func tapCenterButton() {
-        let pickerController = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            pickerController.sourceType = .savedPhotosAlbum
-        } else if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            pickerController.sourceType = .camera
-        } else {
-            print("カメラ周りの許可がないです")
-            return
-        }
-        pickerController.delegate = self
-        present(pickerController, animated: true)
-    }
-}
-
-extension TabBarController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        let pickedImage = info[.originalImage] as! UIImage
-        if picker.sourceType == .camera {
-            UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
-        }
-
-        picker.dismiss(animated: true)
-    }
-
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true)
+        let pickerController = ImagePickerController()
+        present(UINavigationController(rootViewController: pickerController), animated: true)
     }
 }
