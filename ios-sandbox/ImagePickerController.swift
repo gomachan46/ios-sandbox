@@ -9,7 +9,7 @@ class ImagePickerController: UIViewController {
     private var photoAssets = [PHAsset]()
     private var collectionView: UICollectionView!
     private let minimumSpacing: CGFloat = 1
-    private let columnCount = 3
+    private let columnCount = 4
     private var cellSize: CGSize!
 
     override func viewDidLoad() {
@@ -26,13 +26,22 @@ class ImagePickerController: UIViewController {
                 })
                 .disposed(by: disposeBag)
         })
-        let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: nil)
-        assets.enumerateObjects(using: { (asset, index, stop) in
-            self.photoAssets.append(asset as PHAsset)
-        })
+
         let cellLength = (view.frame.width / CGFloat(columnCount)) - minimumSpacing
         cellSize = CGSize(width: cellLength, height: cellLength)
 
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            loadPhotoAssets()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { _ in
+                self.loadPhotoAssets()
+                self.collectionView.reloadData()
+            }
+        default:
+            // TODO: 設定画面から許可してねっていうのを出す
+            break
+        }
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
             this.register(ImagePickerCell.self, forCellWithReuseIdentifier: ImagePickerCell.identifier)
@@ -49,6 +58,15 @@ class ImagePickerController: UIViewController {
                 make.edges.size.equalTo(view)
             }
         }
+    }
+}
+
+extension ImagePickerController {
+    private func loadPhotoAssets() {
+        let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: nil)
+        assets.enumerateObjects(using: { (asset, index, stop) in
+            self.photoAssets.append(asset as PHAsset)
+        })
     }
 }
 
