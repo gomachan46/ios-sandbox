@@ -61,6 +61,10 @@ class ImagePickerController: UIViewController {
             this.rx.itemSelected
                 .subscribe(onNext: { indexPath in
                     let photoAsset = self.photoAssets[indexPath.row]
+                    PHImageManager.default().requestImage(for: photoAsset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+                        guard let image = image else { return }
+                        selectedImage.image = image
+                    })
                 })
                 .disposed(by: disposeBag)
             this.snp.makeConstraints { make in
