@@ -11,6 +11,7 @@ class ImagePickerController: UIViewController {
     private let minimumSpacing: CGFloat = 1
     private let columnCount = 4
     private var cellSize: CGSize!
+    private let imageManager = PHImageManager.default()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +62,7 @@ class ImagePickerController: UIViewController {
             this.rx.itemSelected
                 .subscribe(onNext: { indexPath in
                     let photoAsset = self.photoAssets[indexPath.row]
-                    PHImageManager.default().requestImage(for: photoAsset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+                    self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
                         guard let image = image else { return }
                         selectedImage.image = image
                     })
@@ -99,7 +100,7 @@ extension ImagePickerController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCell.identifier, for: indexPath) as! ImagePickerCell
         let photoAsset = photoAssets[indexPath.row]
-        PHImageManager.default().requestImage(for: photoAsset, targetSize: cellSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+        imageManager.requestImage(for: photoAsset, targetSize: cellSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
             guard let image = image else { return }
             cell.update(image: image)
         })
