@@ -12,6 +12,7 @@ class ImagePickerController: UIViewController {
     private let columnCount = 4
     private var cellSize: CGSize!
     private let imageManager = PHImageManager.default()
+    private var selectedImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class ImagePickerController: UIViewController {
             break
         }
 
-        let selectedImage = UIImageView().apply { this in
+        selectedImage = UIImageView().apply { this in
             view.addSubview(this)
             this.backgroundColor = .lightGray
             this.snp.makeConstraints { make in
@@ -64,13 +65,14 @@ class ImagePickerController: UIViewController {
                     let photoAsset = self.photoAssets[indexPath.row]
                     self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
                         guard let image = image else { return }
-                        selectedImage.image = image
+                        self.selectedImage.image = image
                     })
                 })
                 .disposed(by: disposeBag)
             this.snp.makeConstraints { make in
                 make.top.equalTo(selectedImage.snp.bottom)
-                make.left.right.size.equalTo(view)
+                make.left.right.bottom.width.equalTo(view)
+                make.height.lessThanOrEqualTo(view)
             }
         }
     }

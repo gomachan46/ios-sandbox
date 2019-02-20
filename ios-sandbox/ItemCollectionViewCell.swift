@@ -29,7 +29,7 @@ extension ItemCollectionViewCell {
         UIImageView().apply { this in
             contentView.addSubview(this)
             this.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                make.edges.equalTo(contentView)
             }
             item.asDriver().drive(onNext: { item in
                 this.kf.setImage(with: URL(string: item.url))

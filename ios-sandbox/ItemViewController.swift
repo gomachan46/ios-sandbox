@@ -28,8 +28,8 @@ class ItemViewController: UIViewController {
             this.text = item.value.username
             this.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide)
-                make.left.equalToSuperview().inset(20)
-                make.right.equalToSuperview()
+                make.left.equalTo(view).inset(20)
+                make.right.equalTo(view)
                 make.height.equalTo(50)
             }
         }
@@ -56,7 +56,7 @@ class ItemViewController: UIViewController {
             this.addTarget(self, action: #selector(self.tappedPageControl), for: .valueChanged)
             this.snp.makeConstraints { make in
                 make.top.equalTo(scrollView.snp.bottom)
-                make.left.right.equalToSuperview()
+                make.left.right.equalTo(view)
                 make.height.equalTo(50)
             }
         }

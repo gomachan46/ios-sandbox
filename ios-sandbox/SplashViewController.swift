@@ -13,14 +13,14 @@ class SplashViewController: UIViewController {
         logoImageView = UIImageView(image: R.image.navigationLogo_116x34()).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints{ make in
-                make.center.equalToSuperview()
+                make.center.equalTo(view)
             }
         }
         animationView = LOTAnimationView(filePath: R.file.sampleDataJson.path()!).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.center.equalTo(logoImageView)
-                make.top.equalToSuperview()
+                make.top.equalTo(view)
             }
         }
     }

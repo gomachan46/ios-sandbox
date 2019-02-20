@@ -28,7 +28,7 @@ extension ImagePickerCell {
         UIImageView().apply { this in
             contentView.addSubview(this)
             this.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                make.edges.equalTo(contentView)
             }
             image.asDriver()
                 .drive(onNext: { image in
