@@ -26,10 +26,8 @@ class ImagePickerController: UIViewController {
                 })
                 .disposed(by: disposeBag)
         })
-
         let cellLength = (view.frame.width / CGFloat(columnCount)) - minimumSpacing
         cellSize = CGSize(width: cellLength, height: cellLength)
-
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized:
             loadPhotoAssets()
@@ -42,6 +40,18 @@ class ImagePickerController: UIViewController {
             // TODO: 設定画面から許可してねっていうのを出す
             break
         }
+
+        let selectedImage = UIImageView().apply { this in
+            view.addSubview(this)
+            this.backgroundColor = .lightGray
+            this.snp.makeConstraints { make in
+                make.top.equalTo(view.safeAreaLayoutGuide)
+                make.left.right.equalTo(view)
+                make.width.equalTo(view)
+                make.height.equalTo(this.snp.width)
+            }
+        }
+
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
             this.register(ImagePickerCell.self, forCellWithReuseIdentifier: ImagePickerCell.identifier)
@@ -51,11 +61,11 @@ class ImagePickerController: UIViewController {
             this.rx.itemSelected
                 .subscribe(onNext: { indexPath in
                     let photoAsset = self.photoAssets[indexPath.row]
-                    print(photoAsset)
                 })
                 .disposed(by: disposeBag)
             this.snp.makeConstraints { make in
-                make.edges.size.equalTo(view)
+                make.top.equalTo(selectedImage.snp.bottom)
+                make.left.right.size.equalTo(view)
             }
         }
     }
@@ -63,7 +73,10 @@ class ImagePickerController: UIViewController {
 
 extension ImagePickerController {
     private func loadPhotoAssets() {
-        let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: nil)
+        let options = PHFetchOptions().apply { this in
+            this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending:  false)]
+        }
+        let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: options)
         assets.enumerateObjects(using: { (asset, index, stop) in
             self.photoAssets.append(asset as PHAsset)
         })
