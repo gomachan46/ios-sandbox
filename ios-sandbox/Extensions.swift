@@ -25,5 +25,10 @@ extension Reactive where Base: UIView
         })
     }
     var tapEvent: Observable<UITapGestureRecognizer> { return gesture() }
+    var doubleTapEvent: Observable<[UITapGestureRecognizer]> {
+        return tapEvent
+            .buffer(timeSpan: 1, count: 2, scheduler: MainScheduler.instance)
+            .filter { $0.count == 2 }
+    }
     var longPressEvent: Observable<UILongPressGestureRecognizer> { return gesture() }
 }

@@ -13,6 +13,8 @@ class ImagePickerController: UIViewController {
     private var cellSize: CGSize!
     private let imageManager = PHImageManager.default()
     private let selectedImage = BehaviorRelay<UIImage>(value: UIImage())
+    private var scrollView: UIScrollView!
+    private var selectedImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,19 +45,44 @@ class ImagePickerController: UIViewController {
             break
         }
 
-        let selectedImageView = UIImageView().apply { this in
+        scrollView = UIScrollView().apply { this in
             view.addSubview(this)
-            this.backgroundColor = .lightGray
-            selectedImage.asDriver().drive(onNext: { image in
-                this.image = image
-            })
-            .disposed(by: disposeBag)
+            this.backgroundColor = .black
+            this.clipsToBounds = true
+            this.showsHorizontalScrollIndicator = false
+            this.showsVerticalScrollIndicator = false
+            this.delegate = self
+            this.minimumZoomScale = 1.0
+            this.maximumZoomScale = 10.0
+            this.bouncesZoom = true
+            this.contentMode = .center
             this.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide)
                 make.left.right.equalTo(view)
                 make.width.equalTo(view)
                 make.height.equalTo(this.snp.width)
             }
+        }
+
+        selectedImageView = UIImageView().apply { this in
+            scrollView.addSubview(this)
+            this.backgroundColor = .orange
+            this.contentMode = .scaleAspectFit
+            this.snp.makeConstraints { make in
+                make.edges.size.equalTo(scrollView)
+                make.center.equalTo(scrollView)
+            }
+            selectedImage.asDriver()
+                .drive(onNext: { image in
+                    this.image = image
+                    self.setZoomScale(image: image, animated: false)
+                })
+                .disposed(by: disposeBag)
+            this.rx.doubleTapEvent
+                .subscribe(onNext: { _ in
+                    self.setZoomScale(image: this.image, animated: true)
+                })
+                .disposed(by: disposeBag)
         }
 
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
@@ -67,14 +94,14 @@ class ImagePickerController: UIViewController {
             this.rx.itemSelected
                 .subscribe(onNext: { indexPath in
                     let photoAsset = self.photoAssets[indexPath.row]
-                    self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+                    self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFit, options: nil, resultHandler: { (image, info) in
                         guard let image = image else { return }
-                        selectedImageView.image = image
+                        self.selectedImage.accept(image)
                     })
                 })
                 .disposed(by: disposeBag)
             this.snp.makeConstraints { make in
-                make.top.equalTo(selectedImageView.snp.bottom)
+                make.top.equalTo(scrollView.snp.bottom)
                 make.left.right.bottom.width.equalTo(view)
                 make.height.lessThanOrEqualTo(view)
             }
@@ -93,10 +120,27 @@ extension ImagePickerController {
         })
         // デフォルトで選択されている画像は最新の画像にする
         let photoAsset = photoAssets[0]
-        imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+        imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFit, options: nil, resultHandler: { (image, info) in
             guard let image = image else { return }
             self.selectedImage.accept(image)
         })
+    }
+}
+
+extension ImagePickerController: UIScrollViewDelegate {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return selectedImageView
+    }
+
+    private func setZoomScale(image: UIImage?, animated: Bool) {
+        guard let image = image else { return }
+        let width = image.size.width
+        let height = image.size.height
+        var scale = width / height
+        if scale < 1.0 {
+            scale = height / width
+        }
+        self.scrollView.setZoomScale(scale, animated: animated)
     }
 }
 
