@@ -12,7 +12,7 @@ class ImagePickerController: UIViewController {
     private let columnCount = 4
     private var cellSize: CGSize!
     private let imageManager = PHImageManager.default()
-    private var selectedImage: UIImageView!
+    private let selectedImage = BehaviorRelay<UIImage>(value: UIImage())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +43,13 @@ class ImagePickerController: UIViewController {
             break
         }
 
-        selectedImage = UIImageView().apply { this in
+        let selectedImageView = UIImageView().apply { this in
             view.addSubview(this)
             this.backgroundColor = .lightGray
+            selectedImage.asDriver().drive(onNext: { image in
+                this.image = image
+            })
+            .disposed(by: disposeBag)
             this.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide)
                 make.left.right.equalTo(view)
@@ -65,12 +69,12 @@ class ImagePickerController: UIViewController {
                     let photoAsset = self.photoAssets[indexPath.row]
                     self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
                         guard let image = image else { return }
-                        self.selectedImage.image = image
+                        selectedImageView.image = image
                     })
                 })
                 .disposed(by: disposeBag)
             this.snp.makeConstraints { make in
-                make.top.equalTo(selectedImage.snp.bottom)
+                make.top.equalTo(selectedImageView.snp.bottom)
                 make.left.right.bottom.width.equalTo(view)
                 make.height.lessThanOrEqualTo(view)
             }
@@ -86,6 +90,12 @@ extension ImagePickerController {
         let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: options)
         assets.enumerateObjects(using: { (asset, index, stop) in
             self.photoAssets.append(asset as PHAsset)
+        })
+        // デフォルトで選択されている画像は最新の画像にする
+        let photoAsset = photoAssets[0]
+        imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+            guard let image = image else { return }
+            self.selectedImage.accept(image)
         })
     }
 }
