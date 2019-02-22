@@ -147,6 +147,7 @@ extension ImagePickerController: UIScrollViewDelegate {
         }
         self.scrollView.setZoomScale(scale, animated: animated)
     }
+    
     private func updateScrollInset() {
         scrollView.contentInset = UIEdgeInsets(top: max((scrollView.frame.height - selectedImageView.frame.height) / 2, 0), left: max((scrollView.frame.width - selectedImageView.frame.width) / 2, 0), bottom: 0, right: 0)
     }
