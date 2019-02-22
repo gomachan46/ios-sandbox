@@ -47,7 +47,6 @@ class ImagePickerController: UIViewController {
 
         scrollView = UIScrollView().apply { this in
             view.addSubview(this)
-            this.contentInsetAdjustmentBehavior = .never
             this.backgroundColor = .black
             this.showsHorizontalScrollIndicator = false
             this.showsVerticalScrollIndicator = false
@@ -69,7 +68,7 @@ class ImagePickerController: UIViewController {
             this.translatesAutoresizingMaskIntoConstraints = true
             this.rx.doubleTapEvent
                 .subscribe(onNext: { _ in
-                    self.setZoomScale(image: this.image, animated: true)
+                    self.setDefaultScale(image: this.image, animated: true)
                 })
                 .disposed(by: disposeBag)
         }
@@ -82,7 +81,7 @@ class ImagePickerController: UIViewController {
                 self.selectedImageView.frame.size = CGSize(width: image.size.width * rate, height: image.size.height * rate)
                 self.scrollView.contentSize = self.selectedImageView.frame.size
                 self.updateScrollInset()
-                self.setZoomScale(image: image, animated: false)
+                self.setDefaultScale(image: image, animated: false)
             })
             .disposed(by: disposeBag)
 
@@ -137,12 +136,17 @@ extension ImagePickerController: UIScrollViewDelegate {
         updateScrollInset()
     }
 
-    private func setZoomScale(image: UIImage?, animated: Bool) {
+    private func setDefaultScale(image: UIImage?, animated: Bool) {
         guard let image = image else { return }
         let width = image.size.width
         let height = image.size.height
         let scale = max(width / height, height / width)
-        self.scrollView.setZoomScale(scale, animated: animated)
+        scrollView.setZoomScale(scale, animated: animated)
+
+        var center = CGPoint()
+        center.x = (scrollView.contentSize.width / 2.0) - (scrollView.frame.width / 2.0)
+        center.y = (scrollView.contentSize.height / 2.0) - (scrollView.frame.height / 2.0)
+        scrollView.setContentOffset(center, animated: animated)
     }
 
     private func updateScrollInset() {
