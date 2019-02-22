@@ -76,14 +76,13 @@ class ImagePickerController: UIViewController {
         selectedImage.asDriver()
             .drive(onNext: { image in
                 self.selectedImageView.image = image
-                self.selectedImageView.sizeToFit()
                 let wrate = self.scrollView.frame.width / image.size.width
                 let hrate = self.scrollView.frame.height / image.size.height
-                let rate = min(wrate, hrate, 1)
+                let rate = max(wrate, hrate)
                 self.selectedImageView.frame.size = CGSize(width: image.size.width * rate, height: image.size.height * rate)
                 self.scrollView.contentSize = self.selectedImageView.frame.size
                 self.updateScrollInset()
-//                self.setZoomScale(image: image, animated: false)
+                self.setZoomScale(image: image, animated: false)
             })
             .disposed(by: disposeBag)
 
@@ -135,7 +134,6 @@ extension ImagePickerController: UIScrollViewDelegate {
     }
 
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        print("hello")
         updateScrollInset()
     }
 
