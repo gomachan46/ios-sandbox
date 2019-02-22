@@ -47,15 +47,13 @@ class ImagePickerController: UIViewController {
 
         scrollView = UIScrollView().apply { this in
             view.addSubview(this)
+            this.contentInsetAdjustmentBehavior = .never
             this.backgroundColor = .black
-            this.clipsToBounds = true
             this.showsHorizontalScrollIndicator = false
             this.showsVerticalScrollIndicator = false
             this.delegate = self
             this.minimumZoomScale = 1.0
             this.maximumZoomScale = 10.0
-            this.bouncesZoom = true
-            this.contentMode = .center
             this.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide)
                 make.left.right.equalTo(view)
@@ -68,22 +66,26 @@ class ImagePickerController: UIViewController {
             scrollView.addSubview(this)
             this.backgroundColor = .orange
             this.contentMode = .scaleAspectFit
-            this.snp.makeConstraints { make in
-                make.edges.size.equalTo(scrollView)
-                make.center.equalTo(scrollView)
-            }
-            selectedImage.asDriver()
-                .drive(onNext: { image in
-                    this.image = image
-                    self.setZoomScale(image: image, animated: false)
-                })
-                .disposed(by: disposeBag)
+            this.translatesAutoresizingMaskIntoConstraints = true
             this.rx.doubleTapEvent
                 .subscribe(onNext: { _ in
                     self.setZoomScale(image: this.image, animated: true)
                 })
                 .disposed(by: disposeBag)
         }
+        selectedImage.asDriver()
+            .drive(onNext: { image in
+                self.selectedImageView.image = image
+                self.selectedImageView.sizeToFit()
+                let wrate = self.scrollView.frame.width / image.size.width
+                let hrate = self.scrollView.frame.height / image.size.height
+                let rate = min(wrate, hrate, 1)
+                self.selectedImageView.frame.size = CGSize(width: image.size.width * rate, height: image.size.height * rate)
+                self.scrollView.contentSize = self.selectedImageView.frame.size
+                self.updateScrollInset()
+//                self.setZoomScale(image: image, animated: false)
+            })
+            .disposed(by: disposeBag)
 
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
             view.addSubview(this)
@@ -132,6 +134,11 @@ extension ImagePickerController: UIScrollViewDelegate {
         return selectedImageView
     }
 
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        print("hello")
+        updateScrollInset()
+    }
+
     private func setZoomScale(image: UIImage?, animated: Bool) {
         guard let image = image else { return }
         let width = image.size.width
@@ -141,6 +148,9 @@ extension ImagePickerController: UIScrollViewDelegate {
             scale = height / width
         }
         self.scrollView.setZoomScale(scale, animated: animated)
+    }
+    private func updateScrollInset() {
+        scrollView.contentInset = UIEdgeInsets(top: max((scrollView.frame.height - selectedImageView.frame.height) / 2, 0), left: max((scrollView.frame.width - selectedImageView.frame.width) / 2, 0), bottom: 0, right: 0)
     }
 }
 
