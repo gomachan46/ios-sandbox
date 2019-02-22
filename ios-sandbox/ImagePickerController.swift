@@ -47,7 +47,7 @@ class ImagePickerController: UIViewController {
 
         scrollView = UIScrollView().apply { this in
             view.addSubview(this)
-            this.backgroundColor = .black
+            this.backgroundColor = .white
             this.showsHorizontalScrollIndicator = false
             this.showsVerticalScrollIndicator = false
             this.delegate = self
