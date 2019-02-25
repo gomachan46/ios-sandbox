@@ -21,6 +21,7 @@ class ImagePickerController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = .white
         title = "画像投稿"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UILabel().apply { this in
             this.text = "キャンセル"
             this.textColor = .black
