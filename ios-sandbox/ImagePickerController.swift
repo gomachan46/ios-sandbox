@@ -30,6 +30,7 @@ class ImagePickerController: UIViewController {
                 })
                 .disposed(by: disposeBag)
         })
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "次へ", style: .plain, target: self, action: #selector(cropImage))
         let cellLength = (view.frame.width / CGFloat(columnCount)) - minimumSpacing
         cellSize = CGSize(width: cellLength, height: cellLength)
         switch PHPhotoLibrary.authorizationStatus() {
@@ -47,7 +48,7 @@ class ImagePickerController: UIViewController {
 
         scrollView = UIScrollView().apply { this in
             view.addSubview(this)
-            this.backgroundColor = .white
+            this.backgroundColor = .clear
             this.showsHorizontalScrollIndicator = false
             this.showsVerticalScrollIndicator = false
             this.delegate = self
@@ -72,6 +73,7 @@ class ImagePickerController: UIViewController {
                 })
                 .disposed(by: disposeBag)
         }
+
         selectedImage.asDriver()
             .drive(onNext: { image in
                 self.selectedImageView.image = image
@@ -124,6 +126,16 @@ extension ImagePickerController {
             guard let image = image else { return }
             self.selectedImage.accept(image)
         })
+    }
+
+    @objc private func cropImage() {
+        UIGraphicsBeginImageContextWithOptions(scrollView.frame.size, false, 0.0)
+        scrollView.drawHierarchy(in: CGRect(origin: CGPoint(x: 0, y: 0), size: scrollView.frame.size), afterScreenUpdates: true)
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        let vc = ImageCropController(image: croppedImage)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
