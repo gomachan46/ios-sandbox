@@ -52,7 +52,7 @@ class ImagePickerController: UIViewController {
             this.showsVerticalScrollIndicator = false
             this.delegate = self
             this.minimumZoomScale = 1.0
-            this.maximumZoomScale = 10.0
+            this.maximumZoomScale = 8.0
             this.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide)
                 make.left.right.equalTo(view)
@@ -94,7 +94,7 @@ class ImagePickerController: UIViewController {
             this.rx.itemSelected
                 .subscribe(onNext: { indexPath in
                     let photoAsset = self.photoAssets[indexPath.row]
-                    self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFit, options: nil, resultHandler: { (image, info) in
+                    self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
                         guard let image = image else { return }
                         self.selectedImage.accept(image)
                     })
@@ -120,7 +120,7 @@ extension ImagePickerController {
         })
         // デフォルトで選択されている画像は最新の画像にする
         let photoAsset = photoAssets[0]
-        imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width), contentMode: .aspectFit, options: nil, resultHandler: { (image, info) in
+        imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
             guard let image = image else { return }
             self.selectedImage.accept(image)
         })
