@@ -8,10 +8,12 @@ class ItemCollectionViewCell: UICollectionViewCell {
     static let identifier = "ItemCollectionViewCell"
     private let disposeBag = DisposeBag()
     private let item = BehaviorRelay<Item>(value: Item())
+    private var imageView: UIImageView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeViews()
+        setupViewModel()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -26,15 +28,18 @@ extension ItemCollectionViewCell {
 
     private func makeViews() {
         contentView.backgroundColor = .white
-        UIImageView().apply { this in
+        imageView = UIImageView().apply { this in
             contentView.addSubview(this)
             this.snp.makeConstraints { make in
                 make.edges.equalTo(contentView)
             }
-            item.asDriver().drive(onNext: { item in
-                this.kf.setImage(with: URL(string: item.url))
+        }
+    }
+
+    private func setupViewModel() {
+        item.asDriver().drive(onNext: { item in
+                self.imageView.kf.setImage(with: URL(string: item.url))
             })
             .disposed(by: disposeBag)
-        }
     }
 }

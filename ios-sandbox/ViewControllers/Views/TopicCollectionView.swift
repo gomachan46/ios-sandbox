@@ -5,12 +5,13 @@ import RxSwift
 import RxCocoa
 
 class TopicCollectionView: UICollectionView {
-    private var items: [Item] = []
+    private let topics: [Item]
     private let minimumSpacing: CGFloat = 1
     private let columnCount = 3
     private let disposeBag = DisposeBag()
 
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, topics: [Item]) {
+        self.topics = topics
         super.init(frame: frame, collectionViewLayout: layout)
         register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
         register(StoriesView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StoriesView.identifier)
@@ -20,7 +21,6 @@ class TopicCollectionView: UICollectionView {
         refreshControl = UIRefreshControl().apply { this in
             this.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         }
-        items = (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,12 +47,12 @@ extension TopicCollectionView: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return topics.count
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as! ItemCollectionViewCell
-        cell.update(item: items[indexPath.row])
+        cell.update(item: topics[indexPath.row])
         return cell
     }
 
