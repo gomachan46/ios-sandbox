@@ -8,7 +8,7 @@ class TopicCollectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var collectionView: UICollectionView!
 
-    init(dependency topics: [Item]) {
+    init(topics: [Item]) {
         self.topics = topics
         super.init(nibName: nil, bundle: nil)
     }
