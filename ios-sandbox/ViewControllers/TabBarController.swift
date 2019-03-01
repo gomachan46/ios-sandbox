@@ -42,7 +42,7 @@ extension TabBarController {
         var viewController: UIViewController {
             switch self {
             case .a: return UINavigationController(rootViewController: ItemCollectionViewController())
-            case .b: return UINavigationController(rootViewController: TopicsCollectionViewController(dependency: (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }))
+            case .b: return UINavigationController(rootViewController: TopicCollectionViewController(dependency: (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }))
             case .c: return UINavigationController(rootViewController: ItemCollectionViewController())
             case .d: return UINavigationController(rootViewController: ItemCollectionViewController())
             case .e: return UINavigationController(rootViewController: ItemCollectionViewController())

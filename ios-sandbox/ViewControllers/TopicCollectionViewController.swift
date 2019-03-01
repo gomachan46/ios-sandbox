@@ -3,7 +3,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class TopicsCollectionViewController: UIViewController {
+class TopicCollectionViewController: UIViewController {
     private let topics: [Item]
     private let disposeBag = DisposeBag()
     private var collectionView: UICollectionView!
@@ -26,7 +26,7 @@ class TopicsCollectionViewController: UIViewController {
     }
 }
 
-extension TopicsCollectionViewController {
+extension TopicCollectionViewController {
     private func makeViews() {
         collectionView = TopicCollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout(), topics: topics).apply { this in
             view.addSubview(this)
