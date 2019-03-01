@@ -1,6 +1,21 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
+import Differentiator
+
+struct SectionOfTopic {
+    var items: [TopicItemViewModel]
+}
+
+extension SectionOfTopic: SectionModelType {
+    typealias Item = TopicItemViewModel
+
+    init(original: SectionOfTopic, items: [SectionOfTopic.Item]) {
+        self = original
+        self.items = items
+    }
+}
 
 struct AllTopicsViewModel {
     private let navigator: AllTopicsNavigator
@@ -17,11 +32,11 @@ extension AllTopicsViewModel: ViewModelType {
     }
 
     struct Output {
-        let topics: Driver<[TopicItemViewModel]>
+        let topics: Driver<[SectionOfTopic]>
     }
 
     func transform(input: Input) -> Output {
-        let topics = Driver.of(self.topics.map { TopicItemViewModel(with: $0) })
-        return Output(topics: topics)
+        let topicItemViewModels = topics.map { TopicItemViewModel(with: $0) }
+        return Output(topics: Driver.of([SectionOfTopic(items: topicItemViewModels)]))
     }
 }

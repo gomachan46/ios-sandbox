@@ -12,13 +12,11 @@ extension Reusable {
 
 extension UICollectionViewCell: Reusable {}
 
-extension UIViewController: Reusable {}
-
-extension UICollectionView {
-    func dequeueReusableCell<T>(ofType cellType: T.Type = T.self, at indexPath: IndexPath) -> T where T: UICollectionViewCell {
-        guard let cell = dequeueReusableCell(withReuseIdentifier: cellType.reuseID, for: indexPath) as? T else {
-            fatalError()
-        }
-        return cell
-    }
-}
+//extension UICollectionView {
+//    func dequeueReusableCell<T>(ofType cellType: T.Type = T.self, at indexPath: IndexPath) -> T where T: UICollectionViewCell {
+//        guard let cell = dequeueReusableCell(withReuseIdentifier: cellType.reuseID, for: indexPath) as? T else {
+//            fatalError()
+//        }
+//        return cell
+//    }
+//}

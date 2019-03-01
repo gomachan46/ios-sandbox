@@ -2,6 +2,8 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxDataSources
+import Differentiator
 
 class AllTopicsViewController: UIViewController {
     private let viewModel: AllTopicsViewModel
@@ -26,23 +28,20 @@ class AllTopicsViewController: UIViewController {
 
 extension AllTopicsViewController {
     private func makeViews() {
-        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
-            view.addSubview(this)
-            this.snp.makeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide)
-                make.left.equalTo(view)
-                make.size.equalTo(view)
-            }
-            this.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.reuseID)
-            this.backgroundColor = .white
-        }
+        collectionView = AllTopicsCollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout())
     }
 
     private func bindViewModel() {
+        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionOfTopic>(
+            configureCell: { dataSource, collectionView, indexPath, item in
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath) as! TopicCollectionViewCell
+                cell.bind(item)
+                return cell
+            })
+        collectionView.dataSource = dataSource
+
         let input = AllTopicsViewModel.Input()
         let output = viewModel.transform(input: input)
-        output.topics.drive(collectionView.rx.items(cellIdentifier: TopicCollectionViewCell.reuseID, cellType: TopicCollectionViewCell.self)) { cv, viewModel, cell in
-            cell.bind(viewModel)
-        }.disposed(by: disposeBag)
+        output.topics.drive(collectionView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
     }
 }
