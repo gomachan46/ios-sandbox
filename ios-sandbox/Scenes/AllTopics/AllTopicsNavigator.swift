@@ -18,12 +18,17 @@ struct AllTopicsNavigator: AllTopicsNavigatorType {
     }
 
     func toAllTopics() {
-
+        let topics = (0..<30).map { _ in Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
+        let viewModel = AllTopicsViewModel(navigator: self, topics: topics)
+        let viewController = AllTopicsViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     static func root() -> UINavigationController {
-        let viewModel = AllTopicsViewModel()
-        let viewController = AllTopicsViewController(viewModel: viewModel)
-        return UINavigationController(rootViewController: viewController)
+        let navigationController = UINavigationController()
+        let navigator = self.init(navigationController: navigationController)
+        navigator.toAllTopics()
+
+        return navigationController
     }
 }
