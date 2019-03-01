@@ -41,7 +41,7 @@ extension TabBarController {
 
         var viewController: UIViewController {
             switch self {
-            case .a: return UINavigationController(rootViewController: ItemCollectionViewController())
+            case .a: return AllTopicsNavigator.root()
             case .b: return UINavigationController(rootViewController: TopicCollectionViewController(topics: (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }))
             case .c: return UINavigationController(rootViewController: ItemCollectionViewController())
             case .d: return UINavigationController(rootViewController: ItemCollectionViewController())
@@ -77,6 +77,7 @@ extension TabBarController {
             }
         }
         setViewControllers(vcs, animated: false)
+
     }
 
     @objc private func tapCenterButton() {
