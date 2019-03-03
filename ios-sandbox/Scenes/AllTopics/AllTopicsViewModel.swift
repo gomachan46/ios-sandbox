@@ -19,24 +19,32 @@ extension SectionOfTopic: SectionModelType {
 
 struct AllTopicsViewModel {
     private let navigator: AllTopicsNavigator
-    private let topics: [Topic]
+    private let topics: Observable<[Topic]>
 
     init(navigator: AllTopicsNavigator, topics: [Topic]) {
         self.navigator = navigator
-        self.topics = topics
+        self.topics = Observable.of(topics)
     }
 }
 
 extension AllTopicsViewModel: ViewModelType {
     struct Input {
+        let selection: Observable<IndexPath>
     }
 
     struct Output {
-        let topics: Driver<[SectionOfTopic]>
+        let topics: Observable<[SectionOfTopic]>
+        let selectedTopic: Observable<Topic>
     }
 
     func transform(input: Input) -> Output {
-        let topicItemViewModels = topics.map { TopicItemViewModel(with: $0) }
-        return Output(topics: Driver.of([SectionOfTopic(items: topicItemViewModels)]))
+        let selectedTopic = input
+            .selection
+            .withLatestFrom(topics) { (indexPath, topics) -> Topic in
+                return topics[indexPath.row]
+            }
+            .do(onNext: navigator.toTopic)
+        let topicItemViewModels = topics.map { [SectionOfTopic(items: $0.map { TopicItemViewModel(with: $0) })] }
+        return Output(topics: topicItemViewModels, selectedTopic: selectedTopic)
     }
 }

@@ -14,7 +14,6 @@ struct AllTopicsNavigator: AllTopicsNavigatorType {
     }
 
     func toTopic(_ topic: Topic) {
-
     }
 
     func toAllTopics() {
