@@ -10,17 +10,20 @@
 		36EBC04AB69F4D75292109A4 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCCF1921ED55FCF128261 /* ItemCollectionViewCell.swift */; };
 		36EBC09DEA25057B5A968506 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC5B07D83906D1FA6E314 /* SplashViewController.swift */; };
 		36EBC0C39DE8C9FE5B8CE11F /* ImageCropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB9519B971CC76D504A1 /* ImageCropController.swift */; };
+		36EBC22787249DB58F130FF6 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC11BA134A0F229E54A17 /* TopicViewModel.swift */; };
 		36EBC2527D3906306AC3B919 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCFF408817A401BB1BD85 /* RootViewController.swift */; };
 		36EBC2581FBDD5582C7A8278 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCF377FF403B05F2D6B8C /* ImagePickerController.swift */; };
 		36EBC26C67AFD1477E95253C /* StoryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCC5A9D1ADB18605197DA /* StoryImageView.swift */; };
 		36EBC3C0FC29069E87059A8C /* AllTopicsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC3A9DB3321260EBF1BB9 /* AllTopicsCollectionView.swift */; };
 		36EBC43F9AC6BBEDD667533F /* TopicCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC2220440CD96F2F07F5B /* TopicCollectionView.swift */; };
+		36EBC4F3F6A51CF7ACFF538A /* TopicNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCDCF3C8F932C1FFA4775 /* TopicNavigator.swift */; };
 		36EBC511131EB3088B388CAB /* TopicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC3E6CE2E44702A0F74F5 /* TopicCollectionViewController.swift */; };
 		36EBC5175ADE645743001D44 /* ItemCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC49E87C4E295AA96B86E /* ItemCollectionViewController.swift */; };
 		36EBC51F519A3BCDDEF79D8C /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC9E045A70A361300D830 /* FeedViewController.swift */; };
 		36EBC52954B32A02CCC327D5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCAD28E6FD1D36A7EC551 /* Reusable.swift */; };
 		36EBC59E661C6DD1B71D01FF /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4D5761C119D184D06AA /* TopicCollectionViewCell.swift */; };
 		36EBC5F4A023DC16579243A4 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC93873BFC5133C9E1BFA /* Topic.swift */; };
+		36EBC60870ADAF86D5CC8D3E /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */; };
 		36EBC7CB475D776F2F22A5E7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCA7E244649321C27312E /* Item.swift */; };
 		36EBC7E629C45C51D2B9F472 /* ImagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCC01CC984E78229316E5 /* ImagePickerCell.swift */; };
 		36EBC83E0030C97307901B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC07E1EB572FBAC562EB4 /* LaunchScreen.storyboard */; };
@@ -66,6 +69,7 @@
 /* Begin PBXFileReference section */
 		36EBC07E1EB572FBAC562EB4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		36EBC11BA134A0F229E54A17 /* TopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
 		36EBC21CC48ECF1FBF90879D /* Appliable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appliable.swift; sourceTree = "<group>"; };
 		36EBC2220440CD96F2F07F5B /* TopicCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionView.swift; sourceTree = "<group>"; };
 		36EBC322FD16DB56B627A4A6 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 		36EBC4D5761C119D184D06AA /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBC590AEFE2B45D2DC24FF /* sampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleData.json; sourceTree = "<group>"; };
 		36EBC5B07D83906D1FA6E314 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		36EBC70BD61BC2F7BFA6A1BB /* TopicCollectionNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionNavigator.swift; sourceTree = "<group>"; };
 		36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewController.swift; sourceTree = "<group>"; };
 		36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsNavigator.swift; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 		36EBCC5A9D1ADB18605197DA /* StoryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryImageView.swift; sourceTree = "<group>"; };
 		36EBCCF1921ED55FCF128261 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBCD065E44DA5F1E00F456 /* AllTopicsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewModel.swift; sourceTree = "<group>"; };
+		36EBCDCF3C8F932C1FFA4775 /* TopicNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicNavigator.swift; sourceTree = "<group>"; };
 		36EBCF377FF403B05F2D6B8C /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		36EBCFF408817A401BB1BD85 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CE978F59222925BC008F7862 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
@@ -210,6 +216,16 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		36EBC521EE6413FDFCBD73E5 /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */,
+				36EBC11BA134A0F229E54A17 /* TopicViewModel.swift */,
+				36EBCDCF3C8F932C1FFA4775 /* TopicNavigator.swift */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
 		36EBC91333CBEBD8823D7F18 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				36EBC10DEE67FC2F56AE1B68 /* AllTopics */,
+				36EBC521EE6413FDFCBD73E5 /* Topic */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -493,6 +510,9 @@
 				36EBCBA963B9699FFA785293 /* TopicItemViewModel.swift in Sources */,
 				36EBC52954B32A02CCC327D5 /* Reusable.swift in Sources */,
 				36EBC3C0FC29069E87059A8C /* AllTopicsCollectionView.swift in Sources */,
+				36EBC60870ADAF86D5CC8D3E /* TopicViewController.swift in Sources */,
+				36EBC22787249DB58F130FF6 /* TopicViewModel.swift in Sources */,
+				36EBC4F3F6A51CF7ACFF538A /* TopicNavigator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

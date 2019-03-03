@@ -14,6 +14,10 @@ struct AllTopicsNavigator: AllTopicsNavigatorType {
     }
 
     func toTopic(_ topic: Topic) {
+        let navigator = TopicNavigator(navigationController: navigationController)
+        let viewModel = TopicViewModel(navigator: navigator, topic: topic)
+        let viewController = TopicViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func toAllTopics() {
