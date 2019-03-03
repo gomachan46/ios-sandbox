@@ -2,12 +2,12 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import RxDataSources
-import Differentiator
+import Kingfisher
 
 class TopicViewController: UIViewController {
     private let viewModel: TopicViewModel
     private let disposeBag = DisposeBag()
+    private var imageView: UIImageView!
 
     init(viewModel: TopicViewModel) {
         self.viewModel = viewModel
@@ -28,18 +28,25 @@ class TopicViewController: UIViewController {
 extension TopicViewController {
     private func makeViews() {
         view.backgroundColor = .white
-        UILabel().apply { this in
+        imageView = UIImageView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.center.equalTo(view)
+                make.width.equalTo(view)
+                make.height.equalTo(view.snp.width)
             }
-            this.text = "hello"
-            this.textColor = .black
         }
     }
 
     private func bindViewModel() {
         let input = TopicViewModel.Input()
         let output = viewModel.transform(input: input)
+        output
+            .topic
+            .asDriverOnErrorJustComplete()
+            .drive(onNext: { topic in
+                self.imageView.kf.setImage(with: URL(string: topic.url))
+            })
+            .disposed(by: disposeBag)
     }
 }

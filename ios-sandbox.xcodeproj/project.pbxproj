@@ -10,6 +10,7 @@
 		36EBC04AB69F4D75292109A4 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCCF1921ED55FCF128261 /* ItemCollectionViewCell.swift */; };
 		36EBC09DEA25057B5A968506 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC5B07D83906D1FA6E314 /* SplashViewController.swift */; };
 		36EBC0C39DE8C9FE5B8CE11F /* ImageCropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB9519B971CC76D504A1 /* ImageCropController.swift */; };
+		36EBC0D1A15AB6BA423FD4BA /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC7EAC3C75A9B5F0607C0 /* ObservableExtensions.swift */; };
 		36EBC22787249DB58F130FF6 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC11BA134A0F229E54A17 /* TopicViewModel.swift */; };
 		36EBC2527D3906306AC3B919 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCFF408817A401BB1BD85 /* RootViewController.swift */; };
 		36EBC2581FBDD5582C7A8278 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCF377FF403B05F2D6B8C /* ImagePickerController.swift */; };
@@ -84,6 +85,7 @@
 		36EBC70BD61BC2F7BFA6A1BB /* TopicCollectionNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionNavigator.swift; sourceTree = "<group>"; };
 		36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewController.swift; sourceTree = "<group>"; };
 		36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsNavigator.swift; sourceTree = "<group>"; };
+		36EBC7EAC3C75A9B5F0607C0 /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
 		36EBC84F25BB8CC303D4842A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		36EBC93873BFC5133C9E1BFA /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		36EBC9E045A70A361300D830 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				36EBC21CC48ECF1FBF90879D /* Appliable.swift */,
 				36EBCBC828BD545C81F0AECB /* ReactiveExtensions.swift */,
 				36EBCAD28E6FD1D36A7EC551 /* Reusable.swift */,
+				36EBC7EAC3C75A9B5F0607C0 /* ObservableExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				36EBC60870ADAF86D5CC8D3E /* TopicViewController.swift in Sources */,
 				36EBC22787249DB58F130FF6 /* TopicViewModel.swift in Sources */,
 				36EBC4F3F6A51CF7ACFF538A /* TopicNavigator.swift in Sources */,
+				36EBC0D1A15AB6BA423FD4BA /* ObservableExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

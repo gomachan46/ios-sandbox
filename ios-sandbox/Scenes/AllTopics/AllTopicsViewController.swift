@@ -47,7 +47,7 @@ extension AllTopicsViewController {
 
         let input = AllTopicsViewModel.Input(selection: collectionView.rx.itemSelected.asObservable())
         let output = viewModel.transform(input: input)
-        output.topics.asDriver(onErrorJustReturn: []).drive(collectionView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
-        output.selectedTopic.asDriver(onErrorJustReturn: Topic()).drive().disposed(by: disposeBag)
+        output.topics.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        output.selectedTopic.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
     }
 }
