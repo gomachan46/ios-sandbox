@@ -151,13 +151,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		36EBC0CB46CB335024DD2706 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		36EBC10DEE67FC2F56AE1B68 /* AllTopics */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +284,6 @@
 				36EBC38B5886667E5222E083 /* R.generated.swift */,
 				36EBC35925B17D543A666A81 /* ViewControllers */,
 				36EBCBE40E5B95A5E1785DF6 /* Models */,
-				36EBC0CB46CB335024DD2706 /* ViewModels */,
 				36EBC26D8A39F62353332061 /* Extensions */,
 				36EBC07E1EB572FBAC562EB4 /* LaunchScreen.storyboard */,
 				36EBC12E20D3A6A418B709E5 /* AfterEffects */,

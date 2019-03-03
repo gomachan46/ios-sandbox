@@ -23,7 +23,7 @@ class AllTopicsCollectionView: UICollectionView {
 extension AllTopicsCollectionView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let length = (frame.width / CGFloat(columnCount)) - minimumSpacing
-        return CGSize(width: length, height: length / 2 * 3)
+        return CGSize(width: length, height: length)
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
