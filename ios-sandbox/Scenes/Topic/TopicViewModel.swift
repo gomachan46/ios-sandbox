@@ -18,9 +18,13 @@ extension TopicViewModel: ViewModelType {
 
     struct Output {
         let topic: Observable<Topic>
+        let username: Observable<String>
+        let url: Observable<URL?>
     }
 
     func transform(input: Input) -> Output {
-        return Output(topic: topic)
+        let username = topic.map { $0.username }
+        let url = topic.map { URL(string: $0.url) }
+        return Output(topic: topic, username: username, url: url)
     }
 }
