@@ -57,7 +57,7 @@ extension TopicViewController {
         output
             .url
             .asDriverOnErrorJustComplete()
-            .drive(onNext: { url in self.imageView.kf.setImage(with: url) })
+            .drive(onNext: { [unowned self] url in self.imageView.kf.setImage(with: url) })
             .disposed(by: disposeBag)
         output.username.asDriverOnErrorJustComplete().drive(userLabel.rx.text).disposed(by: disposeBag)
     }
