@@ -42,10 +42,12 @@ extension AllTopicsViewModel: ViewModelType {
         let topics = input
             .refreshTrigger
             .flatMapLatest { _ in
-                return Observable.from(optional: (0..<30).map { _ in
-                    Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
-                })
-                .trackActivity(activityIndicator)
+                return Observable
+                    .from(optional: (0..<30).map { _ -> Topic in
+                        (0..<10000).forEach { n in print(n) } // TODO: 非同期にしたい！
+                        return Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
+                    })
+                    .trackActivity(activityIndicator)
             }
             .share(replay: 1)
 
