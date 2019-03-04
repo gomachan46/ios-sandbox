@@ -33,6 +33,7 @@ extension AllTopicsViewController {
             this.snp.makeConstraints { make in
                 make.edges.size.equalTo(view)
             }
+            this.refreshControl = UIRefreshControl()
         }
     }
 
@@ -45,9 +46,13 @@ extension AllTopicsViewController {
             })
         collectionView.dataSource = dataSource
 
-        let input = AllTopicsViewModel.Input(selection: collectionView.rx.itemSelected.asObservable())
+        let input = AllTopicsViewModel.Input(
+            selection: collectionView.rx.itemSelected.asObservable(),
+            refreshTrigger: collectionView.refreshControl!.rx.controlEvent(.valueChanged).asObservable()
+        )
         let output = viewModel.transform(input: input)
         output.topics.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         output.selectedTopic.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
+        output.fetching.asDriverOnErrorJustComplete().drive(collectionView.refreshControl!.rx.isRefreshing).disposed(by: disposeBag)
     }
 }

@@ -21,8 +21,7 @@ struct AllTopicsNavigator: AllTopicsNavigatorType {
     }
 
     func toAllTopics() {
-        let topics = (0..<30).map { _ in Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
-        let viewModel = AllTopicsViewModel(navigator: self, topics: topics)
+        let viewModel = AllTopicsViewModel(navigator: self)
         let viewController = AllTopicsViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
