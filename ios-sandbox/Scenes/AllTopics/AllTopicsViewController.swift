@@ -47,7 +47,7 @@ extension AllTopicsViewController {
         collectionView.dataSource = dataSource
 
         let refreshTrigger = Observable.merge(
-            rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in },
+            rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).take(1).map { _ in },
             collectionView.refreshControl!.rx.controlEvent(.valueChanged).asObservable()
         )
         let input = AllTopicsViewModel.Input(
