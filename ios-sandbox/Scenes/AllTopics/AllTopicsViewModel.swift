@@ -41,7 +41,7 @@ extension AllTopicsViewModel: ViewModelType {
         let activityIndicator = ActivityIndicator()
         let topics = input
             .refreshTrigger
-            .flatMapLatest { _ -> Observable<[Topic]> in
+            .flatMapLatest { _ in
                 return Observable.from(optional: (0..<30).map { _ in
                     Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
                 })
