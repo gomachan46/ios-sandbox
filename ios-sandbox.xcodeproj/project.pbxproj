@@ -33,7 +33,6 @@
 		36EBC919535473D90E98ACE1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC84F25BB8CC303D4842A /* TabBarController.swift */; };
 		36EBCA80E1A1F9724BD31B53 /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB3819DF3F2466E5A3FF /* StoriesView.swift */; };
 		36EBCA83F5ACC1393DD440B5 /* AllTopicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCD065E44DA5F1E00F456 /* AllTopicsViewModel.swift */; };
-		36EBCAF9C770071AB9B8789D /* TopicCollectionNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC70BD61BC2F7BFA6A1BB /* TopicCollectionNavigator.swift */; };
 		36EBCBA963B9699FFA785293 /* TopicItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCBFD65909EE3886A4CC3 /* TopicItemViewModel.swift */; };
 		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
 		36EBCCF019DEE6134799025C /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC322FD16DB56B627A4A6 /* ItemViewController.swift */; };
@@ -82,7 +81,6 @@
 		36EBC590AEFE2B45D2DC24FF /* sampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleData.json; sourceTree = "<group>"; };
 		36EBC5B07D83906D1FA6E314 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
-		36EBC70BD61BC2F7BFA6A1BB /* TopicCollectionNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionNavigator.swift; sourceTree = "<group>"; };
 		36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewController.swift; sourceTree = "<group>"; };
 		36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsNavigator.swift; sourceTree = "<group>"; };
 		36EBC7EAC3C75A9B5F0607C0 /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
@@ -230,14 +228,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		36EBCA4807922D039E511B8D /* Navigators */ = {
-			isa = PBXGroup;
-			children = (
-				36EBC70BD61BC2F7BFA6A1BB /* TopicCollectionNavigator.swift */,
-			);
-			path = Navigators;
-			sourceTree = "<group>";
-		};
 		36EBCAF91CCE9F5DC3A4DAA5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,7 +278,6 @@
 				36EBC07E1EB572FBAC562EB4 /* LaunchScreen.storyboard */,
 				36EBC12E20D3A6A418B709E5 /* AfterEffects */,
 				36EBC91333CBEBD8823D7F18 /* Common */,
-				36EBCA4807922D039E511B8D /* Navigators */,
 				36EBCAF91CCE9F5DC3A4DAA5 /* Scenes */,
 			);
 			path = "ios-sandbox";
@@ -496,7 +485,6 @@
 				36EBCD2EDCABB62F492237A8 /* ViewModelType.swift in Sources */,
 				36EBC511131EB3088B388CAB /* TopicCollectionViewController.swift in Sources */,
 				36EBC43F9AC6BBEDD667533F /* TopicCollectionView.swift in Sources */,
-				36EBCAF9C770071AB9B8789D /* TopicCollectionNavigator.swift in Sources */,
 				36EBCEBAAAA7E297802E4DE8 /* AllTopicsViewController.swift in Sources */,
 				36EBCEC687476A351D891507 /* AllTopicsNavigator.swift in Sources */,
 				36EBCA83F5ACC1393DD440B5 /* AllTopicsViewModel.swift in Sources */,
