@@ -46,13 +46,17 @@ extension AllTopicsViewController {
             })
         collectionView.dataSource = dataSource
 
+        let refreshTrigger = Observable.merge(
+            rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in },
+            collectionView.refreshControl!.rx.controlEvent(.valueChanged).asObservable()
+        )
         let input = AllTopicsViewModel.Input(
             selection: collectionView.rx.itemSelected.asObservable(),
-            refreshTrigger: collectionView.refreshControl!.rx.controlEvent(.valueChanged).asObservable()
+            refreshTrigger: refreshTrigger
         )
         let output = viewModel.transform(input: input)
         output.topics.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         output.selectedTopic.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
-        output.fetching.asDriverOnErrorJustComplete().drive(collectionView.refreshControl!.rx.isRefreshing).disposed(by: disposeBag)
+        output.isFetching.asDriverOnErrorJustComplete().drive(collectionView.refreshControl!.rx.isRefreshing).disposed(by: disposeBag)
     }
 }
