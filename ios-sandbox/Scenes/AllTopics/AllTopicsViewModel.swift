@@ -2,6 +2,7 @@ import Foundation
 import RxSwift
 import RxDataSources
 import Differentiator
+import Kingfisher
 
 struct SectionOfTopic {
     var items: [TopicItemViewModel]
@@ -41,13 +42,16 @@ extension AllTopicsViewModel: ViewModelType {
         let activityIndicator = ActivityIndicator()
         let topics = input
             .refreshTrigger
-            .flatMapLatest { _ in
-                return Observable
-                    .from(optional: (0..<30).map { _ -> Topic in
-                        (0..<10000).forEach { n in print(n) } // TODO: 非同期にしたい！
-                        return Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
-                    })
-                    .trackActivity(activityIndicator)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInteractive))
+            .flatMapLatest { _ -> Observable<[Topic]> in
+                return Observable.create { observer -> Disposable in
+                        // API叩いてデータ取ってきて[Topic]、みたいなところのイメージ
+                        Thread.sleep(forTimeInterval: 1)
+                        observer.onNext(
+                            (0..<30).map { _ in Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
+                        )
+                        return Disposables.create()
+                }.trackActivity(activityIndicator)
             }
             .share(replay: 1)
 
