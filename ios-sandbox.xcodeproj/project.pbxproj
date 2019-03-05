@@ -196,7 +196,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		36EBC35925B17D543A666A81 /* ViewControllers */ = {
+		36EBC35925B17D543A666A81 /* ViewControllers(deprecated) */ = {
 			isa = PBXGroup;
 			children = (
 				36EBC49E87C4E295AA96B86E /* ItemCollectionViewController.swift */,
@@ -207,7 +207,7 @@
 				36EBC132BCDEBA06E51F509E /* Views */,
 				36EBC3E6CE2E44702A0F74F5 /* TopicCollectionViewController.swift */,
 			);
-			path = ViewControllers;
+			path = "ViewControllers(deprecated)";
 			sourceTree = "<group>";
 		};
 		36EBC521EE6413FDFCBD73E5 /* Topic */ = {
@@ -280,7 +280,7 @@
 				CEFA974F22098491005796AF /* Assets.xcassets */,
 				CEFA975422098491005796AF /* Info.plist */,
 				36EBC38B5886667E5222E083 /* R.generated.swift */,
-				36EBC35925B17D543A666A81 /* ViewControllers */,
+				36EBC35925B17D543A666A81 /* ViewControllers(deprecated) */,
 				36EBCBE40E5B95A5E1785DF6 /* Models */,
 				36EBC26D8A39F62353332061 /* Extensions */,
 				36EBC07E1EB572FBAC562EB4 /* LaunchScreen.storyboard */,
