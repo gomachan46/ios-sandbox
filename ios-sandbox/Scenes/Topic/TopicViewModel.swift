@@ -24,7 +24,7 @@ extension TopicViewModel: ViewModelType {
 
     func transform(input: Input) -> Output {
         let username = topic.map { $0.username }
-        let url = topic.map { URL(string: $0.url) }
+        let url = topic.map { $0.url }
         return Output(topic: topic, username: username, url: url)
     }
 }

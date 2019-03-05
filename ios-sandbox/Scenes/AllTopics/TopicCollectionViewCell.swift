@@ -18,8 +18,8 @@ class TopicCollectionViewCell: UICollectionViewCell {
 }
 
 extension TopicCollectionViewCell {
-    func bind(_ viewModel: TopicItemViewModel) {
-        imageView.kf.setImage(with: URL(string: viewModel.url))
+    func bind(_ topic: Topic) {
+        imageView.kf.setImage(with: topic.url)
     }
 
     private func makeViews() {

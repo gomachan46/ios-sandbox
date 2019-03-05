@@ -1,18 +1,24 @@
 import UIKit
-import SnapKit
-import Kingfisher
-import RxSwift
-import RxCocoa
+import RxDataSources
 
 class AllTopicsCollectionView: UICollectionView {
     private let minimumSpacing: CGFloat = 1
     private let columnCount = 3
+    let rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfTopic>
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfTopic>(
+            configureCell: { dataSource, collectionView, indexPath, item in
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath) as! TopicCollectionViewCell
+                cell.bind(item)
+                return cell
+            })
         super.init(frame: frame, collectionViewLayout: layout)
+
         register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.reuseID)
         backgroundColor = .white
         delegate = self
+        refreshControl = UIRefreshControl()
     }
 
     required init?(coder aDecoder: NSCoder) {

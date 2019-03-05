@@ -1,6 +1,6 @@
 import Foundation
 
 struct Topic {
-    var username: String = ""
-    var url: String = ""
+    var username: String
+    var url: URL?
 }

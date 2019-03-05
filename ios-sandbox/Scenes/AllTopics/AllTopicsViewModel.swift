@@ -1,21 +1,5 @@
 import Foundation
 import RxSwift
-import RxDataSources
-import Differentiator
-import Kingfisher
-
-struct SectionOfTopic {
-    var items: [TopicItemViewModel]
-}
-
-extension SectionOfTopic: SectionModelType {
-    typealias Item = TopicItemViewModel
-
-    init(original: SectionOfTopic, items: [SectionOfTopic.Item]) {
-        self = original
-        self.items = items
-    }
-}
 
 class AllTopicsViewModel {
     private let navigator: AllTopicsNavigator
@@ -33,7 +17,7 @@ extension AllTopicsViewModel: ViewModelType {
     }
 
     struct Output {
-        let topics: Observable<[SectionOfTopic]>
+        let sectionOfTopics: Observable<[SectionOfTopic]>
         let selectedTopic: Observable<Topic>
         let isFetching: Observable<Bool>
     }
@@ -44,11 +28,17 @@ extension AllTopicsViewModel: ViewModelType {
             .refreshTrigger
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInteractive))
             .flatMapLatest { _ -> Observable<[Topic]> in
+                // API叩いてデータ取ってきて[Topic]を取得する、みたいなところのイメージ
+                // ちゃんとするなら外出ししていくはず
                 return Observable.create { observer -> Disposable in
-                        // API叩いてデータ取ってきて[Topic]、みたいなところのイメージ
                         Thread.sleep(forTimeInterval: 1)
                         observer.onNext(
-                            (0..<30).map { _ in Topic(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }
+                            (0..<30).map { _ in
+                                Topic(
+                                    username: "John",
+                                    url: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
+                                )
+                            }
                         )
                         return Disposables.create()
                 }.trackActivity(activityIndicator)
@@ -59,8 +49,8 @@ extension AllTopicsViewModel: ViewModelType {
             .selection
             .withLatestFrom(topics) { (indexPath, topics) -> Topic in topics[indexPath.row] }
             .do(onNext: navigator.toTopic)
-        let topicItemViewModels = topics.map { [SectionOfTopic(items: $0.map { TopicItemViewModel(with: $0) })] }
+        let sectionOfTopics = topics.map { [SectionOfTopic(items: $0)] }
 
-        return Output(topics: topicItemViewModels, selectedTopic: selectedTopic, isFetching: activityIndicator.asObservable())
+        return Output(sectionOfTopics: sectionOfTopics, selectedTopic: selectedTopic, isFetching: activityIndicator.asObservable())
     }
 }
