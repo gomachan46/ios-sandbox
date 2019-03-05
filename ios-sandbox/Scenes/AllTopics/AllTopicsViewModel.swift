@@ -57,9 +57,7 @@ extension AllTopicsViewModel: ViewModelType {
 
         let selectedTopic = input
             .selection
-            .withLatestFrom(topics) {
-                (indexPath, topics) -> Topic in topics[indexPath.row]
-            }
+            .withLatestFrom(topics) { (indexPath, topics) -> Topic in topics[indexPath.row] }
             .do(onNext: navigator.toTopic)
         let topicItemViewModels = topics.map { [SectionOfTopic(items: $0.map { TopicItemViewModel(with: $0) })] }
 
