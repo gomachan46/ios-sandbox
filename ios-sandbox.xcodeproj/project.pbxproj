@@ -10,10 +10,12 @@
 		36EBC04AB69F4D75292109A4 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCCF1921ED55FCF128261 /* ItemCollectionViewCell.swift */; };
 		36EBC0C39DE8C9FE5B8CE11F /* ImageCropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB9519B971CC76D504A1 /* ImageCropController.swift */; };
 		36EBC0D1A15AB6BA423FD4BA /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC7EAC3C75A9B5F0607C0 /* ObservableExtensions.swift */; };
+		36EBC1383CC8077B31317472 /* SelectUploadImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC582C539C0B0A4B4B19E /* SelectUploadImageCollectionView.swift */; };
 		36EBC1F93F2E18996606E80E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCC5766055E0CB0C6D0E3 /* RootViewController.swift */; };
 		36EBC22787249DB58F130FF6 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC11BA134A0F229E54A17 /* TopicViewModel.swift */; };
 		36EBC2581FBDD5582C7A8278 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCF377FF403B05F2D6B8C /* ImagePickerController.swift */; };
 		36EBC26C67AFD1477E95253C /* StoryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCC5A9D1ADB18605197DA /* StoryImageView.swift */; };
+		36EBC389C0B592BE44734ECA /* SectionOfAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCA15FF48216FD0205D43 /* SectionOfAlbum.swift */; };
 		36EBC3C0FC29069E87059A8C /* AllTopicsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC3A9DB3321260EBF1BB9 /* AllTopicsCollectionView.swift */; };
 		36EBC3D63187B51543EBA3C0 /* SectionOfTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC0732F8A80F18C493F8D /* SectionOfTopic.swift */; };
 		36EBC3DBEA1387050E1535EA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC84435BC7E4BF6C69480 /* SplashViewController.swift */; };
@@ -27,6 +29,7 @@
 		36EBC5E0E34DCE1A83181C0C /* SelectUploadImageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC754A32ACE865A642A72 /* SelectUploadImageNavigator.swift */; };
 		36EBC5F4A023DC16579243A4 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC93873BFC5133C9E1BFA /* Topic.swift */; };
 		36EBC60870ADAF86D5CC8D3E /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */; };
+		36EBC741882F862C7BC82512 /* SelectUploadImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCDCBFAB5CD4625093547 /* SelectUploadImageCollectionViewCell.swift */; };
 		36EBC75B2C946CC9F5F3947C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCDA571421233AA606079 /* TabBarController.swift */; };
 		36EBC7CB475D776F2F22A5E7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCA7E244649321C27312E /* Item.swift */; };
 		36EBC7E629C45C51D2B9F472 /* ImagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCC01CC984E78229316E5 /* ImagePickerCell.swift */; };
@@ -83,6 +86,7 @@
 		36EBC3E6CE2E44702A0F74F5 /* TopicCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewController.swift; sourceTree = "<group>"; };
 		36EBC49E87C4E295AA96B86E /* ItemCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewController.swift; sourceTree = "<group>"; };
 		36EBC4D5761C119D184D06AA /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
+		36EBC582C539C0B0A4B4B19E /* SelectUploadImageCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageCollectionView.swift; sourceTree = "<group>"; };
 		36EBC590AEFE2B45D2DC24FF /* sampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleData.json; sourceTree = "<group>"; };
 		36EBC5D8DE9B80CA9EBB0C90 /* SelectUploadImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageViewModel.swift; sourceTree = "<group>"; };
 		36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		36EBC84435BC7E4BF6C69480 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		36EBC93873BFC5133C9E1BFA /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		36EBC9E045A70A361300D830 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		36EBCA15FF48216FD0205D43 /* SectionOfAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionOfAlbum.swift; sourceTree = "<group>"; };
 		36EBCA7E244649321C27312E /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		36EBCAD28E6FD1D36A7EC551 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		36EBCB3819DF3F2466E5A3FF /* StoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
@@ -106,6 +111,7 @@
 		36EBCD065E44DA5F1E00F456 /* AllTopicsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewModel.swift; sourceTree = "<group>"; };
 		36EBCD7207505F7B7B12776E /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		36EBCDA571421233AA606079 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		36EBCDCBFAB5CD4625093547 /* SelectUploadImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBCDCF3C8F932C1FFA4775 /* TopicNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicNavigator.swift; sourceTree = "<group>"; };
 		36EBCF377FF403B05F2D6B8C /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		CE978F59222925BC008F7862 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
@@ -163,6 +169,9 @@
 				36EBC754A32ACE865A642A72 /* SelectUploadImageNavigator.swift */,
 				36EBCCE73F6803EA937C9BC0 /* SelectUploadImageViewController.swift */,
 				36EBC5D8DE9B80CA9EBB0C90 /* SelectUploadImageViewModel.swift */,
+				36EBC582C539C0B0A4B4B19E /* SelectUploadImageCollectionView.swift */,
+				36EBC8B566943D3E45BDC8E3 /* RxDataSources */,
+				36EBCDCBFAB5CD4625093547 /* SelectUploadImageCollectionViewCell.swift */,
 			);
 			path = SelectUploadImage;
 			sourceTree = "<group>";
@@ -234,6 +243,14 @@
 				36EBCDCF3C8F932C1FFA4775 /* TopicNavigator.swift */,
 			);
 			path = Topic;
+			sourceTree = "<group>";
+		};
+		36EBC8B566943D3E45BDC8E3 /* RxDataSources */ = {
+			isa = PBXGroup;
+			children = (
+				36EBCA15FF48216FD0205D43 /* SectionOfAlbum.swift */,
+			);
+			path = RxDataSources;
 			sourceTree = "<group>";
 		};
 		36EBC91333CBEBD8823D7F18 /* Common */ = {
@@ -529,6 +546,9 @@
 				36EBC5E0E34DCE1A83181C0C /* SelectUploadImageNavigator.swift in Sources */,
 				36EBCB1AF18226766EA025CE /* SelectUploadImageViewController.swift in Sources */,
 				36EBC9D81900CBD6FBE6E8A4 /* SelectUploadImageViewModel.swift in Sources */,
+				36EBC1383CC8077B31317472 /* SelectUploadImageCollectionView.swift in Sources */,
+				36EBC389C0B592BE44734ECA /* SectionOfAlbum.swift in Sources */,
+				36EBC741882F862C7BC82512 /* SelectUploadImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
