@@ -1,11 +1,12 @@
 import Differentiator
+import Photos
 
 struct SectionOfAlbum{
-    var items: [Topic]
+    var items: [PHAsset]
 }
 
 extension SectionOfAlbum: SectionModelType {
-    typealias Item = Topic
+    typealias Item = PHAsset
 
     init(original: SectionOfAlbum, items: [SectionOfAlbum.Item]) {
         self = original

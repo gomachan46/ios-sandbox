@@ -1,10 +1,11 @@
 import UIKit
 import RxDataSources
+import Photos
 
 class SelectUploadImageCollectionView: UICollectionView {
+    let rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfAlbum>
     private let minimumSpacing: CGFloat = 1
     private let columnCount = 4
-    let rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfAlbum>
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfAlbum>(

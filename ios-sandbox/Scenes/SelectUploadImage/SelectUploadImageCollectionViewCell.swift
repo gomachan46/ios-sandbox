@@ -3,6 +3,7 @@ import SnapKit
 import Kingfisher
 import RxSwift
 import RxCocoa
+import Photos
 
 class SelectUploadImageCollectionViewCell: UICollectionViewCell {
     private var imageView: UIImageView!
@@ -18,8 +19,11 @@ class SelectUploadImageCollectionViewCell: UICollectionViewCell {
 }
 
 extension SelectUploadImageCollectionViewCell {
-    func bind(_ topic: Topic) {
-        imageView.kf.setImage(with: topic.url)
+    func bind(_ photoAsset: PHAsset) {
+        PHImageManager.default().requestImage(for: photoAsset, targetSize: frame.size, contentMode: .aspectFill, options: nil, resultHandler: { image, info in
+            guard let image = image else { return }
+            self.imageView.image = image
+        })
     }
 
     private func makeViews() {

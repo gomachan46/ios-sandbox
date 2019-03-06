@@ -37,7 +37,7 @@ extension SelectUploadImageViewController {
 
     private func bindViewModel() {
         let input = SelectUploadImageViewModel.Input(
-            refreshTrigger: rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).take(1).map { _ in }
+            refreshTrigger: rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }
         )
         let output = viewModel.transform(input: input)
         output.sectionOfAlbums.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)

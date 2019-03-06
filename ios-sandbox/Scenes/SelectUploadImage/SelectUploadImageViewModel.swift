@@ -1,6 +1,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Photos
 
 struct SelectUploadImageViewModel {
     private let navigator: SelectUploadImageNavigator
@@ -20,27 +21,24 @@ extension SelectUploadImageViewModel: ViewModelType {
     }
 
     func transform(input: Input) -> Output {
-        let topics = input
+        let photoAssets = input
             .refreshTrigger
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-            .flatMapLatest { _ -> Observable<[Topic]> in
-                // API叩いてデータ取ってきて[Topic]を取得する、みたいなところのイメージ
-                // ちゃんとするなら外出ししていくはず
+            .flatMapLatest { _ -> Observable<[PHAsset]> in
                 return Observable.create { observer -> Disposable in
-                    Thread.sleep(forTimeInterval: 1)
-                    observer.onNext(
-                        (0..<30).map { _ in
-                            Topic(
-                                username: "John",
-                                url: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
-                            )
-                        }
-                    )
+                    let options = PHFetchOptions().apply { this in
+                        this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending:  false)]
+                    }
+                    let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: options)
+                    var phAssets = [PHAsset]()
+                    assets.enumerateObjects(using: { (asset, index, stop) in
+                        phAssets.append(asset as PHAsset)
+                    })
+                    observer.onNext(phAssets)
                     return Disposables.create()
                 }
             }
             .share(replay: 1)
-        let sectionOfAlbums = topics.map { [SectionOfAlbum(items: $0)] }
+        let sectionOfAlbums = photoAssets.map { [SectionOfAlbum(items: $0)] }
 
         return Output(sectionOfAlbums: sectionOfAlbums)
     }
