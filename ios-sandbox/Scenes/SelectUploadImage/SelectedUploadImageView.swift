@@ -14,6 +14,7 @@ class SelectedUploadImageView: UIScrollView {
         showsVerticalScrollIndicator = false
         minimumZoomScale = 1.0
         maximumZoomScale = 8.0
+        delegate = self
         makeViews()
     }
 
@@ -70,8 +71,8 @@ extension SelectedUploadImageView: UIScrollViewDelegate {
 
     private func updateScrollInset() {
         contentInset = UIEdgeInsets(
-            top: max((frame.height - frame.height) / 2, 0),
-            left: max((frame.width - frame.width) / 2, 0),
+            top: max((frame.height - imageView.frame.height) / 2, 0),
+            left: max((frame.width - imageView.frame.width) / 2, 0),
             bottom: 0,
             right: 0
         )
