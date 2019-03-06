@@ -1,8 +1,6 @@
 import UIKit
 import SnapKit
-import Kingfisher
 import RxSwift
-import RxCocoa
 import Photos
 
 class SelectUploadImageCollectionViewCell: UICollectionViewCell {

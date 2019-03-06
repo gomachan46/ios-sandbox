@@ -1,6 +1,5 @@
 import UIKit
 import RxDataSources
-import Photos
 
 class SelectUploadImageCollectionView: UICollectionView {
     let rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfAlbum>

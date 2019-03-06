@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import Kingfisher
 import Photos
 
 class SelectUploadImageViewController: UIViewController {
@@ -83,7 +82,6 @@ extension SelectUploadImageViewController {
         output
             .selectedPhotoAsset
             .asDriverOnErrorJustComplete()
-            .do(onNext: { a in print(a) })
             .drive(onNext: { [unowned self] photoAsset in self.selectedImageView.bind(photoAsset) })
             .disposed(by: disposeBag)
     }

@@ -1,11 +1,10 @@
 import UIKit
-import SnapKit
 import RxSwift
-import RxCocoa
 import Photos
 
 class SelectedUploadImageView: UIScrollView {
     private var imageView: UIImageView!
+    private let disposeBag = DisposeBag()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +42,7 @@ extension SelectedUploadImageView {
             addSubview(this)
             this.contentMode = .scaleAspectFit
             this.translatesAutoresizingMaskIntoConstraints = true
+            this.rx.doubleTapEvent.subscribe(onNext: { _ in self.setDefaultScale(image: this.image, animated: true) }).disposed(by: disposeBag)
         }
     }
 }
