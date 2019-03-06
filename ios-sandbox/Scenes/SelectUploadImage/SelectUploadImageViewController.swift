@@ -3,6 +3,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import Photos
 
 class SelectUploadImageViewController: UIViewController {
     private let viewModel: SelectUploadImageViewModel
@@ -36,8 +37,15 @@ extension SelectUploadImageViewController {
     }
 
     private func bindViewModel() {
+        let refreshTrigger = Observable.merge(
+            rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in },
+            Observable.create { observer in
+                PHPhotoLibrary.requestAuthorization { _ in observer.onNext(()) }
+                return Disposables.create()
+            }
+        )
         let input = SelectUploadImageViewModel.Input(
-            refreshTrigger: rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }
+            refreshTrigger: refreshTrigger
         )
         let output = viewModel.transform(input: input)
         output.sectionOfAlbums.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)

@@ -25,15 +25,8 @@ extension SelectUploadImageViewModel: ViewModelType {
             .refreshTrigger
             .flatMapLatest { _ -> Observable<[PHAsset]> in
                 return Observable.create { observer -> Disposable in
-                    let options = PHFetchOptions().apply { this in
-                        this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending:  false)]
-                    }
-                    let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: options)
-                    var phAssets = [PHAsset]()
-                    assets.enumerateObjects(using: { (asset, index, stop) in
-                        phAssets.append(asset as PHAsset)
-                    })
-                    observer.onNext(phAssets)
+                    print("hello")
+                    observer.onNext(self.loadPhotoAssets())
                     return Disposables.create()
                 }
             }
@@ -41,5 +34,18 @@ extension SelectUploadImageViewModel: ViewModelType {
         let sectionOfAlbums = photoAssets.map { [SectionOfAlbum(items: $0)] }
 
         return Output(sectionOfAlbums: sectionOfAlbums)
+    }
+
+    private func loadPhotoAssets() -> [PHAsset] {
+        let options = PHFetchOptions().apply { this in
+            this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending:  false)]
+        }
+        let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: options)
+        var phAssets = [PHAsset]()
+        assets.enumerateObjects(using: { (asset, index, stop) in
+            phAssets.append(asset as PHAsset)
+        })
+
+        return phAssets
     }
 }
