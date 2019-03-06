@@ -14,10 +14,12 @@ struct SelectUploadImageViewModel {
 extension SelectUploadImageViewModel: ViewModelType {
     struct Input {
         let refreshTrigger: Observable<Void>
+        let tapCancel: Observable<Void>
     }
 
     struct Output {
         let sectionOfAlbums: Observable<[SectionOfAlbum]>
+        let canceled: Observable<Void>
     }
 
     func transform(input: Input) -> Output {
@@ -30,8 +32,9 @@ extension SelectUploadImageViewModel: ViewModelType {
                 }
             }
         let sectionOfAlbums = photoAssets.map { [SectionOfAlbum(items: $0)] }
+        let canceled = input.tapCancel.do(onNext: navigator.dismiss)
 
-        return Output(sectionOfAlbums: sectionOfAlbums)
+        return Output(sectionOfAlbums: sectionOfAlbums, canceled: canceled)
     }
 
     private func loadPhotoAssets() -> [PHAsset] {

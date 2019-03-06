@@ -1,6 +1,9 @@
 import UIKit
 
 protocol SelectUploadImageNavigatorType {
+    func toSelectUploadImage()
+    func dismiss()
+    static func root() -> UINavigationController
 }
 
 struct SelectUploadImageNavigator: SelectUploadImageNavigatorType {
@@ -14,6 +17,10 @@ struct SelectUploadImageNavigator: SelectUploadImageNavigatorType {
         let viewModel = SelectUploadImageViewModel(navigator: self)
         let viewController = SelectUploadImageViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func dismiss() {
+        navigationController.dismiss(animated: true)
     }
 
     static func root() -> UINavigationController {

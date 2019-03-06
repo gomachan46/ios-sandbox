@@ -9,6 +9,7 @@ class SelectUploadImageViewController: UIViewController {
     private let viewModel: SelectUploadImageViewModel
     private let disposeBag = DisposeBag()
     private var collectionView: SelectUploadImageCollectionView!
+    private var cancelLabel: UILabel!
 
     init(viewModel: SelectUploadImageViewModel) {
         self.viewModel = viewModel
@@ -24,12 +25,6 @@ class SelectUploadImageViewController: UIViewController {
         makeViews()
         bindViewModel()
     }
-
-    @objc func viewWillEnterForeground(_ notification: Notification?) {
-        if (self.isViewLoaded && (self.view.window != nil)) {
-
-        }
-    }
 }
 
 extension SelectUploadImageViewController {
@@ -40,6 +35,13 @@ extension SelectUploadImageViewController {
                 make.edges.size.equalTo(view)
             }
         }
+        title = "画像投稿"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        cancelLabel = UILabel().apply { this in
+            this.text = "キャンセル"
+            this.textColor = .black
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelLabel)
     }
 
     private func bindViewModel() {
@@ -47,9 +49,11 @@ extension SelectUploadImageViewController {
             refreshTrigger: Observable.create { observer in
                 PHPhotoLibrary.requestAuthorization { _ in observer.onNext(()) }
                 return Disposables.create()
-            }
+            },
+            tapCancel: cancelLabel.rx.tapEvent.map{ _ in }.asObservable()
         )
         let output = viewModel.transform(input: input)
         output.sectionOfAlbums.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)
+        output.canceled.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
     }
 }
