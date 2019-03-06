@@ -55,6 +55,7 @@ extension SelectUploadImageViewController {
             this.textColor = .black
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelLabel)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "次へ", style: .plain, target: nil, action: nil)
     }
 
     private func bindViewModel() {
@@ -73,8 +74,9 @@ extension SelectUploadImageViewController {
         )
         let input = SelectUploadImageViewModel.Input(
             refreshTrigger: refreshTrigger,
-            tapCancel: cancelLabel.rx.tapEvent.map{ _ in }.asObservable(),
-            selection: selection
+            tapCancel: cancelLabel.rx.tapEvent.map{ _ in },
+            selection: selection,
+            tapNext: navigationItem.rightBarButtonItem!.rx.tap.map{ _ in self.cropImage() }
         )
         let output = viewModel.transform(input: input)
         output.sectionOfAlbums.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)
@@ -84,5 +86,15 @@ extension SelectUploadImageViewController {
             .asDriverOnErrorJustComplete()
             .drive(onNext: { [unowned self] photoAsset in self.selectedImageView.bind(photoAsset) })
             .disposed(by: disposeBag)
+        output.wentToNext.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
+    }
+
+    private func cropImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(selectedImageView.frame.size, false, 0.0)
+        selectedImageView.drawHierarchy(in: CGRect(origin: CGPoint(x: 0, y: 0), size: selectedImageView.frame.size), afterScreenUpdates: true)
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return croppedImage
     }
 }

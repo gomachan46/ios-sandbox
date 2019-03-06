@@ -2,6 +2,7 @@ import UIKit
 
 protocol SelectUploadImageNavigatorType {
     func toSelectUploadImage()
+    func toCropUploadImage()
     func dismiss()
     static func root() -> UINavigationController
 }
@@ -17,6 +18,16 @@ struct SelectUploadImageNavigator: SelectUploadImageNavigatorType {
         let viewModel = SelectUploadImageViewModel(navigator: self)
         let viewController = SelectUploadImageViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func toCropUploadImage(_ image: UIImage) {
+        let navigator = CropUploadImageNavigator(navigationController: navigationController)
+        let viewModel = CropUploadImageViewModel(navigator: navigator, image: image)
+        let viewController = CropUploadImageViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func toCropUploadImage() {
     }
 
     func dismiss() {
