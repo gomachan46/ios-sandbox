@@ -24,6 +24,12 @@ class SelectUploadImageViewController: UIViewController {
         makeViews()
         bindViewModel()
     }
+
+    @objc func viewWillEnterForeground(_ notification: Notification?) {
+        if (self.isViewLoaded && (self.view.window != nil)) {
+
+        }
+    }
 }
 
 extension SelectUploadImageViewController {
@@ -37,15 +43,11 @@ extension SelectUploadImageViewController {
     }
 
     private func bindViewModel() {
-        let refreshTrigger = Observable.merge(
-            rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in },
-            Observable.create { observer in
+        let input = SelectUploadImageViewModel.Input(
+            refreshTrigger: Observable.create { observer in
                 PHPhotoLibrary.requestAuthorization { _ in observer.onNext(()) }
                 return Disposables.create()
             }
-        )
-        let input = SelectUploadImageViewModel.Input(
-            refreshTrigger: refreshTrigger
         )
         let output = viewModel.transform(input: input)
         output.sectionOfAlbums.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)

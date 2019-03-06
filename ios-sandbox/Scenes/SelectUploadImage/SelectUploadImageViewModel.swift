@@ -25,12 +25,10 @@ extension SelectUploadImageViewModel: ViewModelType {
             .refreshTrigger
             .flatMapLatest { _ -> Observable<[PHAsset]> in
                 return Observable.create { observer -> Disposable in
-                    print("hello")
                     observer.onNext(self.loadPhotoAssets())
                     return Disposables.create()
                 }
             }
-            .share(replay: 1)
         let sectionOfAlbums = photoAssets.map { [SectionOfAlbum(items: $0)] }
 
         return Output(sectionOfAlbums: sectionOfAlbums)
