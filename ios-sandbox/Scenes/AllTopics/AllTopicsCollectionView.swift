@@ -2,9 +2,9 @@ import UIKit
 import RxDataSources
 
 class AllTopicsCollectionView: UICollectionView {
+    let rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfTopic>
     private let minimumSpacing: CGFloat = 1
     private let columnCount = 3
-    let rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfTopic>
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfTopic>(
@@ -14,7 +14,8 @@ class AllTopicsCollectionView: UICollectionView {
                 return cell
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesHeaderView.reuseID, for: indexPath)
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesHeaderView.reuseID, for: indexPath) as! StoriesHeaderView
+                header.bind()
                 return header
             }
         )

@@ -1,6 +1,7 @@
 import UIKit
 
 class StoriesHeaderView: UICollectionReusableView {
+    private var stackView: UIStackView!
     override var layer: CALayer {
         let layer = super.layer
         layer.zPosition = 0
@@ -19,7 +20,7 @@ class StoriesHeaderView: UICollectionReusableView {
             this.showsVerticalScrollIndicator = false
             this.showsHorizontalScrollIndicator = false
         }
-        let stackView = UIStackView().apply { this in
+        stackView = UIStackView().apply { this in
             scrollView.addSubview(this)
             this.axis = .horizontal
             this.alignment = .fill
@@ -31,14 +32,19 @@ class StoriesHeaderView: UICollectionReusableView {
                 make.height.equalTo(scrollView)
             }
         }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension StoriesHeaderView {
+    func bind() {
         (1...10).forEach { _ in
             StoryView().apply { this in
                 stackView.addArrangedSubview(this)
             }
         }
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
