@@ -18,7 +18,7 @@ class TopicCollectionViewCell: UICollectionViewCell {
 }
 
 extension TopicCollectionViewCell {
-    func bind(_ topic: Topic) {
+    func setImage(from topic: Topic) {
         imageView.kf.setImage(with: topic.url)
     }
 

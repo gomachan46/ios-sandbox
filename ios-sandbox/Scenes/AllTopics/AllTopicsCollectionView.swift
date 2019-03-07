@@ -12,7 +12,7 @@ class AllTopicsCollectionView: UICollectionView {
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfTopic>(
             configureCell: { dataSource, collectionView, indexPath, item in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath) as! TopicCollectionViewCell
-                cell.bind(item)
+                cell.setImage(from: item)
                 return cell
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
