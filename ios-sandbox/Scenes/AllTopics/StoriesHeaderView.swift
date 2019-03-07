@@ -1,7 +1,12 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 class StoriesHeaderView: UICollectionReusableView {
     private var stackView: UIStackView!
+    private var viewModel: StoriesViewModel!
+    private let disposeBag = DisposeBag()
+
     override var layer: CALayer {
         let layer = super.layer
         layer.zPosition = 0
@@ -40,11 +45,24 @@ class StoriesHeaderView: UICollectionReusableView {
 }
 
 extension StoriesHeaderView {
-    func bind() {
-        (1...10).forEach { _ in
-            StoryView().apply { this in
-                stackView.addArrangedSubview(this)
-            }
-        }
+    func bind(_ viewModel: StoriesViewModel) {
+        self.viewModel = viewModel
+        let input = StoriesViewModel.Input()
+        let output = viewModel.transform(input: input)
+        output.stories
+            .asDriverOnErrorJustComplete()
+            .drive(onNext: { stories in
+                self.stackView.arrangedSubviews.forEach { subview in
+                    self.stackView.removeArrangedSubview(subview)
+                    NSLayoutConstraint.deactivate(subview.constraints)
+                    subview.removeFromSuperview()
+                }
+                stories.forEach { _ in
+                    StoryView().apply { this in
+                        self.stackView.addArrangedSubview(this)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }

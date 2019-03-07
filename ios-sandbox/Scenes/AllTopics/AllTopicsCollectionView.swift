@@ -1,12 +1,14 @@
 import UIKit
+import RxSwift
 import RxDataSources
 
 class AllTopicsCollectionView: UICollectionView {
-    let rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfTopic>
+    var rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfTopic>!
     private let minimumSpacing: CGFloat = 1
     private let columnCount = 3
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfTopic>(
             configureCell: { dataSource, collectionView, indexPath, item in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath) as! TopicCollectionViewCell
@@ -15,11 +17,11 @@ class AllTopicsCollectionView: UICollectionView {
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesHeaderView.reuseID, for: indexPath) as! StoriesHeaderView
-                header.bind()
+                let storiesViewModel = StoriesViewModel()
+                header.bind(storiesViewModel)
                 return header
             }
         )
-        super.init(frame: frame, collectionViewLayout: layout)
 
         register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.reuseID)
         register(StoriesHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StoriesHeaderView.reuseID)
