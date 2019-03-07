@@ -1,20 +1,38 @@
 import UIKit
+import RxSwift
+import RxCocoa
+import Kingfisher
 
 class StoryView: UIView {
-    override init(frame: CGRect) {
+    private let viewModel: StoryViewModel
+    private var imageView: UIImageView!
+    private var label: UILabel!
+    private let disposeBag = DisposeBag()
+
+    init(frame: CGRect, viewModel: StoryViewModel) {
+        self.viewModel = viewModel
         super.init(frame: frame)
-        let imageView = StoryImageView().apply { this in
+        makeViews()
+        bindViewModel()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension StoryView {
+    private func makeViews() {
+        imageView = StoryImageView().apply { this in
             addSubview(this)
-            this.kf.setImage(with: URL(string: "https://picsum.photos/100?image=\(Int.random(in: 1...100))"))
             this.snp.makeConstraints { make in
                 make.top.left.equalTo(self).inset(10)
                 make.right.equalTo(self).inset(10)
                 make.size.equalTo(60)
             }
         }
-        UILabel().apply { this in
+        label = UILabel().apply { this in
             addSubview(this)
-            this.text = "ドリンクの作り方"
             this.font = .systemFont(ofSize: 12)
             this.textAlignment = .center
             this.snp.makeConstraints { make in
@@ -26,7 +44,14 @@ class StoryView: UIView {
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func bindViewModel() {
+        let input = StoryViewModel.Input()
+        let output = viewModel.transform(input: input)
+        output
+            .url
+            .asDriverOnErrorJustComplete()
+            .drive(onNext: { [unowned self] url in self.imageView.kf.setImage(with: url) })
+            .disposed(by: disposeBag)
+        output.title.asDriverOnErrorJustComplete().drive(label.rx.text).disposed(by: disposeBag)
     }
 }

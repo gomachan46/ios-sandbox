@@ -8,7 +8,7 @@ struct TopicViewModel {
 
     init(navigator: TopicNavigator, topic: Topic) {
         self.navigator = navigator
-        self.topic = Observable.of(topic)
+        self.topic = Observable.from(optional: topic)
     }
 }
 

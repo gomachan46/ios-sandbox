@@ -57,8 +57,8 @@ extension StoriesHeaderView {
                     NSLayoutConstraint.deactivate(subview.constraints)
                     subview.removeFromSuperview()
                 }
-                stories.forEach { _ in
-                    StoryView().apply { this in
+                stories.forEach { story in
+                    StoryView(frame: self.frame, viewModel: StoryViewModel(navigator: viewModel.navigator, story: story)).apply { this in
                         self.stackView.addArrangedSubview(this)
                     }
                 }

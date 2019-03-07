@@ -1,0 +1,28 @@
+import Foundation
+import RxSwift
+
+class StoryViewModel {
+    private let navigator: AllTopicsNavigator
+    private let story: Observable<Story>
+
+    init(navigator: AllTopicsNavigator, story: Story) {
+        self.navigator = navigator
+        self.story = Observable.from(optional: story)
+    }
+}
+
+extension StoryViewModel: ViewModelType {
+    struct Input {
+    }
+
+    struct Output {
+        let title: Observable<String>
+        let url: Observable<URL?>
+    }
+
+    func transform(input: Input) -> Output {
+        let title = story.map { $0.title }
+        let url = story.map { $0.url }
+        return Output(title: title, url: url)
+    }
+}

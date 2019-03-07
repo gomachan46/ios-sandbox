@@ -2,6 +2,11 @@ import Foundation
 import RxSwift
 
 class StoriesViewModel {
+    let navigator: AllTopicsNavigator
+
+    init(navigator: AllTopicsNavigator) {
+        self.navigator = navigator
+    }
 }
 
 extension StoriesViewModel: ViewModelType {

@@ -6,8 +6,10 @@ class AllTopicsCollectionView: UICollectionView {
     var rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfTopic>!
     private let minimumSpacing: CGFloat = 1
     private let columnCount = 3
+    private let viewModel: AllTopicsViewModel
 
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, viewModel: AllTopicsViewModel) {
+        self.viewModel = viewModel
         super.init(frame: frame, collectionViewLayout: layout)
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfTopic>(
             configureCell: { dataSource, collectionView, indexPath, item in
@@ -17,7 +19,7 @@ class AllTopicsCollectionView: UICollectionView {
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesHeaderView.reuseID, for: indexPath) as! StoriesHeaderView
-                let storiesViewModel = StoriesViewModel()
+                let storiesViewModel = StoriesViewModel(navigator: viewModel.navigator)
                 header.bind(storiesViewModel)
                 return header
             }

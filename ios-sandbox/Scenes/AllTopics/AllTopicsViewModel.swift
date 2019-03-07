@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 
 class AllTopicsViewModel {
-    private let navigator: AllTopicsNavigator
+    let navigator: AllTopicsNavigator
     private var isFetching = Observable.from(optional: false)
 
     init(navigator: AllTopicsNavigator) {

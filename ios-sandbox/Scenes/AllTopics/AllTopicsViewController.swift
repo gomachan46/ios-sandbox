@@ -26,7 +26,7 @@ class AllTopicsViewController: UIViewController {
 
 extension AllTopicsViewController {
     private func makeViews() {
-        collectionView = AllTopicsCollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
+        collectionView = AllTopicsCollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout(), viewModel: viewModel).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.edges.size.equalTo(view)
