@@ -12,10 +12,16 @@ class AllTopicsCollectionView: UICollectionView {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath) as! TopicCollectionViewCell
                 cell.bind(item)
                 return cell
-            })
+            },
+            configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesView.reuseID, for: indexPath)
+                return header
+            }
+        )
         super.init(frame: frame, collectionViewLayout: layout)
 
         register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.reuseID)
+        register(StoriesView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StoriesView.reuseID)
         backgroundColor = .white
         delegate = self
         refreshControl = UIRefreshControl()
