@@ -45,7 +45,9 @@ extension StoryView {
     }
 
     private func bindViewModel() {
-        let input = StoryViewModel.Input()
+        let input = StoryViewModel.Input(
+            selection: rx.tapEvent.map { _ in }
+        )
         let output = viewModel.transform(input: input)
         output
             .url
@@ -53,5 +55,6 @@ extension StoryView {
             .drive(onNext: { [unowned self] url in self.imageView.kf.setImage(with: url) })
             .disposed(by: disposeBag)
         output.title.asDriverOnErrorJustComplete().drive(label.rx.text).disposed(by: disposeBag)
+        output.selectedStory.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
     }
 }
