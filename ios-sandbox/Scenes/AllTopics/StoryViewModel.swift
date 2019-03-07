@@ -26,7 +26,7 @@ extension StoryViewModel: ViewModelType {
         let selectedStory = input
             .selection
             .withLatestFrom(story)
-            .do(onNext: { story in print(story) })
+            .do(onNext: navigator.toStory)
 
 
         let title = story.map { $0.title }
