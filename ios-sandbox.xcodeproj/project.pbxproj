@@ -46,10 +46,10 @@
 		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
 		36EBCCF019DEE6134799025C /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC322FD16DB56B627A4A6 /* ItemViewController.swift */; };
 		36EBCD2EDCABB62F492237A8 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */; };
+		36EBCDA9722BE5CF176927AB /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCE3B52A2824CEF12A925 /* ActivityIndicator.swift */; };
 		36EBCDAD20FA2046F2FBFAFE /* ReactiveExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCBC828BD545C81F0AECB /* ReactiveExtensions.swift */; };
 		36EBCEBAAAA7E297802E4DE8 /* AllTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */; };
 		36EBCEC687476A351D891507 /* AllTopicsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */; };
-		36EBCF09BE61A69C5D7A23D1 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCD7207505F7B7B12776E /* ActivityIndicator.swift */; };
 		36EBCFB9F3F3BD712F722E72 /* SelectedUploadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4DCFFC2F5CECEE2EDC9 /* SelectedUploadImageView.swift */; };
 		CE978F5A222925BC008F7862 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F59222925BC008F7862 /* RxDataSources.framework */; };
 		CE978F5C22293813008F7862 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F5B22293813008F7862 /* Differentiator.framework */; };
@@ -116,10 +116,10 @@
 		36EBCCE73F6803EA937C9BC0 /* SelectUploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageViewController.swift; sourceTree = "<group>"; };
 		36EBCCF1921ED55FCF128261 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBCD065E44DA5F1E00F456 /* AllTopicsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewModel.swift; sourceTree = "<group>"; };
-		36EBCD7207505F7B7B12776E /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		36EBCDA571421233AA606079 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		36EBCDCBFAB5CD4625093547 /* SelectUploadImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBCDCF3C8F932C1FFA4775 /* TopicNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicNavigator.swift; sourceTree = "<group>"; };
+		36EBCE3B52A2824CEF12A925 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		36EBCECDB468411B287F309A /* CropUploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropUploadImageViewController.swift; sourceTree = "<group>"; };
 		36EBCF377FF403B05F2D6B8C /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		CE978F59222925BC008F7862 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
@@ -225,7 +225,6 @@
 				36EBCBC828BD545C81F0AECB /* ReactiveExtensions.swift */,
 				36EBCAD28E6FD1D36A7EC551 /* Reusable.swift */,
 				36EBC7EAC3C75A9B5F0607C0 /* ObservableExtensions.swift */,
-				36EBCD7207505F7B7B12776E /* ActivityIndicator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -266,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */,
+				36EBCE3B52A2824CEF12A925 /* ActivityIndicator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -561,7 +561,6 @@
 				36EBC1F93F2E18996606E80E /* RootViewController.swift in Sources */,
 				36EBC75B2C946CC9F5F3947C /* TabBarController.swift in Sources */,
 				36EBC3DBEA1387050E1535EA /* SplashViewController.swift in Sources */,
-				36EBCF09BE61A69C5D7A23D1 /* ActivityIndicator.swift in Sources */,
 				36EBC3D63187B51543EBA3C0 /* SectionOfTopic.swift in Sources */,
 				36EBC5E0E34DCE1A83181C0C /* SelectUploadImageNavigator.swift in Sources */,
 				36EBCB1AF18226766EA025CE /* SelectUploadImageViewController.swift in Sources */,
@@ -573,6 +572,7 @@
 				36EBC0A119825C8086005942 /* CropUploadImageNavigator.swift in Sources */,
 				36EBC1EFAAF5D64FB00F867C /* CropUploadImageViewController.swift in Sources */,
 				36EBC34562CF0005DF5E1D72 /* CropUploadImageViewModel.swift in Sources */,
+				36EBCDA9722BE5CF176927AB /* ActivityIndicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
