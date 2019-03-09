@@ -15,7 +15,6 @@ class TabBarController: UITabBarController {
             this.backgroundColor = .orange
             this.sizeToFit()
             this.addTarget(self, action: #selector(tapCenterButton), for: .touchUpInside)
-            this.addTarget(self, action: #selector(tapCenterButton2), for: .touchDragExit)
             this.snp.makeConstraints { make in
                 make.center.equalTo(tabBar)
                 make.width.equalTo(tabBar).dividedBy(5)
@@ -80,11 +79,6 @@ extension TabBarController {
     }
 
     @objc private func tapCenterButton() {
-        let pickerController = ImagePickerController()
-        present(UINavigationController(rootViewController: pickerController), animated: true)
-    }
-
-    @objc private func tapCenterButton2() {
         present(SelectUploadImageNavigator.root(), animated: true)
     }
 }
