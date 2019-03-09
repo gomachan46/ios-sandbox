@@ -59,8 +59,7 @@ extension SelectUploadImageViewController {
     }
 
     private func bindViewModel() {
-        // TODO: 本当は2回トリガー引かずにrequestAuthorizationをうまくハンドリングしたいけど
-        // デフォルトの画像選択状態にするタイミングとか見合わせられなかったので渋々viewWillAppearのときもトリガーするようにしている
+        // TODO: 本当は2回トリガー引かずにrequestAuthorizationをうまくハンドリングしたいけどデフォルトの画像選択状態にするタイミングと合わせられなかったので渋々viewWillAppearのときもトリガーするようにしている
         let refreshTrigger = Observable.merge(
             rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).take(1).map { _ in },
             Observable.create { observer in

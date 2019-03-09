@@ -33,11 +33,15 @@ extension CropUploadImageViewController {
                 make.top.equalTo(view.safeAreaLayoutGuide)
             }
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "シェア", style: .plain, target: nil, action: nil)
     }
 
     private func bindViewModel() {
-        let input = CropUploadImageViewModel.Input()
+        let input = CropUploadImageViewModel.Input(
+            share: navigationItem.rightBarButtonItem!.rx.tap.map{ _ in }
+        )
         let output = viewModel.transform(input: input)
         output.croppedImage.asDriverOnErrorJustComplete().drive(imageView.rx.image).disposed(by: disposeBag)
+        output.shared.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
     }
 }
