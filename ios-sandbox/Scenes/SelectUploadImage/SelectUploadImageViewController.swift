@@ -29,6 +29,7 @@ class SelectUploadImageViewController: UIViewController {
 
 extension SelectUploadImageViewController {
     private func makeViews() {
+
         selectedImageView = SelectedUploadImageView(frame: view.frame).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
@@ -39,7 +40,9 @@ extension SelectUploadImageViewController {
             }
         }
 
-        collectionView = SelectUploadImageCollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout()).apply { this in
+        let collectionViewController = SelectUploadImageCollectionViewController()
+        addChild(collectionViewController)
+        collectionViewController.view.apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(selectedImageView.snp.bottom)
@@ -47,6 +50,8 @@ extension SelectUploadImageViewController {
                 make.height.lessThanOrEqualTo(view)
             }
         }
+        collectionViewController.didMove(toParent: self)
+        collectionView = collectionViewController.collectionView
 
         title = "画像投稿"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
