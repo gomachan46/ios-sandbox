@@ -61,6 +61,7 @@
 		36EBCEBAAAA7E297802E4DE8 /* AllTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */; };
 		36EBCEC687476A351D891507 /* AllTopicsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */; };
 		36EBCFB9F3F3BD712F722E72 /* SelectedUploadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4DCFFC2F5CECEE2EDC9 /* SelectedUploadImageView.swift */; };
+		CE25C56B2237A5C100026260 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE25C56A2237A5C100026260 /* FloatingPanel.framework */; };
 		CE978F5A222925BC008F7862 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F59222925BC008F7862 /* RxDataSources.framework */; };
 		CE978F5C22293813008F7862 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F5B22293813008F7862 /* Differentiator.framework */; };
 		CEA0504D220D57D400E26B76 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA0504C220D57D400E26B76 /* Lottie.framework */; };
@@ -142,6 +143,7 @@
 		36EBCE869487ED1C75DD4922 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		36EBCECDB468411B287F309A /* CropUploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropUploadImageViewController.swift; sourceTree = "<group>"; };
 		36EBCF377FF403B05F2D6B8C /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		CE25C56A2237A5C100026260 /* FloatingPanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FloatingPanel.framework; path = Carthage/Build/iOS/FloatingPanel.framework; sourceTree = "<group>"; };
 		CE978F59222925BC008F7862 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
 		CE978F5B22293813008F7862 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		CEA0504C220D57D400E26B76 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE25C56B2237A5C100026260 /* FloatingPanel.framework in Frameworks */,
 				CE978F5C22293813008F7862 /* Differentiator.framework in Frameworks */,
 				CE978F5A222925BC008F7862 /* RxDataSources.framework in Frameworks */,
 				CEA0504D220D57D400E26B76 /* Lottie.framework in Frameworks */,
@@ -398,6 +401,7 @@
 		CEFA976A22098856005796AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE25C56A2237A5C100026260 /* FloatingPanel.framework */,
 				CE978F5B22293813008F7862 /* Differentiator.framework */,
 				CE978F59222925BC008F7862 /* RxDataSources.framework */,
 				CEA0504C220D57D400E26B76 /* Lottie.framework */,
@@ -551,6 +555,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FloatingPanel.framework",
 			);
 			name = "Run carthage copy-frameworks";
 			outputFileListPaths = (
