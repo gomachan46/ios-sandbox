@@ -3,6 +3,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Photos
+import FloatingPanel
 
 class SelectUploadImageViewController: UIViewController {
     private let viewModel: SelectUploadImageViewModel
@@ -10,6 +11,7 @@ class SelectUploadImageViewController: UIViewController {
     private var selectedImageView: SelectedUploadImageView!
     private var collectionView: SelectUploadImageCollectionView!
     private var cancelLabel: UILabel!
+    private var fpc: FloatingPanelController!
 
     init(viewModel: SelectUploadImageViewModel) {
         self.viewModel = viewModel
@@ -29,7 +31,7 @@ class SelectUploadImageViewController: UIViewController {
 
 extension SelectUploadImageViewController {
     private func makeViews() {
-
+        view.backgroundColor = .white
         selectedImageView = SelectedUploadImageView(frame: view.frame).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
@@ -41,16 +43,11 @@ extension SelectUploadImageViewController {
         }
 
         let collectionViewController = SelectUploadImageCollectionViewController()
-        addChild(collectionViewController)
-        collectionViewController.view.apply { this in
-            view.addSubview(this)
-            this.snp.makeConstraints { make in
-                make.top.equalTo(selectedImageView.snp.bottom)
-                make.left.right.bottom.width.equalTo(view)
-                make.height.lessThanOrEqualTo(view)
-            }
-        }
-        collectionViewController.didMove(toParent: self)
+        fpc = FloatingPanelController()
+        fpc.delegate = self
+        fpc.set(contentViewController: collectionViewController)
+        fpc.track(scrollView: collectionViewController.collectionView)
+        fpc.addPanel(toParent: self)
         collectionView = collectionViewController.collectionView
 
         title = "画像投稿"
@@ -61,6 +58,12 @@ extension SelectUploadImageViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelLabel)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "次へ", style: .plain, target: nil, action: nil)
+    }
+
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        fpc.removePanelFromParent(animated: animated)
     }
 
     private func bindViewModel() {
@@ -91,6 +94,7 @@ extension SelectUploadImageViewController {
             .drive(onNext: { [unowned self] photoAsset in self.selectedImageView.bind(photoAsset) })
             .disposed(by: disposeBag)
         output.wentToNext.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
+        collectionView.rx.itemSelected.asDriverOnErrorJustComplete().drive(onNext: { [unowned self] _ in self.fpc.move(to: .tip, animated: true)}).disposed(by: disposeBag)
     }
 
     private func cropImage() -> UIImage {
@@ -101,4 +105,35 @@ extension SelectUploadImageViewController {
 
         return croppedImage
     }
+}
+
+extension SelectUploadImageViewController: FloatingPanelControllerDelegate {
+    public func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+        return SelectUploadImageFloatingPanelLayout()
+    }
+
+    public func floatingPanel(_ vc: FloatingPanelController, behaviorFor newCollection: UITraitCollection) -> FloatingPanelBehavior? {
+        return SelectUploadImageFloatingPanelBehavior()
+    }
+}
+
+class SelectUploadImageFloatingPanelLayout: FloatingPanelLayout {
+    var initialPosition: FloatingPanelPosition {
+        return .tip
+    }
+    var supportedPositions: Set<FloatingPanelPosition> {
+        return [.full, .tip]
+    }
+
+    func insetFor(position: FloatingPanelPosition) -> CGFloat? {
+        switch position {
+        case .full: return 56.0
+        case .tip: return 200.0
+        default: return nil
+        }
+    }
+}
+
+class SelectUploadImageFloatingPanelBehavior: FloatingPanelBehavior {
+
 }

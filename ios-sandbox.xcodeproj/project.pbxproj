@@ -48,7 +48,6 @@
 		36EBC8D38476E7B8AEA8D9EB /* Appliable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC21CC48ECF1FBF90879D /* Appliable.swift */; };
 		36EBC8E16FFF64B356DDD14A /* sampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC590AEFE2B45D2DC24FF /* sampleData.json */; };
 		36EBC9D81900CBD6FBE6E8A4 /* SelectUploadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC5D8DE9B80CA9EBB0C90 /* SelectUploadImageViewModel.swift */; };
-		36EBCA39710FBF8AC440F508 /* SelectUploadImageCollectionPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC9FC9F7934F9A7419EAF /* SelectUploadImageCollectionPresentationController.swift */; };
 		36EBCA80E1A1F9724BD31B53 /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB3819DF3F2466E5A3FF /* StoriesView.swift */; };
 		36EBCA83F5ACC1393DD440B5 /* AllTopicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCD065E44DA5F1E00F456 /* AllTopicsViewModel.swift */; };
 		36EBCB1AF18226766EA025CE /* SelectUploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCCE73F6803EA937C9BC0 /* SelectUploadImageViewController.swift */; };
@@ -119,7 +118,6 @@
 		36EBC847A616E43782F6D24E /* StoryNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryNavigator.swift; sourceTree = "<group>"; };
 		36EBC93873BFC5133C9E1BFA /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		36EBC9E045A70A361300D830 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		36EBC9FC9F7934F9A7419EAF /* SelectUploadImageCollectionPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageCollectionPresentationController.swift; sourceTree = "<group>"; };
 		36EBCA15FF48216FD0205D43 /* SectionOfAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionOfAlbum.swift; sourceTree = "<group>"; };
 		36EBCA47F59914D90479C332 /* SelectUploadImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageCollectionViewController.swift; sourceTree = "<group>"; };
 		36EBCA7E244649321C27312E /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				36EBCDCBFAB5CD4625093547 /* SelectUploadImageCollectionViewCell.swift */,
 				36EBC4DCFFC2F5CECEE2EDC9 /* SelectedUploadImageView.swift */,
 				36EBCA47F59914D90479C332 /* SelectUploadImageCollectionViewController.swift */,
-				36EBC9FC9F7934F9A7419EAF /* SelectUploadImageCollectionPresentationController.swift */,
 			);
 			path = SelectUploadImage;
 			sourceTree = "<group>";
@@ -625,7 +622,6 @@
 				36EBC0DFDF374B208DAD1664 /* StoryViewController.swift in Sources */,
 				36EBC40601046E596CC51DA9 /* HogeStoryViewModel.swift in Sources */,
 				36EBC552A6969DF46E14900F /* SelectUploadImageCollectionViewController.swift in Sources */,
-				36EBCA39710FBF8AC440F508 /* SelectUploadImageCollectionPresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
