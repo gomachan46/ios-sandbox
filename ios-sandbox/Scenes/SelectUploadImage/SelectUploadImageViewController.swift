@@ -33,6 +33,7 @@ extension SelectUploadImageViewController {
     private func makeViews() {
         view.backgroundColor = .white
         selectedImageView = SelectedUploadImageView(frame: view.frame).apply { this in
+            this.backgroundColor = .clear
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide)
