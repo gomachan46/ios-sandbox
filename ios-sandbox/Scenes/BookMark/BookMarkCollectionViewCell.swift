@@ -22,6 +22,10 @@ extension BookMarkCollectionViewCell {
         imageView.kf.setImage(with: topic.url)
     }
 
+    func height(cellWidth: CGFloat) -> CGFloat {
+        return imageView.frame.height
+    }
+
     private func makeViews() {
         imageView = UIImageView().apply { this in
             contentView.addSubview(this)

@@ -8,7 +8,7 @@ class BookMarkCollectionView: UICollectionView {
     private let columnCount = 2
     private let viewModel: BookMarkViewModel
 
-    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, viewModel: BookMarkViewModel) {
+    init(frame: CGRect, collectionViewLayout layout: BookMarkCollectionViewLayout, viewModel: BookMarkViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame, collectionViewLayout: layout)
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfBookMark>(
@@ -21,7 +21,7 @@ class BookMarkCollectionView: UICollectionView {
 
         register(BookMarkCollectionViewCell.self, forCellWithReuseIdentifier: BookMarkCollectionViewCell.reuseID)
         backgroundColor = .white
-        delegate = self
+        layout.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -29,17 +29,13 @@ class BookMarkCollectionView: UICollectionView {
     }
 }
 
-extension BookMarkCollectionView: UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let length = (frame.width / CGFloat(columnCount)) - minimumSpacing
-        return CGSize(width: length, height: length)
-    }
+extension BookMarkCollectionView: BookMarkCollectionViewLayoutDelegate {
+    func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookMarkCollectionViewCell.reuseID, for: indexPath) as? BookMarkCollectionViewCell else { return 0 }
+        if indexPath.row % 3 == 0 {
+            return 200
+        }
 
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return minimumSpacing
-    }
-
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return minimumSpacing
+        return 100.0
     }
 }

@@ -27,7 +27,7 @@ class BookMarkViewController: UIViewController {
 
 extension BookMarkViewController {
     private func makeViews() {
-        collectionView = BookMarkCollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout(), viewModel: viewModel).apply { this in
+        collectionView = BookMarkCollectionView(frame: view.frame, collectionViewLayout: BookMarkCollectionViewLayout(), viewModel: viewModel).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.edges.size.equalTo(view)
