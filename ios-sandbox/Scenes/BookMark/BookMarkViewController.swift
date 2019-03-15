@@ -27,6 +27,11 @@ class BookMarkViewController: UIViewController {
 
 extension BookMarkViewController {
     private func makeViews() {
+        navigationItem.titleView = UILabel().apply { this in
+            this.text = "ブックマーク"
+            this.backgroundColor = .clear
+            this.textColor = .black
+        }
         collectionView = BookMarkCollectionView(frame: view.frame, collectionViewLayout: BookMarkCollectionViewLayout(), viewModel: viewModel).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in

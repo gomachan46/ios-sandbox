@@ -25,7 +25,7 @@ class BookMarkCollectionViewLayout: UICollectionViewLayout {
     private var cache = [(attributes: BookMarkCollectionViewLayoutAttributes, height: CGFloat)]()
 
     private let numberOfColumn = 2
-    private let cellMargin: CGFloat = 1.0
+    private let cellMargin: CGFloat = 10.0
     private var contentHeight: CGFloat = 0.0
     private var contentWidth: CGFloat {
         return collectionView!.bounds.width - (collectionView!.contentInset.left + collectionView!.contentInset.right)
@@ -39,7 +39,9 @@ class BookMarkCollectionViewLayout: UICollectionViewLayout {
 
     override func prepare() {
         super.prepare()
-        // TODO: キャッシュ周り
+        if (cache.count > 0) {
+            return
+        }
 
         guard let collectionView = self.collectionView, collectionView.numberOfSections > 0, let delegate = self.delegate else{ return }
 
@@ -84,7 +86,7 @@ class BookMarkCollectionViewLayout: UICollectionViewLayout {
     }
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return super.shouldInvalidateLayout(forBoundsChange: newBounds)
+        return false
     }
 
     private func initXYOffsets() -> ([CGFloat], [CGFloat]) {

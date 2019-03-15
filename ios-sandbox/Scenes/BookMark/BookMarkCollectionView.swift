@@ -4,8 +4,6 @@ import RxDataSources
 
 class BookMarkCollectionView: UICollectionView {
     var rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfBookMark>!
-    private let minimumSpacing: CGFloat = 1
-    private let columnCount = 2
     private let viewModel: BookMarkViewModel
 
     init(frame: CGRect, collectionViewLayout layout: BookMarkCollectionViewLayout, viewModel: BookMarkViewModel) {
@@ -14,7 +12,7 @@ class BookMarkCollectionView: UICollectionView {
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfBookMark>(
             configureCell: { dataSource, collectionView, indexPath, item in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookMarkCollectionViewCell.reuseID, for: indexPath) as! BookMarkCollectionViewCell
-                cell.setImage(from: item)
+                cell.setAttributes(from: item)
                 return cell
             }
         )
@@ -32,10 +30,9 @@ class BookMarkCollectionView: UICollectionView {
 extension BookMarkCollectionView: BookMarkCollectionViewLayoutDelegate {
     func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookMarkCollectionViewCell.reuseID, for: indexPath) as? BookMarkCollectionViewCell else { return 0 }
-        if indexPath.row % 3 == 0 {
-            return 200
-        }
+        let item = rxDataSource[indexPath] as BookMark
+        cell.setAttributes(from: item)
 
-        return 100.0
+        return cell.height(cellWidth: cellWidth)
     }
 }

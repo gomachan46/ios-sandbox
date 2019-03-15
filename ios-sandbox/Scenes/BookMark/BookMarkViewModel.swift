@@ -23,17 +23,18 @@ extension BookMarkViewModel: ViewModelType {
         let topics = input
             .refreshTrigger
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-            .flatMapLatest { _ -> Observable<[Topic]> in
-                // API叩いてデータ取ってきて[Topic]を取得する、みたいなところのイメージ
+            .flatMapLatest { _ -> Observable<[BookMark]> in
+                // API叩いてデータ取ってきて[BookMark]を取得する、みたいなところのイメージ
                 // ちゃんとするなら外出ししていくはず
                 return Observable.create { observer -> Disposable in
                     Thread.sleep(forTimeInterval: 1)
                     observer.onNext(
                         (0..<30).map { _ in
-                            Topic(
-                                username: "John",
-                                url: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
-                            )
+                            [
+                                BookMark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))")),
+                                BookMark(keyword: "who's who Chico(フーズフーチコ)のオサイフドッキングポシェット", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))")),
+                                BookMark(keyword: nil, url: URL(string: "https://picsum.photos/300/300?image=\(Int.random(in: 1...100))"))
+                            ].shuffled().first!
                         }
                     )
                     return Disposables.create()

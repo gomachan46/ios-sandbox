@@ -1,11 +1,11 @@
 import Differentiator
 
 struct SectionOfBookMark {
-    var items: [Topic]
+    var items: [BookMark]
 }
 
 extension SectionOfBookMark: SectionModelType {
-    typealias Item = Topic
+    typealias Item = BookMark
 
     init(original: SectionOfBookMark, items: [SectionOfBookMark.Item]) {
         self = original

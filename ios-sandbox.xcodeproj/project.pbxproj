@@ -67,6 +67,7 @@
 		36EBCEBAAAA7E297802E4DE8 /* AllTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */; };
 		36EBCEC687476A351D891507 /* AllTopicsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */; };
 		36EBCFB9F3F3BD712F722E72 /* SelectedUploadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4DCFFC2F5CECEE2EDC9 /* SelectedUploadImageView.swift */; };
+		36EBCFE20839EC4FC42D6111 /* BookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB21516FC82EEEA01261 /* BookMark.swift */; };
 		CE25C56B2237A5C100026260 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE25C56A2237A5C100026260 /* FloatingPanel.framework */; };
 		CE978F5A222925BC008F7862 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F59222925BC008F7862 /* RxDataSources.framework */; };
 		CE978F5C22293813008F7862 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F5B22293813008F7862 /* Differentiator.framework */; };
@@ -135,6 +136,7 @@
 		36EBCA47F59914D90479C332 /* SelectUploadImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageCollectionViewController.swift; sourceTree = "<group>"; };
 		36EBCA7E244649321C27312E /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		36EBCAD28E6FD1D36A7EC551 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		36EBCB21516FC82EEEA01261 /* BookMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookMark.swift; sourceTree = "<group>"; };
 		36EBCB3819DF3F2466E5A3FF /* StoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
 		36EBCB4E0B6F44C9E94E043F /* HogeStoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HogeStoryViewModel.swift; sourceTree = "<group>"; };
 		36EBCB9519B971CC76D504A1 /* ImageCropController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropController.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				36EBCA7E244649321C27312E /* Item.swift */,
 				36EBC93873BFC5133C9E1BFA /* Topic.swift */,
 				36EBCE869487ED1C75DD4922 /* Story.swift */,
+				36EBCB21516FC82EEEA01261 /* BookMark.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				36EBCDF6FF2695629946C383 /* BookMarkCollectionView.swift in Sources */,
 				36EBC33F2F862733C1496961 /* BookMarkCollectionViewCell.swift in Sources */,
 				36EBC696C77BA07A6F5CBACA /* BookMarkCollectionViewLayout.swift in Sources */,
+				36EBCFE20839EC4FC42D6111 /* BookMark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
