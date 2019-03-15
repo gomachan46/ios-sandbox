@@ -31,8 +31,7 @@ extension BookMarkCollectionView: BookMarkCollectionViewLayoutDelegate {
     func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookMarkCollectionViewCell.reuseID, for: indexPath) as? BookMarkCollectionViewCell else { return 0 }
         let item = rxDataSource[indexPath] as BookMark
-        cell.setAttributes(from: item)
-
+        cell.setKeyword(from: item)
         return cell.height(cellWidth: cellWidth)
     }
 }

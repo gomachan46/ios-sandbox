@@ -20,9 +20,17 @@ class BookMarkCollectionViewCell: UICollectionViewCell {
 
 extension BookMarkCollectionViewCell {
     func setAttributes(from bookMark: BookMark) {
+        setKeyword(from: bookMark)
+        setImage(from: bookMark)
+    }
+
+    func setImage(from bookMark: BookMark) {
+        imageView.kf.setImage(with: bookMark.url)
+    }
+
+    func setKeyword(from bookMark: BookMark) {
         keywordView.text = bookMark.keyword
         keywordView.sizeToFit()
-        imageView.kf.setImage(with: bookMark.url)
     }
 
     func height(cellWidth: CGFloat) -> CGFloat {
