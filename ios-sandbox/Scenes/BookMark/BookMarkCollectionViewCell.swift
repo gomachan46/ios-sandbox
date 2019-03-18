@@ -38,32 +38,27 @@ extension BookMarkCollectionViewCell {
             return cellWidth
         }
 
-        let keywordHeight = keywordView.frame.height * (keywordView.frame.width / cellWidth)
-        return cellWidth * 1.5 + keywordHeight
+        return cellWidth * 1.5
     }
 
     private func makeViews() {
-        let stackView = UIStackView().apply { this in
-            contentView.addSubview(this)
-            this.axis = .vertical
-            this.alignment = .fill
-            this.distribution = .fill
-            this.spacing = 5
-            this.snp.makeConstraints { make in
-                make.edges.equalTo(contentView)
-            }
-        }
-
         imageView = UIImageView().apply { this in
-            stackView.addArrangedSubview(this)
+            contentView.addSubview(this)
+            this.snp.makeConstraints { make in
+                make.size.edges.equalTo(contentView)
+            }
             this.contentMode = .scaleAspectFill
             this.layer.masksToBounds = true
             this.layer.cornerRadius = 10
         }
 
         keywordView = UILabel().apply { this in
-            stackView.addArrangedSubview(this)
-            this.backgroundColor = .white
+            contentView.addSubview(this)
+            this.snp.makeConstraints { make in
+                make.bottom.equalTo(imageView).offset(-15)
+                make.left.right.width.equalTo(contentView)
+            }
+            this.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
             this.textColor = .black
             this.numberOfLines = 0
             this.lineBreakMode = .byWordWrapping

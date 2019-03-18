@@ -39,11 +39,7 @@ class BookMarkCollectionViewLayout: UICollectionViewLayout {
 
     override func prepare() {
         super.prepare()
-        if (cache.count > 0) {
-            return
-        }
-
-        guard let collectionView = self.collectionView, collectionView.numberOfSections > 0, let delegate = self.delegate else{ return }
+        guard let collectionView = self.collectionView, collectionView.numberOfSections > 0, let delegate = self.delegate else { return }
 
         var (xOffsets, yOffsets) = initXYOffsets()
         var columnIndex = 0
@@ -66,7 +62,6 @@ class BookMarkCollectionViewLayout: UICollectionViewLayout {
                 attributes.cellHeight = cellHeight
                 attributes.frame = frame.insetBy(dx: cellMargin, dy: cellMargin)
                 cache.append((attributes: attributes, height: rowHeight))
-
                 contentHeight = max(contentHeight, frame.maxY)
                 loopNext(height: rowHeight)
             }
