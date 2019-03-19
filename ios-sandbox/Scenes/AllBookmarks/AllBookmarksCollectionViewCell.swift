@@ -4,7 +4,7 @@ import Kingfisher
 import RxSwift
 import RxCocoa
 
-class BookmarkCollectionViewCell: UICollectionViewCell {
+class AllBookmarksCollectionViewCell: UICollectionViewCell {
     private var bookmark: Bookmark!
     private var imageView: UIImageView!
     private var keywordView: UILabel!
@@ -19,7 +19,7 @@ class BookmarkCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension BookmarkCollectionViewCell {
+extension AllBookmarksCollectionViewCell {
     func setAttributes(from bookmark: Bookmark) {
         self.bookmark = bookmark
         setKeyword(from: bookmark)

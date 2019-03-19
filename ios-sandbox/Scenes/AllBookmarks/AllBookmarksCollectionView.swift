@@ -2,22 +2,22 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-class BookmarkCollectionView: UICollectionView {
+class AllBookmarksCollectionView: UICollectionView {
     var rxDataSource: RxCollectionViewSectionedReloadDataSource<SectionOfBookmark>!
-    private let viewModel: BookmarkViewModel
+    private let viewModel: AllBookmarksViewModel
 
-    init(frame: CGRect, collectionViewLayout layout: BookmarkCollectionViewLayout, viewModel: BookmarkViewModel) {
+    init(frame: CGRect, collectionViewLayout layout: AllBookmarksCollectionViewLayout, viewModel: AllBookmarksViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame, collectionViewLayout: layout)
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfBookmark>(
             configureCell: { dataSource, collectionView, indexPath, item in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseID, for: indexPath) as! BookmarkCollectionViewCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AllBookmarksCollectionViewCell.reuseID, for: indexPath) as! AllBookmarksCollectionViewCell
                 cell.setAttributes(from: item)
                 return cell
             }
         )
 
-        register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseID)
+        register(AllBookmarksCollectionViewCell.self, forCellWithReuseIdentifier: AllBookmarksCollectionViewCell.reuseID)
         backgroundColor = .white
         layout.delegate = self
     }
@@ -27,9 +27,9 @@ class BookmarkCollectionView: UICollectionView {
     }
 }
 
-extension BookmarkCollectionView: BookmarkCollectionViewLayoutDelegate {
+extension AllBookmarksCollectionView: AllBookmarksCollectionViewLayoutDelegate {
     func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseID, for: indexPath) as? BookmarkCollectionViewCell else { return 0 }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AllBookmarksCollectionViewCell.reuseID, for: indexPath) as? AllBookmarksCollectionViewCell else { return 0 }
         let bookmark = rxDataSource[indexPath] as Bookmark
         cell.setAttributes(from: bookmark)
         return cell.height(from: bookmark, cellWidth: cellWidth)

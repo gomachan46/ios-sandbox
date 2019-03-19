@@ -44,7 +44,7 @@ extension TabBarController {
             case .b: return UINavigationController(rootViewController: TopicCollectionViewController(topics: (0..<30).map { _ in Item(username: "John", url: "https://picsum.photos/300?image=\(Int.random(in: 1...100))") }))
             case .c: return UINavigationController(rootViewController: ItemCollectionViewController())
             case .d: return UINavigationController(rootViewController: ItemCollectionViewController())
-            case .e: return BookmarkNavigator.root()
+            case .e: return AllBookmarksNavigator.root()
             }
         }
 

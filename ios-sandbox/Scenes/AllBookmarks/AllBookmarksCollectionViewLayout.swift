@@ -1,29 +1,28 @@
 import UIKit
 
-protocol BookmarkCollectionViewLayoutDelegate {
+protocol AllBookmarksCollectionViewLayoutDelegate {
     func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat
 }
 
-class BookmarkCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
+class AllBookmarksCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     var cellHeight: CGFloat = 0.0
 
     override func copy(with zone: NSZone?) -> Any {
-        let copy = super.copy(with: zone) as! BookmarkCollectionViewLayoutAttributes
+        let copy = super.copy(with: zone) as! AllBookmarksCollectionViewLayoutAttributes
         copy.cellHeight = cellHeight
 
         return copy
     }
 
     override func isEqual(_ object: Any?) -> Bool {
-        guard let attributes = object as? BookmarkCollectionViewLayoutAttributes, attributes.cellHeight == cellHeight else { return false }
+        guard let attributes = object as? AllBookmarksCollectionViewLayoutAttributes, attributes.cellHeight == cellHeight else { return false }
         return super.isEqual(object)
     }
 }
 
-class BookmarkCollectionViewLayout: UICollectionViewLayout {
-    var delegate: BookmarkCollectionViewLayoutDelegate?
-    private var cache = [(attributes: BookmarkCollectionViewLayoutAttributes, height: CGFloat)]()
-
+class AllBookmarksCollectionViewLayout: UICollectionViewLayout {
+    var delegate: AllBookmarksCollectionViewLayoutDelegate?
+    private var cache = [(attributes: AllBookmarksCollectionViewLayoutAttributes, height: CGFloat)]()
     private let numberOfColumn = 2
     private let cellMargin: CGFloat = 10.0
     private var contentHeight: CGFloat = 0.0
@@ -39,6 +38,7 @@ class BookmarkCollectionViewLayout: UICollectionViewLayout {
 
     override func prepare() {
         super.prepare()
+
         guard let collectionView = self.collectionView, collectionView.numberOfSections > 0, let delegate = self.delegate else { return }
 
         var (xOffsets, yOffsets) = initXYOffsets()
@@ -58,7 +58,7 @@ class BookmarkCollectionViewLayout: UICollectionViewLayout {
                 let rowHeight = (cellMargin * CGFloat(numberOfColumn - 1)) + CGFloat(cellHeight)
                 let frame = CGRect(x: xOffsets[columnIndex], y: yOffsets[columnIndex], width: columnWidth, height: rowHeight)
 
-                let attributes = BookmarkCollectionViewLayoutAttributes(forCellWith: indexPath)
+                let attributes = AllBookmarksCollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.cellHeight = cellHeight
                 attributes.frame = frame.insetBy(dx: cellMargin, dy: cellMargin)
                 cache.append((attributes: attributes, height: rowHeight))

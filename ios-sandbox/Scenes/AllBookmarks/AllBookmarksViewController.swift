@@ -4,12 +4,12 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class BookmarkViewController: UIViewController {
-    private let viewModel: BookmarkViewModel
-    private var collectionView: BookmarkCollectionView!
+class AllBookmarksViewController: UIViewController {
+    private let viewModel: AllBookmarksViewModel
+    private var collectionView: AllBookmarksCollectionView!
     private let disposeBag = DisposeBag()
 
-    init(viewModel: BookmarkViewModel) {
+    init(viewModel: AllBookmarksViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,14 +25,14 @@ class BookmarkViewController: UIViewController {
     }
 }
 
-extension BookmarkViewController {
+extension AllBookmarksViewController {
     private func makeViews() {
         navigationItem.titleView = UILabel().apply { this in
             this.text = "ブックマーク"
             this.backgroundColor = .clear
             this.textColor = .black
         }
-        collectionView = BookmarkCollectionView(frame: view.frame, collectionViewLayout: BookmarkCollectionViewLayout(), viewModel: viewModel).apply { this in
+        collectionView = AllBookmarksCollectionView(frame: view.frame, collectionViewLayout: AllBookmarksCollectionViewLayout(), viewModel: viewModel).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.edges.size.equalTo(view)
@@ -44,9 +44,9 @@ extension BookmarkViewController {
         let refreshTrigger = Observable.merge(
             rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).take(1).map { _ in }
         )
-        let input = BookmarkViewModel.Input(refreshTrigger: refreshTrigger)
-
+        let input = AllBookmarksViewModel.Input(refreshTrigger: refreshTrigger, selection: collectionView.rx.itemSelected.asObservable())
         let output = viewModel.transform(input: input)
         output.sectionOfBookmark.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)
+        output.selectedBookmark.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
     }
 }

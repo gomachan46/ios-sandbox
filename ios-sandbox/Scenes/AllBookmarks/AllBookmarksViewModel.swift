@@ -2,21 +2,23 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct BookmarkViewModel {
-    private let navigator: BookmarkNavigator
+struct AllBookmarksViewModel {
+    private let navigator: AllBookmarksNavigator
 
-    init(navigator: BookmarkNavigator) {
+    init(navigator: AllBookmarksNavigator) {
         self.navigator = navigator
     }
 }
 
-extension BookmarkViewModel: ViewModelType {
+extension AllBookmarksViewModel: ViewModelType {
     struct Input {
         let refreshTrigger: Observable<Void>
+        let selection: Observable<IndexPath>
     }
 
     struct Output {
         let sectionOfBookmark: Observable<[SectionOfBookmark]>
+        let selectedBookmark: Observable<Bookmark>
     }
 
     func transform(input: Input) -> Output {
@@ -42,7 +44,11 @@ extension BookmarkViewModel: ViewModelType {
             }
             .share(replay: 1)
         let sectionOfBookmark = bookmarks.map { [SectionOfBookmark(items: $0)] }
+        let selectedBookmark = input
+            .selection
+            .withLatestFrom(bookmarks) { (indexPath, bookmarks) -> Bookmark in bookmarks[indexPath.row] }
+            .do(onNext: navigator.toBookmark)
 
-        return Output(sectionOfBookmark: sectionOfBookmark)
+        return Output(sectionOfBookmark: sectionOfBookmark, selectedBookmark: selectedBookmark)
     }
 }
