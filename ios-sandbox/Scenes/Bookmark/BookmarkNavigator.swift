@@ -1,27 +1,27 @@
 import UIKit
 
-protocol BookMarkNavigatorType {
-    func toBookMark()
+protocol BookmarkNavigatorType {
+    func toBookmark()
     static func root() -> UINavigationController
 }
 
-struct BookMarkNavigator: BookMarkNavigatorType {
+struct BookmarkNavigator: BookmarkNavigatorType {
     private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
-    func toBookMark() {
-        let viewModel = BookMarkViewModel(navigator: self)
-        let viewController = BookMarkViewController(viewModel: viewModel)
+    func toBookmark() {
+        let viewModel = BookmarkViewModel(navigator: self)
+        let viewController = BookmarkViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 
     static func root() -> UINavigationController {
         let navigationController = UINavigationController()
         let navigator = self.init(navigationController: navigationController)
-        navigator.toBookMark()
+        navigator.toBookmark()
 
         return navigationController
     }

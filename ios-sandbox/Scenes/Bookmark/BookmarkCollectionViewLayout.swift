@@ -1,28 +1,28 @@
 import UIKit
 
-protocol BookMarkCollectionViewLayoutDelegate {
+protocol BookmarkCollectionViewLayoutDelegate {
     func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat
 }
 
-class BookMarkCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
+class BookmarkCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     var cellHeight: CGFloat = 0.0
 
     override func copy(with zone: NSZone?) -> Any {
-        let copy = super.copy(with: zone) as! BookMarkCollectionViewLayoutAttributes
+        let copy = super.copy(with: zone) as! BookmarkCollectionViewLayoutAttributes
         copy.cellHeight = cellHeight
 
         return copy
     }
 
     override func isEqual(_ object: Any?) -> Bool {
-        guard let attributes = object as? BookMarkCollectionViewLayoutAttributes, attributes.cellHeight == cellHeight else { return false }
+        guard let attributes = object as? BookmarkCollectionViewLayoutAttributes, attributes.cellHeight == cellHeight else { return false }
         return super.isEqual(object)
     }
 }
 
-class BookMarkCollectionViewLayout: UICollectionViewLayout {
-    var delegate: BookMarkCollectionViewLayoutDelegate?
-    private var cache = [(attributes: BookMarkCollectionViewLayoutAttributes, height: CGFloat)]()
+class BookmarkCollectionViewLayout: UICollectionViewLayout {
+    var delegate: BookmarkCollectionViewLayoutDelegate?
+    private var cache = [(attributes: BookmarkCollectionViewLayoutAttributes, height: CGFloat)]()
 
     private let numberOfColumn = 2
     private let cellMargin: CGFloat = 10.0
@@ -58,7 +58,7 @@ class BookMarkCollectionViewLayout: UICollectionViewLayout {
                 let rowHeight = (cellMargin * CGFloat(numberOfColumn - 1)) + CGFloat(cellHeight)
                 let frame = CGRect(x: xOffsets[columnIndex], y: yOffsets[columnIndex], width: columnWidth, height: rowHeight)
 
-                let attributes = BookMarkCollectionViewLayoutAttributes(forCellWith: indexPath)
+                let attributes = BookmarkCollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.cellHeight = cellHeight
                 attributes.frame = frame.insetBy(dx: cellMargin, dy: cellMargin)
                 cache.append((attributes: attributes, height: rowHeight))

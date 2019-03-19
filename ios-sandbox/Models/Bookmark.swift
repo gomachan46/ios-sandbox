@@ -1,6 +1,6 @@
 import Foundation
 
-struct BookMark {
+struct Bookmark {
     var keyword: String?
     var url: URL?
 }

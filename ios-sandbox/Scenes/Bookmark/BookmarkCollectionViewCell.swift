@@ -4,7 +4,7 @@ import Kingfisher
 import RxSwift
 import RxCocoa
 
-class BookMarkCollectionViewCell: UICollectionViewCell {
+class BookmarkCollectionViewCell: UICollectionViewCell {
     private var imageView: UIImageView!
     private var keywordView: UILabel!
 
@@ -18,18 +18,18 @@ class BookMarkCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension BookMarkCollectionViewCell {
-    func setAttributes(from bookMark: BookMark) {
-        setKeyword(from: bookMark)
-        setImage(from: bookMark)
+extension BookmarkCollectionViewCell {
+    func setAttributes(from bookmark: Bookmark) {
+        setKeyword(from: bookmark)
+        setImage(from: bookmark)
     }
 
-    func setImage(from bookMark: BookMark) {
-        imageView.kf.setImage(with: bookMark.url)
+    func setImage(from bookmark: Bookmark) {
+        imageView.kf.setImage(with: bookmark.url)
     }
 
-    func setKeyword(from bookMark: BookMark) {
-        keywordView.text = bookMark.keyword
+    func setKeyword(from bookmark: Bookmark) {
+        keywordView.text = bookmark.keyword
         keywordView.sizeToFit()
     }
 

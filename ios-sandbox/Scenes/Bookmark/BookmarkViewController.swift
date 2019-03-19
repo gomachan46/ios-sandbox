@@ -4,12 +4,12 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class BookMarkViewController: UIViewController {
-    private let viewModel: BookMarkViewModel
-    private var collectionView: BookMarkCollectionView!
+class BookmarkViewController: UIViewController {
+    private let viewModel: BookmarkViewModel
+    private var collectionView: BookmarkCollectionView!
     private let disposeBag = DisposeBag()
 
-    init(viewModel: BookMarkViewModel) {
+    init(viewModel: BookmarkViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,14 +25,14 @@ class BookMarkViewController: UIViewController {
     }
 }
 
-extension BookMarkViewController {
+extension BookmarkViewController {
     private func makeViews() {
         navigationItem.titleView = UILabel().apply { this in
             this.text = "ブックマーク"
             this.backgroundColor = .clear
             this.textColor = .black
         }
-        collectionView = BookMarkCollectionView(frame: view.frame, collectionViewLayout: BookMarkCollectionViewLayout(), viewModel: viewModel).apply { this in
+        collectionView = BookmarkCollectionView(frame: view.frame, collectionViewLayout: BookmarkCollectionViewLayout(), viewModel: viewModel).apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.edges.size.equalTo(view)
@@ -44,9 +44,9 @@ extension BookMarkViewController {
         let refreshTrigger = Observable.merge(
             rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).take(1).map { _ in }
         )
-        let input = BookMarkViewModel.Input(refreshTrigger: refreshTrigger)
+        let input = BookmarkViewModel.Input(refreshTrigger: refreshTrigger)
 
         let output = viewModel.transform(input: input)
-        output.sectionOfBookMark.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)
+        output.sectionOfBookmark.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)
     }
 }
