@@ -20,9 +20,11 @@ struct AllBookmarksNavigator: AllBookmarksNavigatorType {
     }
 
     func toBookmark(_ bookmark: Bookmark) {
-        // fake
-        let viewModel = AllBookmarksViewModel(navigator: self)
-        let viewController = AllBookmarksViewController(viewModel: viewModel)
+        // とりあえずtopicに
+        let topic = Topic(username: bookmark.keyword, url: bookmark.url)
+        let navigator = TopicNavigator(navigationController: navigationController)
+        let viewModel = TopicViewModel(navigator: navigator, topic: topic)
+        let viewController = TopicViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 

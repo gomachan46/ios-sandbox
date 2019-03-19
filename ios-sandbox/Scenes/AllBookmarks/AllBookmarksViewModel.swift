@@ -33,9 +33,9 @@ extension AllBookmarksViewModel: ViewModelType {
                     observer.onNext(
                         (0..<30).map { _ in
                             [
-                                Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))"), type: .topic),
-                                Bookmark(keyword: "who's who Chico(フーズフーチコ)のオサイフドッキングポシェット", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))"), type: .topic),
-                                Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/300/300?image=\(Int.random(in: 1...100))"), type: .image)
+                                Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/500/500?image=\(Int.random(in: 1...100))"), type: .topic),
+                                Bookmark(keyword: "who's who Chico(フーズフーチコ)のオサイフドッキングポシェット", url: URL(string: "https://picsum.photos/500/500?image=\(Int.random(in: 1...100))"), type: .topic),
+                                Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/500/500?image=\(Int.random(in: 1...100))"), type: .image)
                             ].shuffled().first!
                         }
                     )
