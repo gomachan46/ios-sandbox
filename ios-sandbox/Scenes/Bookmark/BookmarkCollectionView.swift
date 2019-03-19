@@ -30,8 +30,8 @@ class BookmarkCollectionView: UICollectionView {
 extension BookmarkCollectionView: BookmarkCollectionViewLayoutDelegate {
     func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseID, for: indexPath) as? BookmarkCollectionViewCell else { return 0 }
-        let item = rxDataSource[indexPath] as Bookmark
-        cell.setKeyword(from: item)
-        return cell.height(cellWidth: cellWidth)
+        let bookmark = rxDataSource[indexPath] as Bookmark
+        cell.setKeyword(from: bookmark)
+        return cell.height(from: bookmark, cellWidth: cellWidth)
     }
 }

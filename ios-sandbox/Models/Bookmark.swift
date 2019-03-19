@@ -1,6 +1,12 @@
 import Foundation
 
 struct Bookmark {
-    var keyword: String?
+    enum BookmarkType {
+        case topic
+        case image
+    }
+
+    var keyword: String
     var url: URL?
+    var type: BookmarkType
 }

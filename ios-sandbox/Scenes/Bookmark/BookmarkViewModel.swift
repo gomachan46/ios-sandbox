@@ -20,7 +20,7 @@ extension BookmarkViewModel: ViewModelType {
     }
 
     func transform(input: Input) -> Output {
-        let topics = input
+        let bookmarks = input
             .refreshTrigger
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInteractive))
             .flatMapLatest { _ -> Observable<[Bookmark]> in
@@ -31,9 +31,9 @@ extension BookmarkViewModel: ViewModelType {
                     observer.onNext(
                         (0..<30).map { _ in
                             [
-                                Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))")),
-                                Bookmark(keyword: "who's who Chico(フーズフーチコ)のオサイフドッキングポシェット", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))")),
-                                Bookmark(keyword: nil, url: URL(string: "https://picsum.photos/300/300?image=\(Int.random(in: 1...100))"))
+                                Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))"), type: .topic),
+                                Bookmark(keyword: "who's who Chico(フーズフーチコ)のオサイフドッキングポシェット", url: URL(string: "https://picsum.photos/300/600?image=\(Int.random(in: 1...100))"), type: .topic),
+                                Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/300/300?image=\(Int.random(in: 1...100))"), type: .image)
                             ].shuffled().first!
                         }
                     )
@@ -41,7 +41,7 @@ extension BookmarkViewModel: ViewModelType {
                 }
             }
             .share(replay: 1)
-        let sectionOfBookmark = topics.map { [SectionOfBookmark(items: $0)] }
+        let sectionOfBookmark = bookmarks.map { [SectionOfBookmark(items: $0)] }
 
         return Output(sectionOfBookmark: sectionOfBookmark)
     }

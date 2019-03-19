@@ -33,12 +33,13 @@ extension BookmarkCollectionViewCell {
         keywordView.sizeToFit()
     }
 
-    func height(cellWidth: CGFloat) -> CGFloat {
-        if keywordView.text == nil {
+    func height(from bookmark: Bookmark, cellWidth: CGFloat) -> CGFloat {
+        switch bookmark.type {
+        case .topic:
+            return cellWidth * 1.5
+        case .image:
             return cellWidth
         }
-
-        return cellWidth * 1.5
     }
 
     private func makeViews() {
