@@ -5,6 +5,7 @@ import RxSwift
 import RxCocoa
 
 class BookmarkCollectionViewCell: UICollectionViewCell {
+    private var bookmark: Bookmark!
     private var imageView: UIImageView!
     private var keywordView: UILabel!
 
@@ -20,17 +21,18 @@ class BookmarkCollectionViewCell: UICollectionViewCell {
 
 extension BookmarkCollectionViewCell {
     func setAttributes(from bookmark: Bookmark) {
+        self.bookmark = bookmark
         setKeyword(from: bookmark)
         setImage(from: bookmark)
-    }
-
-    func setImage(from bookmark: Bookmark) {
-        imageView.kf.setImage(with: bookmark.url)
     }
 
     func setKeyword(from bookmark: Bookmark) {
         keywordView.text = bookmark.keyword
         keywordView.sizeToFit()
+    }
+
+    func setImage(from bookmark: Bookmark) {
+        imageView.kf.setImage(with: bookmark.url)
     }
 
     func height(from bookmark: Bookmark, cellWidth: CGFloat) -> CGFloat {
