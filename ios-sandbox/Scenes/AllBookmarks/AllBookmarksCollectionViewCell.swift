@@ -6,7 +6,7 @@ import RxCocoa
 
 class AllBookmarksCollectionViewCell: UICollectionViewCell {
     private var bookmark: Bookmark!
-    private var imageView: UIImageView!
+    var imageView: UIImageView!
     private var keywordView: UILabel!
 
     override init(frame: CGRect) {
@@ -59,8 +59,7 @@ extension AllBookmarksCollectionViewCell {
             contentView.addSubview(this)
             this.snp.makeConstraints { make in
                 make.bottom.equalTo(imageView).offset(-15)
-                make.left.right.width.equalTo(contentView)
-            }
+                make.left.right.width.equalTo(contentView) }
             this.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
             this.textColor = .black
             this.numberOfLines = 0

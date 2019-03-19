@@ -7,7 +7,7 @@ import Kingfisher
 class TopicViewController: UIViewController {
     private let viewModel: TopicViewModel
     private let disposeBag = DisposeBag()
-    private var imageView: UIImageView!
+    var imageView: UIImageView!
     private var userLabel: UILabel!
 
     init(viewModel: TopicViewModel) {

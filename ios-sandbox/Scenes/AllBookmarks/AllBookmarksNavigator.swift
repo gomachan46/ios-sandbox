@@ -25,6 +25,9 @@ struct AllBookmarksNavigator: AllBookmarksNavigatorType {
         let navigator = TopicNavigator(navigationController: navigationController)
         let viewModel = TopicViewModel(navigator: navigator, topic: topic)
         let viewController = TopicViewController(viewModel: viewModel)
+        let currentViewController = navigationController.visibleViewController!
+        let transitioningDelegate = ZoomTransitioning(source: currentViewController as! AllBookmarksViewController)
+        navigationController.delegate = transitioningDelegate
         navigationController.pushViewController(viewController, animated: true)
     }
 
