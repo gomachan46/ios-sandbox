@@ -39,10 +39,11 @@
 		36EBC52954B32A02CCC327D5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCAD28E6FD1D36A7EC551 /* Reusable.swift */; };
 		36EBC552A6969DF46E14900F /* SelectUploadImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCA47F59914D90479C332 /* SelectUploadImageCollectionViewController.swift */; };
 		36EBC59E661C6DD1B71D01FF /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4D5761C119D184D06AA /* TopicCollectionViewCell.swift */; };
+		36EBC5AA4BEB4275B31E68EB /* ZoomTransitionSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC14A7A9FBAE0FDA54B8A /* ZoomTransitionSourceDelegate.swift */; };
 		36EBC5E0E34DCE1A83181C0C /* SelectUploadImageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC754A32ACE865A642A72 /* SelectUploadImageNavigator.swift */; };
-		36EBC5EAF96AF2F3B05DCA33 /* ZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC74A640C88CF2B218795 /* ZoomTransitioning.swift */; };
 		36EBC5F4A023DC16579243A4 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC93873BFC5133C9E1BFA /* Topic.swift */; };
 		36EBC60870ADAF86D5CC8D3E /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */; };
+		36EBC6685821F19E84308563 /* ZoomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCBB95DE429DC5F095C41 /* ZoomInteractiveTransition.swift */; };
 		36EBC696C77BA07A6F5CBACA /* AllBookmarksCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCF27EA41714B58DC7805 /* AllBookmarksCollectionViewLayout.swift */; };
 		36EBC741882F862C7BC82512 /* SelectUploadImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCDCBFAB5CD4625093547 /* SelectUploadImageCollectionViewCell.swift */; };
 		36EBC75B2C946CC9F5F3947C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCDA571421233AA606079 /* TabBarController.swift */; };
@@ -56,8 +57,10 @@
 		36EBC9D81900CBD6FBE6E8A4 /* SelectUploadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC5D8DE9B80CA9EBB0C90 /* SelectUploadImageViewModel.swift */; };
 		36EBCA80E1A1F9724BD31B53 /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB3819DF3F2466E5A3FF /* StoriesView.swift */; };
 		36EBCA83F5ACC1393DD440B5 /* AllTopicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCD065E44DA5F1E00F456 /* AllTopicsViewModel.swift */; };
+		36EBCAAB24F2E248E69294FA /* ZoomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC54B650765D363AAD477 /* ZoomNavigationControllerDelegate.swift */; };
 		36EBCB1AF18226766EA025CE /* SelectUploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCCE73F6803EA937C9BC0 /* SelectUploadImageViewController.swift */; };
 		36EBCB65F95BD8CA58A29F24 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCE869487ED1C75DD4922 /* Story.swift */; };
+		36EBCC58AE0C09E601618833 /* ZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC51FB356B0DC43CF00C4 /* ZoomTransitioning.swift */; };
 		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
 		36EBCCF019DEE6134799025C /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC322FD16DB56B627A4A6 /* ItemViewController.swift */; };
 		36EBCD2EDCABB62F492237A8 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */; };
@@ -67,6 +70,7 @@
 		36EBCDF6FF2695629946C383 /* AllBookmarksCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC10DF389AEBE2008CD1B /* AllBookmarksCollectionView.swift */; };
 		36EBCEBAAAA7E297802E4DE8 /* AllTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */; };
 		36EBCEC687476A351D891507 /* AllTopicsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */; };
+		36EBCF28DB0F7E9500E382BB /* ZoomTransitionDestinationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4ED4F50645AC4F5C645 /* ZoomTransitionDestinationDelegate.swift */; };
 		36EBCFB9F3F3BD712F722E72 /* SelectedUploadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4DCFFC2F5CECEE2EDC9 /* SelectedUploadImageView.swift */; };
 		36EBCFE20839EC4FC42D6111 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCB21516FC82EEEA01261 /* Bookmark.swift */; };
 		CE25C56B2237A5C100026260 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE25C56A2237A5C100026260 /* FloatingPanel.framework */; };
@@ -104,6 +108,7 @@
 		36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		36EBC10DF389AEBE2008CD1B /* AllBookmarksCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBookmarksCollectionView.swift; sourceTree = "<group>"; };
 		36EBC11BA134A0F229E54A17 /* TopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
+		36EBC14A7A9FBAE0FDA54B8A /* ZoomTransitionSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionSourceDelegate.swift; sourceTree = "<group>"; };
 		36EBC21CC48ECF1FBF90879D /* Appliable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appliable.swift; sourceTree = "<group>"; };
 		36EBC2220440CD96F2F07F5B /* TopicCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionView.swift; sourceTree = "<group>"; };
 		36EBC26775098EF3474BDA91 /* StoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
@@ -115,13 +120,15 @@
 		36EBC49E87C4E295AA96B86E /* ItemCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewController.swift; sourceTree = "<group>"; };
 		36EBC4D5761C119D184D06AA /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBC4DCFFC2F5CECEE2EDC9 /* SelectedUploadImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedUploadImageView.swift; sourceTree = "<group>"; };
+		36EBC4ED4F50645AC4F5C645 /* ZoomTransitionDestinationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionDestinationDelegate.swift; sourceTree = "<group>"; };
 		36EBC507280C481BF6455C32 /* CropUploadImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropUploadImageViewModel.swift; sourceTree = "<group>"; };
+		36EBC51FB356B0DC43CF00C4 /* ZoomTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitioning.swift; sourceTree = "<group>"; };
+		36EBC54B650765D363AAD477 /* ZoomNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		36EBC582C539C0B0A4B4B19E /* SelectUploadImageCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageCollectionView.swift; sourceTree = "<group>"; };
 		36EBC58C5E85F9EF5FB9995D /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		36EBC590AEFE2B45D2DC24FF /* sampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleData.json; sourceTree = "<group>"; };
 		36EBC5D8DE9B80CA9EBB0C90 /* SelectUploadImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageViewModel.swift; sourceTree = "<group>"; };
 		36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
-		36EBC74A640C88CF2B218795 /* ZoomTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitioning.swift; sourceTree = "<group>"; };
 		36EBC754A32ACE865A642A72 /* SelectUploadImageNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageNavigator.swift; sourceTree = "<group>"; };
 		36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewController.swift; sourceTree = "<group>"; };
 		36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsNavigator.swift; sourceTree = "<group>"; };
@@ -142,6 +149,7 @@
 		36EBCB3819DF3F2466E5A3FF /* StoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
 		36EBCB4E0B6F44C9E94E043F /* HogeStoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HogeStoryViewModel.swift; sourceTree = "<group>"; };
 		36EBCB9519B971CC76D504A1 /* ImageCropController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropController.swift; sourceTree = "<group>"; };
+		36EBCBB95DE429DC5F095C41 /* ZoomInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomInteractiveTransition.swift; sourceTree = "<group>"; };
 		36EBCBC828BD545C81F0AECB /* ReactiveExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveExtensions.swift; sourceTree = "<group>"; };
 		36EBCC01CC984E78229316E5 /* ImagePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCell.swift; sourceTree = "<group>"; };
 		36EBCC02F44DD29C94D2B01D /* StoriesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesHeaderView.swift; sourceTree = "<group>"; };
@@ -307,7 +315,6 @@
 				36EBC10DF389AEBE2008CD1B /* AllBookmarksCollectionView.swift */,
 				36EBC90034E3B3E44A7B0FB8 /* AllBookmarksCollectionViewCell.swift */,
 				36EBCF27EA41714B58DC7805 /* AllBookmarksCollectionViewLayout.swift */,
-				36EBC74A640C88CF2B218795 /* ZoomTransitioning.swift */,
 			);
 			path = AllBookmarks;
 			sourceTree = "<group>";
@@ -318,6 +325,18 @@
 				36EBC928EA260BA9757B0494 /* SectionOfBookmark.swift */,
 			);
 			path = RxDataSources;
+			sourceTree = "<group>";
+		};
+		36EBC50CC8BF388B8FF498DE /* ZoomTransitioning */ = {
+			isa = PBXGroup;
+			children = (
+				36EBCBB95DE429DC5F095C41 /* ZoomInteractiveTransition.swift */,
+				36EBC54B650765D363AAD477 /* ZoomNavigationControllerDelegate.swift */,
+				36EBC4ED4F50645AC4F5C645 /* ZoomTransitionDestinationDelegate.swift */,
+				36EBC14A7A9FBAE0FDA54B8A /* ZoomTransitionSourceDelegate.swift */,
+				36EBC51FB356B0DC43CF00C4 /* ZoomTransitioning.swift */,
+			);
+			path = ZoomTransitioning;
 			sourceTree = "<group>";
 		};
 		36EBC521EE6413FDFCBD73E5 /* Topic */ = {
@@ -343,6 +362,7 @@
 			children = (
 				36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */,
 				36EBCE3B52A2824CEF12A925 /* ActivityIndicator.swift */,
+				36EBC50CC8BF388B8FF498DE /* ZoomTransitioning */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -673,7 +693,11 @@
 				36EBC33F2F862733C1496961 /* AllBookmarksCollectionViewCell.swift in Sources */,
 				36EBC696C77BA07A6F5CBACA /* AllBookmarksCollectionViewLayout.swift in Sources */,
 				36EBCFE20839EC4FC42D6111 /* Bookmark.swift in Sources */,
-				36EBC5EAF96AF2F3B05DCA33 /* ZoomTransitioning.swift in Sources */,
+				36EBC6685821F19E84308563 /* ZoomInteractiveTransition.swift in Sources */,
+				36EBCAAB24F2E248E69294FA /* ZoomNavigationControllerDelegate.swift in Sources */,
+				36EBCF28DB0F7E9500E382BB /* ZoomTransitionDestinationDelegate.swift in Sources */,
+				36EBC5AA4BEB4275B31E68EB /* ZoomTransitionSourceDelegate.swift in Sources */,
+				36EBCC58AE0C09E601618833 /* ZoomTransitioning.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

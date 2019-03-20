@@ -50,13 +50,3 @@ extension AllBookmarksViewController {
         output.selectedBookmark.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
     }
 }
-
-extension AllBookmarksViewController: ZoomTransitioningSource
-{
-    var imageView: UIImageView {
-        if let index = collectionView?.indexPathsForSelectedItems?.first, let cell = collectionView?.cellForItem(at: index) as? AllBookmarksCollectionViewCell {
-            return cell.imageView
-        }
-        return UIImageView()
-    }
-}
