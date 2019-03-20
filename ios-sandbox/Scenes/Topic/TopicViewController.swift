@@ -63,28 +63,6 @@ extension TopicViewController {
     }
 }
 
-extension TopicViewController: ZoomTransitionSourceDelegate {
-    func transitionSourceImageView() -> UIImageView {
-        return imageView
-    }
-
-    func transitionSourceImageViewFrame(forward: Bool) -> CGRect {
-        return imageView.convert(imageView.bounds, to: view)
-    }
-
-    func transitionSourceWillBegin() {
-        imageView.isHidden = true
-    }
-
-    func transitionSourceDidEnd() {
-        imageView.isHidden = false
-    }
-
-    func transitionSourceDidCancel() {
-        imageView.isHidden = false
-    }
-}
-
 extension TopicViewController: ZoomTransitionDestinationDelegate {
     func transitionDestinationImageViewFrame(forward: Bool) -> CGRect {
         view.layoutIfNeeded()
