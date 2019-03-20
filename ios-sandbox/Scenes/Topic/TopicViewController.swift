@@ -48,6 +48,7 @@ extension TopicViewController {
                 make.width.equalTo(view)
                 make.height.equalTo(view.snp.width)
             }
+            this.contentMode = .scaleAspectFill
         }
     }
 
