@@ -63,8 +63,7 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
                 self.source.transitionSourceDidEnd()
                 self.destination.transitionDestinationDidEnd(transitioningImageView: transitioningImageView)
 
-                let completed: Bool = !transitionContext.transitionWasCancelled
-                transitionContext.completeTransition(completed)
+                transitionContext.completeTransition(true)
             })
     }
 
@@ -105,13 +104,7 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
                 self.source.transitionSourceDidEnd()
                 self.destination.transitionDestinationDidEnd(transitioningImageView: transitioningImageView)
 
-                let completed: Bool
-                if #available(iOS 10.0, *) {
-                    completed = true
-                } else {
-                    completed = !transitionContext.transitionWasCancelled
-                }
-                transitionContext.completeTransition(completed)
+                transitionContext.completeTransition(true)
             })
     }
 

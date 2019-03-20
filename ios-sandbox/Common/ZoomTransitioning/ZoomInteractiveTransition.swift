@@ -23,7 +23,7 @@ public final class ZoomInteractiveTransition: UIPercentDrivenInteractiveTransiti
             if progress > 0.33 || velocity > 1000 {
                 finish()
             } else {
-                if #available(iOS 10.0, *), let viewController = viewController {
+                if let viewController = viewController {
                     navigationController?.viewControllers.append(viewController)
                     update(0)
                 }
@@ -51,9 +51,7 @@ extension ZoomInteractiveTransition: UIGestureRecognizerDelegate {
         } else if gestureRecognizer === zoomPopGestureRecognizer {
             if isDestinationController {
                 interactive = true
-                if #available(iOS 10.0, *) {
-                    viewController = navigationController?.popViewController(animated: true)
-                }
+                viewController = navigationController?.popViewController(animated: true)
                 return true
             }
         }
