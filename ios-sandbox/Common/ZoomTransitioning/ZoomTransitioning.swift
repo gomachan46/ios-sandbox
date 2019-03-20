@@ -116,12 +116,20 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
     private func transitioningPushImageView() -> UIImageView {
         let imageView: UIImageView = source.transitionSourceImageView()
         let frame: CGRect = source.transitionSourceImageViewFrame(forward: forward)
-        return UIImageView(baseImageView: imageView, frame: frame)
+        return UIImageView(frame: frame).apply { this in
+            this.image = imageView.image
+            this.contentMode = imageView.contentMode
+            this.clipsToBounds = true
+        }
     }
 
     private func transitioningPopImageView() -> UIImageView {
         let imageView: UIImageView = source.transitionSourceImageView()
         let frame: CGRect = destination.transitionDestinationImageViewFrame(forward: forward)
-        return UIImageView(baseImageView: imageView, frame: frame)
+        return UIImageView(frame: frame).apply { this in
+            this.image = imageView.image
+            this.contentMode = imageView.contentMode
+            this.clipsToBounds = true
+        }
     }
 }
