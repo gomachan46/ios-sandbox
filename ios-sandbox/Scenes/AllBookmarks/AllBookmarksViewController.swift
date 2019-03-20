@@ -64,11 +64,11 @@ extension AllBookmarksViewController: ZoomTransitionSourceDelegate {
         return 0.4
     }
 
-    public func transitionSourceImageView() -> UIImageView {
+    public func transitionImageView() -> UIImageView {
         return selectedImageView()
     }
 
-    public func transitionSourceImageViewFrame(forward: Bool) -> CGRect {
+    public func transitionImageViewFrame(forward: Bool) -> CGRect {
         return selectedImageView().convert(selectedImageView().bounds, to: view)
     }
 

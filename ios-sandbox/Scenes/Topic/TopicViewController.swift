@@ -65,11 +65,11 @@ extension TopicViewController {
 }
 
 extension TopicViewController: ZoomTransitionDestinationDelegate {
-    public func transitionDestinationImageView() -> UIImageView {
+    public func transitionImageView() -> UIImageView {
         return imageView
     }
 
-    func transitionDestinationImageViewFrame(forward: Bool) -> CGRect {
+    func transitionImageViewFrame(forward: Bool) -> CGRect {
         view.layoutIfNeeded()
         return imageView.convert(imageView.bounds, to: view)
     }

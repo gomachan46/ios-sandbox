@@ -22,107 +22,52 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
 
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if forward {
-            animateTransitionForPush(transitionContext)
+            animateTransition(transitionContext, fromTransition: source, toTransition: destination)
         } else {
-            animateTransitionForPop(transitionContext)
+            animateTransition(transitionContext, fromTransition: destination, toTransition: source)
         }
     }
 
-    private func animateTransitionForPush(_ transitionContext: UIViewControllerContextTransitioning) {
-        guard let sourceView = transitionContext.view(forKey: UITransitionContextViewKey.from),
-              let destinationView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
+    private func animateTransition(_ transitionContext: UIViewControllerContextTransitioning, fromTransition: ZoomTransitionImageDelegate, toTransition: ZoomTransitionImageDelegate) {
+        guard let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from),
+              let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             return
         }
 
-        let containerView: UIView = transitionContext.containerView
-        let transitioningImageView: UIImageView = transitioningPushImageView()
+        let transitioningImageView = makeTransitioningImageView(fromTransition: fromTransition)
+        transitionContext.containerView.apply { this in
+            this.addSubview(transitioningImageView)
+            this.backgroundColor = fromView.backgroundColor
+            this.insertSubview(toView, belowSubview: fromView)
+        }
 
-        containerView.backgroundColor = sourceView.backgroundColor
-        sourceView.alpha = 1
-        destinationView.alpha = 0
-
-        containerView.insertSubview(destinationView, belowSubview: sourceView)
-        containerView.addSubview(transitioningImageView)
+        fromView.alpha = 1
+        toView.alpha = 0
 
         source.transitionSourceWillBegin()
         destination.transitionDestinationWillBegin()
 
         source.zoomAnimation(
             animations: {
-                sourceView.alpha = 0
-                destinationView.alpha = 1
-                transitioningImageView.layer.cornerRadius = self.destination.transitionDestinationImageView().layer.cornerRadius
-                transitioningImageView.frame = self.destination.transitionDestinationImageViewFrame(forward: self.forward)
+                fromView.alpha = 0
+                toView.alpha = 1
+                transitioningImageView.layer.cornerRadius = toTransition.transitionImageView().layer.cornerRadius
+                transitioningImageView.frame = toTransition.transitionImageViewFrame(forward: self.forward)
             },
             completion: { _ in
-                sourceView.alpha = 1
-                transitioningImageView.alpha = 0
+                fromView.alpha = 1
                 transitioningImageView.removeFromSuperview()
-
                 self.source.transitionSourceDidEnd()
                 self.destination.transitionDestinationDidEnd(transitioningImageView: transitioningImageView)
-
                 transitionContext.completeTransition(true)
             })
+
     }
 
-    private func animateTransitionForPop(_ transitionContext: UIViewControllerContextTransitioning) {
-        guard let sourceView = transitionContext.view(forKey: UITransitionContextViewKey.to),
-              let destinationView = transitionContext.view(forKey: UITransitionContextViewKey.from) else {
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            return
-        }
-
-        let containerView: UIView = transitionContext.containerView
-        let transitioningImageView: UIImageView = transitioningPopImageView()
-
-        containerView.backgroundColor = destinationView.backgroundColor
-        destinationView.alpha = 1
-        sourceView.alpha = 0
-
-        containerView.insertSubview(sourceView, belowSubview: destinationView)
-        containerView.addSubview(transitioningImageView)
-
-        source.transitionSourceWillBegin()
-        destination.transitionDestinationWillBegin()
-
-        if transitioningImageView.frame.maxY < 0 {
-            transitioningImageView.frame.origin.y = -transitioningImageView.frame.height
-        }
-        source.zoomAnimation(
-            animations: {
-                destinationView.alpha = 0
-                sourceView.alpha = 1
-                transitioningImageView.layer.cornerRadius = self.source.transitionSourceImageView().layer.cornerRadius
-                transitioningImageView.frame = self.source.transitionSourceImageViewFrame(forward: self.forward)
-            },
-            completion: { _ in
-                destinationView.alpha = 1
-                transitioningImageView.removeFromSuperview()
-
-                self.source.transitionSourceDidEnd()
-                self.destination.transitionDestinationDidEnd(transitioningImageView: transitioningImageView)
-
-                transitionContext.completeTransition(true)
-            })
-    }
-
-    private func transitioningPushImageView() -> UIImageView {
-        let imageView: UIImageView = source.transitionSourceImageView()
-        let frame: CGRect = source.transitionSourceImageViewFrame(forward: forward)
-        return UIImageView(frame: frame).apply { this in
-            this.image = imageView.image
-            this.contentMode = imageView.contentMode
-            this.clipsToBounds = true
-            this.layer.cornerRadius = imageView.layer.cornerRadius
-        }
-    }
-
-    private func transitioningPopImageView() -> UIImageView {
-        let imageView: UIImageView = destination.transitionDestinationImageView()
-        let frame: CGRect = destination.transitionDestinationImageViewFrame(forward: forward)
-        return UIImageView(frame: frame).apply { this in
+    private func makeTransitioningImageView(fromTransition: ZoomTransitionImageDelegate) -> UIImageView {
+        return UIImageView(frame: fromTransition.transitionImageViewFrame(forward: forward)).apply { this in
+            let imageView = fromTransition.transitionImageView()
             this.image = imageView.image
             this.contentMode = imageView.contentMode
             this.clipsToBounds = true

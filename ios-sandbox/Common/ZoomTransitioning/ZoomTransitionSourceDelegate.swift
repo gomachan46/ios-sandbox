@@ -1,9 +1,7 @@
 import UIKit
 
-public protocol ZoomTransitionSourceDelegate {
+public protocol ZoomTransitionSourceDelegate: ZoomTransitionImageDelegate {
     var animationDuration: TimeInterval { get }
-    func transitionSourceImageView() -> UIImageView
-    func transitionSourceImageViewFrame(forward: Bool) -> CGRect
     func transitionSourceWillBegin()
     func transitionSourceDidEnd()
     func transitionSourceDidCancel()

@@ -63,6 +63,7 @@
 		36EBCB65F95BD8CA58A29F24 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCE869487ED1C75DD4922 /* Story.swift */; };
 		36EBCC58AE0C09E601618833 /* ZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC51FB356B0DC43CF00C4 /* ZoomTransitioning.swift */; };
 		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
+		36EBCCBF816638904ABC241D /* ZoomTransitionImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4A08E6C685799D40CB3 /* ZoomTransitionImageDelegate.swift */; };
 		36EBCCF019DEE6134799025C /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC322FD16DB56B627A4A6 /* ItemViewController.swift */; };
 		36EBCD2EDCABB62F492237A8 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */; };
 		36EBCDA1F015F57025A7386A /* AllBookmarksNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC01A672782824C20F3D6 /* AllBookmarksNavigator.swift */; };
@@ -120,6 +121,7 @@
 		36EBC3E6CE2E44702A0F74F5 /* TopicCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewController.swift; sourceTree = "<group>"; };
 		36EBC438BB829F0881B1159D /* CropUploadImageNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropUploadImageNavigator.swift; sourceTree = "<group>"; };
 		36EBC49E87C4E295AA96B86E /* ItemCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewController.swift; sourceTree = "<group>"; };
+		36EBC4A08E6C685799D40CB3 /* ZoomTransitionImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionImageDelegate.swift; sourceTree = "<group>"; };
 		36EBC4D5761C119D184D06AA /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		36EBC4DCFFC2F5CECEE2EDC9 /* SelectedUploadImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedUploadImageView.swift; sourceTree = "<group>"; };
 		36EBC4ED4F50645AC4F5C645 /* ZoomTransitionDestinationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionDestinationDelegate.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				36EBC14A7A9FBAE0FDA54B8A /* ZoomTransitionSourceDelegate.swift */,
 				36EBC51FB356B0DC43CF00C4 /* ZoomTransitioning.swift */,
 				36EBC02F80326BCF8A7D03DC /* ZoomTransitioningNavigationController.swift */,
+				36EBC4A08E6C685799D40CB3 /* ZoomTransitionImageDelegate.swift */,
 			);
 			path = ZoomTransitioning;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				36EBC5AA4BEB4275B31E68EB /* ZoomTransitionSourceDelegate.swift in Sources */,
 				36EBCC58AE0C09E601618833 /* ZoomTransitioning.swift in Sources */,
 				36EBC442290B74A7028D0B12 /* ZoomTransitioningNavigationController.swift in Sources */,
+				36EBCCBF816638904ABC241D /* ZoomTransitionImageDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
