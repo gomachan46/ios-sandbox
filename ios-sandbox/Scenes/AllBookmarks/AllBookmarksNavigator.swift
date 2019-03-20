@@ -29,7 +29,7 @@ struct AllBookmarksNavigator: AllBookmarksNavigatorType {
     }
 
     static func root() -> UINavigationController {
-        let navigationController = UINavigationController()
+        let navigationController = ZoomTransitioningNavigationController()
         let navigator = self.init(navigationController: navigationController)
         navigator.toAllBookmarks()
 

@@ -49,4 +49,38 @@ extension AllBookmarksViewController {
         output.sectionOfBookmark.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)
         output.selectedBookmark.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
     }
+
+    private func selectedImageView() -> UIImageView {
+        if let index = collectionView.indexPathsForSelectedItems?.first, let cell = collectionView.cellForItem(at: index) as? AllBookmarksCollectionViewCell {
+            return cell.imageView
+        }
+
+        return UIImageView()
+    }
+}
+
+extension AllBookmarksViewController: ZoomTransitionSourceDelegate {
+    public var animationDuration: TimeInterval {
+        return 0.4
+    }
+
+    public func transitionSourceImageView() -> UIImageView {
+        return selectedImageView()
+    }
+
+    public func transitionSourceImageViewFrame(forward: Bool) -> CGRect {
+        return selectedImageView().convert(selectedImageView().bounds, to: view)
+    }
+
+    public func transitionSourceWillBegin() {
+        selectedImageView().isHidden = true
+    }
+
+    public func transitionSourceDidEnd() {
+        selectedImageView().isHidden = false
+    }
+
+    public func transitionSourceDidCancel() {
+        selectedImageView().isHidden = false
+    }
 }

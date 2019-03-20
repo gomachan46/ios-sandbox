@@ -7,7 +7,7 @@ import Kingfisher
 class TopicViewController: UIViewController {
     private let viewModel: TopicViewModel
     private let disposeBag = DisposeBag()
-    var imageView: UIImageView!
+    private var imageView: UIImageView!
     private var userLabel: UILabel!
 
     init(viewModel: TopicViewModel) {
@@ -62,3 +62,46 @@ extension TopicViewController {
         output.username.asDriverOnErrorJustComplete().drive(userLabel.rx.text).disposed(by: disposeBag)
     }
 }
+
+extension TopicViewController: ZoomTransitionSourceDelegate {
+    func transitionSourceImageView() -> UIImageView {
+        return imageView
+    }
+
+    func transitionSourceImageViewFrame(forward: Bool) -> CGRect {
+        return imageView.convert(imageView.bounds, to: view)
+    }
+
+    func transitionSourceWillBegin() {
+        imageView.isHidden = true
+    }
+
+    func transitionSourceDidEnd() {
+        imageView.isHidden = false
+    }
+
+    func transitionSourceDidCancel() {
+        imageView.isHidden = false
+    }
+}
+
+extension TopicViewController: ZoomTransitionDestinationDelegate {
+    func transitionDestinationImageViewFrame(forward: Bool) -> CGRect {
+        view.layoutIfNeeded()
+        return imageView.convert(imageView.bounds, to: view)
+    }
+
+    func transitionDestinationWillBegin() {
+        imageView.isHidden = true
+    }
+
+    func transitionDestinationDidEnd(transitioningImageView imageView: UIImageView) {
+        self.imageView.isHidden = false
+        self.imageView.image = imageView.image
+    }
+
+    func transitionDestinationDidCancel() {
+        imageView.isHidden = false
+    }
+}
+
