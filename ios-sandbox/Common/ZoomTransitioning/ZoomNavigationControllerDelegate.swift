@@ -26,12 +26,15 @@ extension ZoomNavigationControllerDelegate: UINavigationControllerDelegate {
     }
 
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-
-        if let source = fromVC as? ZoomTransitionSourceDelegate, let destination = toVC as? ZoomTransitionDestinationDelegate, operation == .push {
+        switch operation {
+        case .push:
+            guard let source = fromVC as? ZoomTransitionSourceDelegate, let destination = toVC as? ZoomTransitionDestinationDelegate else { return nil }
             return ZoomTransitioning(source: source, destination: destination, forward: true)
-        } else if let source = toVC as? ZoomTransitionSourceDelegate, let destination = fromVC as? ZoomTransitionDestinationDelegate, operation == .pop {
+        case .pop:
+            guard let source = toVC as? ZoomTransitionSourceDelegate, let destination = fromVC as? ZoomTransitionDestinationDelegate else { return nil }
             return ZoomTransitioning(source: source, destination: destination, forward: false)
+        case .none:
+            return nil
         }
-        return nil
     }
 }
