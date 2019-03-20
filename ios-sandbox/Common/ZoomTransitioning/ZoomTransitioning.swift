@@ -52,6 +52,7 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
             animations: {
                 sourceView.alpha = 0
                 destinationView.alpha = 1
+                transitioningImageView.layer.cornerRadius = self.destination.transitionDestinationImageView().layer.cornerRadius
                 transitioningImageView.frame = self.destination.transitionDestinationImageViewFrame(forward: self.forward)
             },
             completion: { _ in
@@ -94,6 +95,7 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
             animations: {
                 destinationView.alpha = 0
                 sourceView.alpha = 1
+                transitioningImageView.layer.cornerRadius = self.source.transitionSourceImageView().layer.cornerRadius
                 transitioningImageView.frame = self.source.transitionSourceImageViewFrame(forward: self.forward)
             },
             completion: { _ in
@@ -120,16 +122,18 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
             this.image = imageView.image
             this.contentMode = imageView.contentMode
             this.clipsToBounds = true
+            this.layer.cornerRadius = imageView.layer.cornerRadius
         }
     }
 
     private func transitioningPopImageView() -> UIImageView {
-        let imageView: UIImageView = source.transitionSourceImageView()
+        let imageView: UIImageView = destination.transitionDestinationImageView()
         let frame: CGRect = destination.transitionDestinationImageViewFrame(forward: forward)
         return UIImageView(frame: frame).apply { this in
             this.image = imageView.image
             this.contentMode = imageView.contentMode
             this.clipsToBounds = true
+            this.layer.cornerRadius = imageView.layer.cornerRadius
         }
     }
 }
