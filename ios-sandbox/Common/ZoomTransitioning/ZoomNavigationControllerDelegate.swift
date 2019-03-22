@@ -2,7 +2,7 @@ import UIKit
 
 public final class ZoomNavigationControllerDelegate: NSObject {
     private let zoomInteractiveTransition: ZoomInteractiveTransition = .init()
-    private let zoomPopGestureRecognizer: UIScreenEdgePanGestureRecognizer = .init()
+    private let zoomPopGestureRecognizer: UIPanGestureRecognizer = .init()
 }
 
 extension ZoomNavigationControllerDelegate: UINavigationControllerDelegate {
@@ -10,7 +10,6 @@ extension ZoomNavigationControllerDelegate: UINavigationControllerDelegate {
         if zoomPopGestureRecognizer.delegate !== zoomInteractiveTransition {
             zoomPopGestureRecognizer.delegate = zoomInteractiveTransition
             zoomPopGestureRecognizer.addTarget(zoomInteractiveTransition, action: #selector(ZoomInteractiveTransition.handle(recognizer:)))
-            zoomPopGestureRecognizer.edges = .left
             navigationController.view.addGestureRecognizer(zoomPopGestureRecognizer)
             zoomInteractiveTransition.zoomPopGestureRecognizer = zoomPopGestureRecognizer
         }

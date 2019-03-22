@@ -2,7 +2,7 @@ import UIKit
 
 public final class ZoomInteractiveTransition: UIPercentDrivenInteractiveTransition {
     weak var navigationController: UINavigationController?
-    weak var zoomPopGestureRecognizer: UIScreenEdgePanGestureRecognizer?
+    weak var zoomPopGestureRecognizer: UIPanGestureRecognizer?
     private weak var viewController: UIViewController?
     private var interactive: Bool = false
 
@@ -10,16 +10,16 @@ public final class ZoomInteractiveTransition: UIPercentDrivenInteractiveTransiti
         return interactive ? self : nil
     }
 
-    @objc func handle(recognizer: UIScreenEdgePanGestureRecognizer) {
+    @objc func handle(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .changed:
             guard let view = recognizer.view else { return }
-            let progress = recognizer.translation(in: view).x / view.bounds.width
+            let progress = max(recognizer.translation(in: view).x / view.bounds.width, recognizer.translation(in: view).y / view.bounds.height)
             update(progress)
         case .cancelled, .ended:
             guard let view = recognizer.view else { return }
-            let progress = recognizer.translation(in: view).x / view.bounds.width
-            let velocity = recognizer.velocity(in: view).x
+            let progress = max(recognizer.translation(in: view).x / view.bounds.width, recognizer.translation(in: view).y / view.bounds.height)
+            let velocity = max(recognizer.velocity(in: view).x, recognizer.velocity(in: view).y)
             if progress > 0.33 || velocity > 1000 {
                 finish()
             } else {
