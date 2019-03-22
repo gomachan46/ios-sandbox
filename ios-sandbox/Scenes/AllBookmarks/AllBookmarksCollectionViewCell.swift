@@ -27,6 +27,7 @@ extension AllBookmarksCollectionViewCell {
     }
 
     func setKeyword(from bookmark: Bookmark) {
+        guard bookmark.type == .topic else { return }
         keywordView.text = bookmark.keyword
         keywordView.sizeToFit()
     }
