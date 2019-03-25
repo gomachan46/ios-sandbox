@@ -46,6 +46,7 @@ extension AllBookmarksViewController {
         let sampleViewModel = SampleViewModel(navigator: sampleNavigator)
         let sampleViewController = SampleViewController(viewModel: sampleViewModel)
         fpc = FloatingPanelController(delegate: fpcDelegate)
+        fpc.surfaceView.cornerRadius = 24.0
         fpc.set(contentViewController: sampleViewController)
         fpc.addPanel(toParent: self)
     }
