@@ -9,12 +9,20 @@ class AllBookmarksViewController: UIViewController {
     private let viewModel: AllBookmarksViewModel
     private var collectionView: AllBookmarksCollectionView!
     private let disposeBag = DisposeBag()
-    private var fpc: FloatingPanelController!
     private let fpcDelegate = SampleFloatingPanelControllerDelegate()
+    private let fpc: FloatingPanelController
 
     init(viewModel: AllBookmarksViewModel) {
+        fpc = FloatingPanelController(delegate: fpcDelegate)
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+
+        let sampleNavigator = SampleNavigator()
+        let sampleViewModel = SampleViewModel(navigator: sampleNavigator)
+        let sampleViewController = SampleViewController(viewModel: sampleViewModel)
+        fpc.surfaceView.cornerRadius = 24.0
+        fpc.set(contentViewController: sampleViewController)
+        fpc.addPanel(toParent: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,13 +50,6 @@ extension AllBookmarksViewController {
             }
         }
         collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:))))
-        let sampleNavigator = SampleNavigator()
-        let sampleViewModel = SampleViewModel(navigator: sampleNavigator)
-        let sampleViewController = SampleViewController(viewModel: sampleViewModel)
-        fpc = FloatingPanelController(delegate: fpcDelegate)
-        fpc.surfaceView.cornerRadius = 24.0
-        fpc.set(contentViewController: sampleViewController)
-        fpc.addPanel(toParent: self)
     }
 
     private func bindViewModel() {
