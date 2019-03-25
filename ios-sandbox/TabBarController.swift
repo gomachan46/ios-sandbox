@@ -15,7 +15,6 @@ class TabBarController: UITabBarController {
             this.backgroundColor = .orange
             this.sizeToFit()
             this.addTarget(self, action: #selector(tapCenterButton), for: .touchUpInside)
-            this.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressCenterButton(recognizer:))))
             this.snp.makeConstraints { make in
                 make.center.equalTo(tabBar)
                 make.width.equalTo(tabBar).dividedBy(5)
@@ -81,14 +80,5 @@ extension TabBarController {
 
     @objc private func tapCenterButton() {
         present(SelectUploadImageNavigator.root(), animated: true)
-    }
-
-    @objc private func longPressCenterButton(recognizer: UILongPressGestureRecognizer) {
-        switch recognizer.state {
-        case .began:
-            present(SampleNavigator.root(), animated: true)
-        default:
-            break
-        }
     }
 }

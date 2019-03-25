@@ -3,11 +3,14 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import FloatingPanel
 
 class AllBookmarksViewController: UIViewController {
     private let viewModel: AllBookmarksViewModel
     private var collectionView: AllBookmarksCollectionView!
     private let disposeBag = DisposeBag()
+    private var fpc: FloatingPanelController!
+    private let fpcDelegate = SampleFloatingPanelControllerDelegate()
 
     init(viewModel: AllBookmarksViewModel) {
         self.viewModel = viewModel
@@ -38,6 +41,13 @@ extension AllBookmarksViewController {
                 make.edges.size.equalTo(view)
             }
         }
+        collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:))))
+        let sampleNavigator = SampleNavigator()
+        let sampleViewModel = SampleViewModel(navigator: sampleNavigator)
+        let sampleViewController = SampleViewController(viewModel: sampleViewModel)
+        fpc = FloatingPanelController(delegate: fpcDelegate)
+        fpc.set(contentViewController: sampleViewController)
+        fpc.addPanel(toParent: self)
     }
 
     private func bindViewModel() {
@@ -56,6 +66,23 @@ extension AllBookmarksViewController {
         }
 
         return UIImageView()
+    }
+
+    @objc private func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            let point = recognizer.location(in: collectionView)
+            let indexPath = collectionView.indexPathForItem(at: point)
+            if let indexPath = indexPath {
+                print("hello1")
+                guard let cell = collectionView.cellForItem(at: indexPath) as? AllBookmarksCollectionViewCell else { break }
+                print("hello2")
+                fpc.move(to: .half, animated: true)
+            }
+            print("hello3")
+        default:
+            break
+        }
     }
 }
 

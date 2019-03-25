@@ -61,12 +61,6 @@ extension SelectUploadImageViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "次へ", style: .plain, target: nil, action: nil)
     }
 
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        fpc.removePanelFromParent(animated: animated)
-    }
-
     private func bindViewModel() {
         // TODO: 本当は2回トリガー引かずにrequestAuthorizationをうまくハンドリングしたいけどデフォルトの画像選択状態にするタイミングと合わせられなかったので渋々viewWillAppearのときもトリガーするようにしている
         let refreshTrigger = Observable.merge(
