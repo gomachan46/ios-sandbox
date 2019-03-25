@@ -38,8 +38,8 @@ extension ItemCollectionViewCell {
 
     private func setupViewModel() {
         item.asDriver().drive(onNext: { item in
-                self.imageView.kf.setImage(with: URL(string: item.url))
-            })
+            self.imageView.kf.setImage(with: URL(string: item.url))
+        })
             .disposed(by: disposeBag)
     }
 }

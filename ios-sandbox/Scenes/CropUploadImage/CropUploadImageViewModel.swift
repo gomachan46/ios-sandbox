@@ -35,8 +35,8 @@ extension CropUploadImageViewModel: ViewModelType {
                         UIPasteboard.general.setItems(items, options: options)
                         UIApplication.shared.open(urlScheme)
                     }
-                }
-            )
+            }
+        )
         return Output(croppedImage: croppedImage, shared: shared)
     }
 }

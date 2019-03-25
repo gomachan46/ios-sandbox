@@ -24,7 +24,7 @@ class SelectedUploadImageView: UIScrollView {
 
 extension SelectedUploadImageView {
     func bind(_ photoAsset: PHAsset) {
-        PHImageManager.default().requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { image, info in
+        PHImageManager.default().requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             guard let image = image else { return }
             self.imageView.image = image
             let wrate = self.frame.width / image.size.width

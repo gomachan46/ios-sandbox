@@ -8,11 +8,11 @@ class SelectUploadImageCollectionView: UICollectionView {
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfAlbum>(
-            configureCell: { dataSource, collectionView, indexPath, item in
+            configureCell: { _, collectionView, indexPath, item in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectUploadImageCollectionViewCell.reuseID, for: indexPath) as! SelectUploadImageCollectionViewCell
                 cell.bind(item)
                 return cell
-            })
+        })
         super.init(frame: frame, collectionViewLayout: layout)
 
         register(SelectUploadImageCollectionViewCell.self, forCellWithReuseIdentifier: SelectUploadImageCollectionViewCell.reuseID)
@@ -25,7 +25,7 @@ class SelectUploadImageCollectionView: UICollectionView {
     }
 }
 
-extension SelectUploadImageCollectionView : UICollectionViewDelegateFlowLayout {
+extension SelectUploadImageCollectionView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let length = (frame.width / CGFloat(columnCount)) - minimumSpacing
         return CGSize(width: length, height: length)

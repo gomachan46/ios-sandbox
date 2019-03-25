@@ -28,7 +28,7 @@ class TopicCollectionView: UICollectionView {
     }
 }
 
-extension TopicCollectionView{
+extension TopicCollectionView {
     @objc private func refresh(sender: UIRefreshControl) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         DispatchQueue.global(qos: .userInteractive).async {

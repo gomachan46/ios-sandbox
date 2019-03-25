@@ -97,7 +97,7 @@ class ImagePickerController: UIViewController {
             this.rx.itemSelected
                 .subscribe(onNext: { indexPath in
                     let photoAsset = self.photoAssets[indexPath.row]
-                    self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+                    self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { (image, _) in
                         guard let image = image else { return }
                         self.selectedImage.accept(image)
                     })
@@ -115,15 +115,15 @@ class ImagePickerController: UIViewController {
 extension ImagePickerController {
     private func loadPhotoAssets() {
         let options = PHFetchOptions().apply { this in
-            this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending:  false)]
+            this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         }
         let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: options)
-        assets.enumerateObjects(using: { (asset, index, stop) in
+        assets.enumerateObjects(using: { (asset, _, _) in
             self.photoAssets.append(asset as PHAsset)
         })
         // デフォルトで選択されている画像は最新の画像にする
         let photoAsset = photoAssets[0]
-        imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+        imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 3000, height: 3000), contentMode: .aspectFill, options: nil, resultHandler: { (image, _) in
             guard let image = image else { return }
             self.selectedImage.accept(image)
         })
@@ -184,7 +184,7 @@ extension ImagePickerController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCell.identifier, for: indexPath) as! ImagePickerCell
         let photoAsset = photoAssets[indexPath.row]
-        imageManager.requestImage(for: photoAsset, targetSize: cellSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, info) in
+        imageManager.requestImage(for: photoAsset, targetSize: cellSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, _) in
             guard let image = image else { return }
             cell.update(image: image)
         })

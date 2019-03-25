@@ -38,7 +38,7 @@ extension CropUploadImageViewController {
 
     private func bindViewModel() {
         let input = CropUploadImageViewModel.Input(
-            share: navigationItem.rightBarButtonItem!.rx.tap.map{ _ in }
+            share: navigationItem.rightBarButtonItem!.rx.tap.map { _ in }
         )
         let output = viewModel.transform(input: input)
         output.croppedImage.asDriverOnErrorJustComplete().drive(imageView.rx.image).disposed(by: disposeBag)

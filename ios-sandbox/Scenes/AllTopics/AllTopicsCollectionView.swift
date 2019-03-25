@@ -16,13 +16,13 @@ class AllTopicsCollectionView: UICollectionView {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath) as! TopicCollectionViewCell
                 cell.setImage(from: item)
                 return cell
-            },
-            configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+        },
+            configureSupplementaryView: { _, collectionView, kind, indexPath in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesHeaderView.reuseID, for: indexPath) as! StoriesHeaderView
                 let storiesViewModel = StoriesViewModel(navigator: viewModel.navigator)
                 header.bind(storiesViewModel)
                 return header
-            }
+        }
         )
 
         register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.reuseID)

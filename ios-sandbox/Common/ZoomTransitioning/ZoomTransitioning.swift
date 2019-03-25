@@ -30,9 +30,9 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
 
     private func animateTransition(_ transitionContext: UIViewControllerContextTransitioning, fromTransition: ZoomTransitionImageDelegate, toTransition: ZoomTransitionImageDelegate) {
         guard let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from),
-              let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            return
+            let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                return
         }
 
         let transitioningImageView = makeTransitioningImageView(fromTransition: fromTransition)
@@ -54,14 +54,14 @@ extension ZoomTransitioning: UIViewControllerAnimatedTransitioning {
                 toView.alpha = 1
                 transitioningImageView.layer.cornerRadius = toTransition.transitionImageView().layer.cornerRadius
                 transitioningImageView.frame = toTransition.transitionImageViewFrame(forward: self.forward)
-            },
+        },
             completion: { _ in
                 fromView.alpha = 1
                 transitioningImageView.removeFromSuperview()
                 self.source.transitionSourceDidEnd()
                 self.destination.transitionDestinationDidEnd(transitioningImageView: transitioningImageView)
                 transitionContext.completeTransition(true)
-            })
+        })
 
     }
 

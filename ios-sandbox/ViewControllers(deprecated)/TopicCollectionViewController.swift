@@ -44,7 +44,7 @@ extension TopicCollectionViewController {
                 onNext: { indexPath in
                     let topic = self.topics[indexPath.row]
                     self.navigationController?.pushViewController(ItemViewController(item: topic), animated: true)
-                }
+            }
             )
             .disposed(by: disposeBag)
     }

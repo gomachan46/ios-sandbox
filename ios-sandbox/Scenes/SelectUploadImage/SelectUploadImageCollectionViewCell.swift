@@ -18,7 +18,7 @@ class SelectUploadImageCollectionViewCell: UICollectionViewCell {
 
 extension SelectUploadImageCollectionViewCell {
     func bind(_ photoAsset: PHAsset) {
-        PHImageManager.default().requestImage(for: photoAsset, targetSize: frame.size, contentMode: .aspectFill, options: nil, resultHandler: { image, info in
+        PHImageManager.default().requestImage(for: photoAsset, targetSize: frame.size, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             guard let image = image else { return }
             self.imageView.image = image
         })

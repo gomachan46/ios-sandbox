@@ -12,7 +12,7 @@ class SplashViewController: UIViewController {
         view.backgroundColor = .white
         logoImageView = UIImageView(image: R.image.navigationLogo_116x34()).apply { this in
             view.addSubview(this)
-            this.snp.makeConstraints{ make in
+            this.snp.makeConstraints { make in
                 make.center.equalTo(view)
             }
         }

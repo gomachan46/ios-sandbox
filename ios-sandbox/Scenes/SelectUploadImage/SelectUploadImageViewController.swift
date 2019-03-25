@@ -76,9 +76,9 @@ extension SelectUploadImageViewController {
         )
         let input = SelectUploadImageViewModel.Input(
             refreshTrigger: refreshTrigger,
-            tapCancel: cancelLabel.rx.tapEvent.map{ _ in },
+            tapCancel: cancelLabel.rx.tapEvent.map { _ in },
             selection: selection,
-            tapNext: navigationItem.rightBarButtonItem!.rx.tap.map{ _ in self.cropImage() }
+            tapNext: navigationItem.rightBarButtonItem!.rx.tap.map { _ in self.cropImage() }
         )
         let output = viewModel.transform(input: input)
         output.sectionOfAlbums.asDriverOnErrorJustComplete().drive(collectionView.rx.items(dataSource: collectionView.rxDataSource)).disposed(by: disposeBag)

@@ -74,9 +74,9 @@ class ItemViewController: UIViewController {
             UIImageView().apply { this in
                 stackView.addArrangedSubview(this)
                 this.contentMode = .scaleAspectFill
-                item.asDriver().drive(onNext: { item in
-                        this.kf.setImage(with: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
-                    })
+                item.asDriver().drive(onNext: { _ in
+                    this.kf.setImage(with: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))"))
+                })
                     .disposed(by: disposeBag)
                 this.isUserInteractionEnabled = true
             }

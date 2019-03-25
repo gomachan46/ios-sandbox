@@ -33,7 +33,7 @@ extension RootViewController {
         addChild(new)
 
         transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: {
-        }) { completed in
+        }) { _ in
             self.current.removeFromParent()
             new.didMove(toParent: self)
             self.current = new

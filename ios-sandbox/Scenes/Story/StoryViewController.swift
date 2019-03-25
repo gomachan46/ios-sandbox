@@ -48,7 +48,7 @@ extension StoryViewController {
 
     private func bindViewModel() {
         let input = HogeStoryViewModel.Input(
-            tapCancel: cancelLabel.rx.tapEvent.map{ _ in }
+            tapCancel: cancelLabel.rx.tapEvent.map { _ in }
         )
         let output = viewModel.transform(input: input)
         output.canceled.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)

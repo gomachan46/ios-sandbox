@@ -1,8 +1,7 @@
 import RxSwift
 import UIKit
 
-extension Reactive where Base: UIView
-{
+extension Reactive where Base: UIView {
     func gesture<T: UIGestureRecognizer>() -> Observable<T> {
         return Observable.create({ observer -> Disposable in
             let gesture = T()
@@ -10,8 +9,8 @@ extension Reactive where Base: UIView
             self.base.isUserInteractionEnabled = true
             return gesture.rx.event
                 .subscribe(onNext: { sender in
-                observer.onNext(sender)
-            })
+                    observer.onNext(sender)
+                })
         })
     }
     var tapEvent: Observable<UITapGestureRecognizer> { return gesture() }

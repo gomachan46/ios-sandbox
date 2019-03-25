@@ -33,14 +33,14 @@ extension SelectUploadImageViewModel: ViewModelType {
                     observer.onNext(self.loadPhotoAssets())
                     return Disposables.create()
                 }
-            }
+        }
         let sectionOfAlbums = photoAssets.map { [SectionOfAlbum(items: $0)] }
         let canceled = input.tapCancel.do(onNext: navigator.dismiss)
         let selectedPhotoAsset = input
             .selection
             .withLatestFrom(photoAssets) { (indexPath, photoAssets) -> PHAsset in
                 return photoAssets[indexPath.row]
-            }
+        }
         let wentToNext = input
             .tapNext
             .do(onNext: { image in self.navigator.toCropUploadImage(image) })
@@ -50,11 +50,11 @@ extension SelectUploadImageViewModel: ViewModelType {
 
     private func loadPhotoAssets() -> [PHAsset] {
         let options = PHFetchOptions().apply { this in
-            this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending:  false)]
+            this.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         }
         let assets: PHFetchResult = PHAsset.fetchAssets(with: .image, options: options)
         var phAssets = [PHAsset]()
-        assets.enumerateObjects(using: { (asset, index, stop) in
+        assets.enumerateObjects(using: { (asset, _, _) in
             phAssets.append(asset as PHAsset)
         })
 

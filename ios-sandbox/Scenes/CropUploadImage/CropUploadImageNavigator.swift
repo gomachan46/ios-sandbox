@@ -10,4 +10,3 @@ struct CropUploadImageNavigator: CropUploadImageNavigatorType {
         self.navigationController = navigationController
     }
 }
-

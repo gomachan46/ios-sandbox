@@ -31,17 +31,17 @@ extension AllTopicsViewModel: ViewModelType {
                 // API叩いてデータ取ってきて[Topic]を取得する、みたいなところのイメージ
                 // ちゃんとするなら外出ししていくはず
                 return Observable.create { observer -> Disposable in
-                        Thread.sleep(forTimeInterval: 1)
-                        observer.onNext(
-                            (0..<30).map { _ in
-                                Topic(
-                                    username: "John",
-                                    url: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
-                                )
-                            }
-                        )
-                        return Disposables.create()
-                }.trackActivity(activityIndicator)
+                    Thread.sleep(forTimeInterval: 1)
+                    observer.onNext(
+                        (0..<30).map { _ in
+                            Topic(
+                                username: "John",
+                                url: URL(string: "https://picsum.photos/300?image=\(Int.random(in: 1...100))")
+                            )
+                        }
+                    )
+                    return Disposables.create()
+                    }.trackActivity(activityIndicator)
             }
             .share(replay: 1)
 

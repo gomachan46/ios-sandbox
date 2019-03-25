@@ -1,7 +1,7 @@
 import Differentiator
 import Photos
 
-struct SectionOfAlbum{
+struct SectionOfAlbum {
     var items: [PHAsset]
 }
 

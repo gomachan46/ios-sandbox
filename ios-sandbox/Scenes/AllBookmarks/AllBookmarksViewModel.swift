@@ -36,7 +36,7 @@ extension AllBookmarksViewModel: ViewModelType {
                                 Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/500/500?image=\(Int.random(in: 1...100))"), type: .topic),
                                 Bookmark(keyword: "who's who Chico(フーズフーチコ)のオサイフドッキングポシェット", url: URL(string: "https://picsum.photos/500/500?image=\(Int.random(in: 1...100))"), type: .topic),
                                 Bookmark(keyword: "レースブラウス", url: URL(string: "https://picsum.photos/500/500?image=\(Int.random(in: 1...100))"), type: .image)
-                            ].shuffled().first!
+                                ].shuffled().first!
                         }
                     )
                     return Disposables.create()

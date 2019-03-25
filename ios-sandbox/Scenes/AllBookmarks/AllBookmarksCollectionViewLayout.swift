@@ -45,7 +45,7 @@ class AllBookmarksCollectionViewLayout: UICollectionViewLayout {
         var columnIndex = 0
 
         (0..<collectionView.numberOfItems(inSection: 0)).forEach { item in
-            func loopNext(height: CGFloat){
+            func loopNext(height: CGFloat) {
                 yOffsets[columnIndex] = yOffsets[columnIndex] + height
                 columnIndex = (columnIndex + 1) % numberOfColumn
             }
@@ -73,7 +73,7 @@ class AllBookmarksCollectionViewLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return cache.filter { $0.attributes.frame.intersects(rect) }.map{ $0.attributes }
+        return cache.filter { $0.attributes.frame.intersects(rect) }.map { $0.attributes }
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {

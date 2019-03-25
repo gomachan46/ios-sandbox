@@ -28,7 +28,6 @@ extension StoryViewModel: ViewModelType {
             .withLatestFrom(story)
             .do(onNext: navigator.toStory)
 
-
         let title = story.map { $0.title }
         let url = story.map { $0.url }
         return Output(title: title, url: url, selectedStory: selectedStory)

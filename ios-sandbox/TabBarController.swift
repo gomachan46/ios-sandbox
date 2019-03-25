@@ -52,19 +52,19 @@ extension TabBarController {
             switch self {
             case .a:
                 return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+                        R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
             case .b:
                 return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+                        R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
             case .c:
                 return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+                        R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
             case .d:
                 return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+                        R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
             case .e:
                 return (R.image.tabActive_25x25()!.withRenderingMode(.alwaysOriginal),
-                    R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
+                        R.image.tabInactive_25x25()!.withRenderingMode(.alwaysOriginal))
             }
         }
     }

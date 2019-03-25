@@ -87,4 +87,3 @@ extension TopicViewController: ZoomTransitionDestinationDelegate {
         imageView.isHidden = false
     }
 }
-
