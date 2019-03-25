@@ -64,6 +64,7 @@
 		36EBCAAB24F2E248E69294FA /* ZoomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC54B650765D363AAD477 /* ZoomNavigationControllerDelegate.swift */; };
 		36EBCB1AF18226766EA025CE /* SelectUploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCCE73F6803EA937C9BC0 /* SelectUploadImageViewController.swift */; };
 		36EBCB65F95BD8CA58A29F24 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCE869487ED1C75DD4922 /* Story.swift */; };
+		36EBCBEFF627028FE22BF742 /* KeyboardConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC75032B7589AC5CC8B4D /* KeyboardConstraints.swift */; };
 		36EBCC58AE0C09E601618833 /* ZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC51FB356B0DC43CF00C4 /* ZoomTransitioning.swift */; };
 		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
 		36EBCCBF816638904ABC241D /* ZoomTransitionImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4A08E6C685799D40CB3 /* ZoomTransitionImageDelegate.swift */; };
@@ -142,6 +143,7 @@
 		36EBC5D8DE9B80CA9EBB0C90 /* SelectUploadImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageViewModel.swift; sourceTree = "<group>"; };
 		36EBC61C0BF2A3EF3231762D /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		36EBC71FB9064E90562FD48F /* SampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		36EBC75032B7589AC5CC8B4D /* KeyboardConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardConstraints.swift; sourceTree = "<group>"; };
 		36EBC754A32ACE865A642A72 /* SelectUploadImageNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUploadImageNavigator.swift; sourceTree = "<group>"; };
 		36EBC76BCBB920DA12813D0C /* AllTopicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsViewController.swift; sourceTree = "<group>"; };
 		36EBC79F7903729BFF021A05 /* AllTopicsNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsNavigator.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */,
 				36EBCE3B52A2824CEF12A925 /* ActivityIndicator.swift */,
 				36EBC50CC8BF388B8FF498DE /* ZoomTransitioning */,
+				36EBC75032B7589AC5CC8B4D /* KeyboardConstraints.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				36EBCEE55C79B5C79A849D31 /* SampleViewController.swift in Sources */,
 				36EBC8F4F7CB5534B5C8A931 /* SampleFloatingPanelControllerDelegate.swift in Sources */,
 				36EBCEF0255CE57951E12C92 /* SampleNavigator.swift in Sources */,
+				36EBCBEFF627028FE22BF742 /* KeyboardConstraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

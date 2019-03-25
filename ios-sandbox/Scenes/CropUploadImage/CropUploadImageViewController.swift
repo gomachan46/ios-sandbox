@@ -22,18 +22,62 @@ class CropUploadImageViewController: UIViewController {
         makeViews()
         bindViewModel()
     }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
 }
 
 extension CropUploadImageViewController {
     private func makeViews() {
         view.backgroundColor = .white
-        imageView = UIImageView().apply { this in
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "シェア", style: .plain, target: nil, action: nil)
+        let stackView = UIStackView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide)
+                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+                make.left.right.equalTo(view)
+            }
+            this.axis = .vertical
+            this.alignment = .fill
+            this.distribution = .fill
+            this.spacing = 12
+        }
+        imageView = UIImageView().apply { this in
+            stackView.addArrangedSubview(this)
+            this.snp.makeConstraints { make in
+                make.left.right.equalTo(view)
             }
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "シェア", style: .plain, target: nil, action: nil)
+        let textView = UITextView().apply { this in
+            stackView.addArrangedSubview(this)
+            this.snp.makeConstraints { make in
+                make.left.equalTo(stackView).inset(16)
+                make.bottom.equalTo(view.safeAreaLayoutGuide).inset(12)
+                make.height.greaterThanOrEqualTo(100)
+            }
+            this.textColor = .black
+            this.font = .systemFont(ofSize: 14)
+            this.isScrollEnabled = true
+            this.textContainerInset = .zero
+            this.textContainer.lineFragmentPadding = 0
+            connectKeyboardEvents(to: this, bottomInset: 12, disposeBag: disposeBag)
+        }
+
+        UILabel().apply { this in
+            textView.addSubview(this)
+            this.text = "概要を入力"
+            this.font = textView.font
+            this.textColor = .lightGray
+            this.snp.makeConstraints { make in
+                make.top.left.equalTo(textView)
+            }
+            textView.rx.text.asObservable()
+                .map { $0?.count ?? 0 > 0 }
+                .bind(to: this.rx.isHidden)
+                .disposed(by: disposeBag)
+        }
     }
 
     private func bindViewModel() {
