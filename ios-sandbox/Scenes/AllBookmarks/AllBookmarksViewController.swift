@@ -74,12 +74,9 @@ extension AllBookmarksViewController {
             let point = recognizer.location(in: collectionView)
             let indexPath = collectionView.indexPathForItem(at: point)
             if let indexPath = indexPath {
-                print("hello1")
                 guard let cell = collectionView.cellForItem(at: indexPath) as? AllBookmarksCollectionViewCell else { break }
-                print("hello2")
                 fpc.move(to: .half, animated: true)
             }
-            print("hello3")
         default:
             break
         }
