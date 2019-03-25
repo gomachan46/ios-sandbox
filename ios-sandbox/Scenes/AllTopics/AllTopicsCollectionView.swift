@@ -13,14 +13,19 @@ class AllTopicsCollectionView: UICollectionView {
         super.init(frame: frame, collectionViewLayout: layout)
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfTopic>(
             configureCell: { _, collectionView, indexPath, item in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath) as! TopicCollectionViewCell
-                cell.setImage(from: item)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCell.reuseID, for: indexPath)
+                if let cell = cell as? TopicCollectionViewCell {
+                    cell.setImage(from: item)
+                }
                 return cell
         },
             configureSupplementaryView: { _, collectionView, kind, indexPath in
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesHeaderView.reuseID, for: indexPath) as! StoriesHeaderView
-                let storiesViewModel = StoriesViewModel(navigator: viewModel.navigator)
-                header.bind(storiesViewModel)
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoriesHeaderView.reuseID, for: indexPath)
+                if let header = header as? StoriesHeaderView {
+                    let storiesViewModel = StoriesViewModel(navigator: viewModel.navigator)
+                    header.bind(storiesViewModel)
+                }
+
                 return header
         }
         )

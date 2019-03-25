@@ -8,8 +8,10 @@ class AllBookmarksCollectionViewLayoutAttributes: UICollectionViewLayoutAttribut
     var cellHeight: CGFloat = 0.0
 
     override func copy(with zone: NSZone?) -> Any {
-        let copy = super.copy(with: zone) as! AllBookmarksCollectionViewLayoutAttributes
-        copy.cellHeight = cellHeight
+        let copy = super.copy(with: zone)
+        if let copy = copy as? AllBookmarksCollectionViewLayoutAttributes {
+            copy.cellHeight = cellHeight
+        }
 
         return copy
     }

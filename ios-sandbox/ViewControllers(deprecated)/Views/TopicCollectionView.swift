@@ -51,8 +51,11 @@ extension TopicCollectionView: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as! ItemCollectionViewCell
-        cell.update(item: topics[indexPath.row])
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath)
+        if let cell = cell as? ItemCollectionViewCell {
+            cell.update(item: topics[indexPath.row])
+        }
+
         return cell
     }
 

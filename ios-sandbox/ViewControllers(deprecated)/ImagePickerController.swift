@@ -182,12 +182,14 @@ extension ImagePickerController: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCell.identifier, for: indexPath) as! ImagePickerCell
-        let photoAsset = photoAssets[indexPath.row]
-        imageManager.requestImage(for: photoAsset, targetSize: cellSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, _) in
-            guard let image = image else { return }
-            cell.update(image: image)
-        })
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCell.identifier, for: indexPath)
+        if let cell = cell as? ImagePickerCell {
+            let photoAsset = photoAssets[indexPath.row]
+            imageManager.requestImage(for: photoAsset, targetSize: cellSize, contentMode: .aspectFill, options: nil, resultHandler: { (image, _) in
+                guard let image = image else { return }
+                cell.update(image: image)
+            })
+        }
         return cell
     }
 }

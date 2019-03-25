@@ -11,8 +11,10 @@ class AllBookmarksCollectionView: UICollectionView {
         super.init(frame: frame, collectionViewLayout: layout)
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfBookmark>(
             configureCell: { _, collectionView, indexPath, item in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AllBookmarksCollectionViewCell.reuseID, for: indexPath) as! AllBookmarksCollectionViewCell
-                cell.setAttributes(from: item)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AllBookmarksCollectionViewCell.reuseID, for: indexPath)
+                if let cell = cell as? AllBookmarksCollectionViewCell {
+                    cell.setAttributes(from: item)
+                }
                 return cell
         }
         )

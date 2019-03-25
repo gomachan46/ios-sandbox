@@ -9,8 +9,10 @@ class SelectUploadImageCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         rxDataSource = RxCollectionViewSectionedReloadDataSource<SectionOfAlbum>(
             configureCell: { _, collectionView, indexPath, item in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectUploadImageCollectionViewCell.reuseID, for: indexPath) as! SelectUploadImageCollectionViewCell
-                cell.bind(item)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectUploadImageCollectionViewCell.reuseID, for: indexPath)
+                if let cell = cell as? SelectUploadImageCollectionViewCell {
+                    cell.bind(item)
+                }
                 return cell
         })
         super.init(frame: frame, collectionViewLayout: layout)

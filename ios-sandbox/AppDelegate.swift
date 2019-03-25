@@ -39,10 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     static var shared: AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate // swiftlint:disable:this force_cast
     }
 
     var rootViewController: RootViewController {
-        return window!.rootViewController as! RootViewController
+        return window!.rootViewController as! RootViewController // swiftlint:disable:this force_cast
     }
 }
