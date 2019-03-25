@@ -7,7 +7,6 @@ import Kingfisher
 class SampleViewController: UIViewController {
     private let viewModel: SampleViewModel
     private let disposeBag = DisposeBag()
-    private var userLabel: UILabel!
 
     init(viewModel: SampleViewModel) {
         self.viewModel = viewModel
@@ -28,14 +27,25 @@ class SampleViewController: UIViewController {
 extension SampleViewController {
     private func makeViews() {
         view.backgroundColor = .white
-        userLabel = UILabel().apply { this in
+        UILabel().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.center.equalTo(view)
+                make.top.equalTo(view).offset(100)
+                make.centerX.equalTo(view)
             }
             this.textColor = .black
             this.backgroundColor = .white
-            this.text = "hello"
+            this.text = ":)"
+        }
+        UILabel().apply { this in
+            view.addSubview(this)
+            this.snp.makeConstraints { make in
+                make.bottom.equalTo(view).offset(-100)
+                make.centerX.equalTo(view)
+            }
+            this.textColor = .black
+            this.backgroundColor = .white
+            this.text = ":) :)"
         }
     }
 
