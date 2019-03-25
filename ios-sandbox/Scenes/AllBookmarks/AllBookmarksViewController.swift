@@ -9,7 +9,7 @@ class AllBookmarksViewController: UIViewController {
     private let viewModel: AllBookmarksViewModel
     private var collectionView: AllBookmarksCollectionView!
     private let disposeBag = DisposeBag()
-    private let fpcDelegate = SampleFloatingPanelControllerDelegate()
+    private let fpcDelegate = SampleFloatingPanelControllerDelegate() // swiftlint:disable:this weak_delegate
     private let fpc: FloatingPanelController
 
     init(viewModel: AllBookmarksViewModel) {

@@ -1,6 +1,6 @@
 import UIKit
 
-protocol AllBookmarksCollectionViewLayoutDelegate {
+protocol AllBookmarksCollectionViewLayoutDelegate: class {
     func cellHeight(collectionView: UICollectionView, indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat
 }
 
@@ -23,7 +23,7 @@ class AllBookmarksCollectionViewLayoutAttributes: UICollectionViewLayoutAttribut
 }
 
 class AllBookmarksCollectionViewLayout: UICollectionViewLayout {
-    var delegate: AllBookmarksCollectionViewLayoutDelegate?
+    weak var delegate: AllBookmarksCollectionViewLayoutDelegate?
     private var cache = [(attributes: AllBookmarksCollectionViewLayoutAttributes, height: CGFloat)]()
     private let numberOfColumn = 2
     private let cellMargin: CGFloat = 10.0

@@ -25,18 +25,14 @@ class TabBarController: UITabBarController {
 }
 
 extension TabBarController {
-    enum Tab: String {
-        case a = "a"
-        case b = "b"
-        case c = "c"
-        case d = "d"
-        case e = "e"
+    enum Tab {
+        case a
+        case b
+        case c
+        case d
+        case e
 
         static let order: [Tab] = [.a, .b, .c, .d, .e]
-
-        var title: String {
-            return rawValue
-        }
 
         var viewController: UIViewController {
             switch self {

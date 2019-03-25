@@ -32,12 +32,18 @@ extension RootViewController {
         current.willMove(toParent: nil)
         addChild(new)
 
-        transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: {
-        }) { _ in
-            self.current.removeFromParent()
-            new.didMove(toParent: self)
-            self.current = new
-            completion?()
-        }
+        transition(
+            from: current,
+            to: new,
+            duration: 0.3,
+            options: [.transitionCrossDissolve, .curveEaseOut],
+            animations: {},
+            completion: { [unowned self] _ in
+                self.current.removeFromParent()
+                new.didMove(toParent: self)
+                self.current = new
+                completion?()
+            }
+        )
     }
 }

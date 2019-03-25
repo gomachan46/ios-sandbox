@@ -1,7 +1,14 @@
 # 1行あたりの文字数制限を300に変更
-# プロジェクト作成時にデフォルトで追加されるコメントをひっかけないため
-line_length: 200
+line_length: 300
 
-# 変数名が１文字以上なら許可に変更
+# 1functionあたりの行数制限を100に変更
+function_body_length: 100
+
+# 変数名が1文字以上なら許可に変更
 identifier_name:
   min_length: 1
+
+# class名などが1文字以上50文字以内なら許可に変更
+type_name:
+  min_length: 1
+  max_length: 50

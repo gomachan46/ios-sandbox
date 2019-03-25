@@ -64,7 +64,7 @@ extension ItemCollectionViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath)
         if let cell = cell as? ItemCollectionViewCell {
             cell.update(item: items[indexPath.row])
-       }
+        }
         return cell
     }
 
