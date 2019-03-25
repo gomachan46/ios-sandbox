@@ -51,6 +51,6 @@ extension SampleViewController {
 
     private func bindViewModel() {
         let input = SampleViewModel.Input()
-        let output = viewModel.transform(input: input)
+        _ = viewModel.transform(input: input)
     }
 }

@@ -515,6 +515,7 @@
 				CEFA974122098490005796AF /* Sources */,
 				CEFA974222098490005796AF /* Frameworks */,
 				CEFA974322098490005796AF /* Resources */,
+				CEBC6FE52248D2EB00ED8804 /* Run swiftlint */,
 			);
 			buildRules = (
 			);
@@ -602,6 +603,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CEBC6FE52248D2EB00ED8804 /* Run swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run swiftlint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --format ios-sandbox\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		CEFA976822098600005796AF /* Run rswift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
