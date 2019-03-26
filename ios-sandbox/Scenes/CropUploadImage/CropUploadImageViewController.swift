@@ -6,10 +6,12 @@ import RxCocoa
 class CropUploadImageViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: CropUploadImageViewModel
+
     private var imageView: UIImageView!
     private var textView: UITextView!
     private var textViewPlaceHolder: UILabel!
     private var textViewNumberOfCharacters: UILabel!
+    private var submitButton: UIButton!
 
     init(viewModel: CropUploadImageViewModel) {
         self.viewModel = viewModel
@@ -72,15 +74,28 @@ extension CropUploadImageViewController {
 
         textViewNumberOfCharacters = UILabel().apply { this in
             view.addSubview(this)
-            this.font = textView.font
-            this.textColor = .black
             this.snp.makeConstraints { make in
                 make.top.equalTo(textView.snp.bottom).offset(-20)
                 make.left.equalTo(textView.snp.right).offset(-50)
             }
+            this.font = textView.font
+            this.textColor = .black
         }
 
-        makeConstraintsWithKeyboard(top: imageView, bottom: textView, bottomInset: 12, disposeBag: disposeBag)
+        submitButton = UIButton().apply { this in
+            view.addSubview(this)
+            this.snp.makeConstraints { make in
+                make.top.equalTo(textView.snp.bottom).offset(100)
+                make.left.equalTo(textView)
+                make.width.equalTo(textView)
+                make.height.equalTo(70)
+            }
+            this.setTitle("応募", for: .normal)
+            this.setTitleColor(.black, for: .normal)
+            this.setTitleColor(.darkGray, for: .disabled)
+        }
+
+        makeConstraintsWithKeyboard(top: imageView, bottom: submitButton, bottomInset: 12, disposeBag: disposeBag)
     }
 
     private func bindViewModel() {
@@ -97,5 +112,6 @@ extension CropUploadImageViewController {
         output.textViewNumberOfCharactersTextColor.asDriverOnErrorJustComplete()
             .drive(onNext: { [unowned self] textColor in self.textViewNumberOfCharacters.textColor = textColor })
             .disposed(by: disposeBag)
+        output.submitButtonIsEnabled.asDriverOnErrorJustComplete().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
     }
 }

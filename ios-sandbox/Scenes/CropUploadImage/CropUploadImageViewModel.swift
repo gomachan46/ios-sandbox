@@ -23,6 +23,7 @@ extension CropUploadImageViewModel: ViewModelType {
         let textViewPlaceHolderIsHidden: Observable<Bool>
         let textViewNumberOfCharactersText: Observable<String>
         let textViewNumberOfCharactersTextColor: Observable<UIColor>
+        let submitButtonIsEnabled: Observable<Bool>
     }
 
     func transform(input: Input) -> Output {
@@ -44,14 +45,16 @@ extension CropUploadImageViewModel: ViewModelType {
         let numberOfCharacters = input.currentText.map { $0?.count ?? 0 }
         let textViewPlaceHolderIsHidden = numberOfCharacters.map { $0 > 0 }
         let textViewNumberOfCharactersText = numberOfCharacters.map { "\($0) / 150" }
-        let textViewNumberOfCharactersTextColor: Observable<UIColor> = numberOfCharacters.map { $0 > 150 ? .red : .black }
+        let textViewNumberOfCharactersTextColor: Observable<UIColor> = numberOfCharacters.map { $0 <= 150 ? .black : .red }
+        let submitButtonIsEnabled = numberOfCharacters.map { $0 <= 150 }
 
         return Output(
             croppedImage: croppedImage,
             shared: shared,
             textViewPlaceHolderIsHidden: textViewPlaceHolderIsHidden,
             textViewNumberOfCharactersText: textViewNumberOfCharactersText,
-            textViewNumberOfCharactersTextColor: textViewNumberOfCharactersTextColor
+            textViewNumberOfCharactersTextColor: textViewNumberOfCharactersTextColor,
+            submitButtonIsEnabled: submitButtonIsEnabled
         )
     }
 }
