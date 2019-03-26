@@ -59,7 +59,7 @@ extension CropUploadImageViewController {
             this.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
             this.font = .systemFont(ofSize: 14)
             this.isScrollEnabled = true
-            this.textContainerInset = .zero
+            this.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
             this.textContainer.lineFragmentPadding = 0
             this.layer.cornerRadius = 8
         }
@@ -70,7 +70,7 @@ extension CropUploadImageViewController {
             this.font = textView.font
             this.textColor = .lightGray
             this.snp.makeConstraints { make in
-                make.top.left.equalTo(textView).inset(4)
+                make.top.left.equalTo(textView).inset(8)
             }
         }
 
@@ -78,7 +78,7 @@ extension CropUploadImageViewController {
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(textView.snp.bottom).offset(-25)
-                make.left.equalTo(textView.snp.right).offset(-60)
+                make.left.equalTo(textView.snp.right).offset(-65)
             }
             this.font = textView.font
             this.textColor = .black
