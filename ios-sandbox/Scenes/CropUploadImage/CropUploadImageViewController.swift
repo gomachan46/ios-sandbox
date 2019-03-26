@@ -56,10 +56,12 @@ extension CropUploadImageViewController {
                 make.height.greaterThanOrEqualTo(100)
             }
             this.textColor = .black
+            this.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
             this.font = .systemFont(ofSize: 14)
             this.isScrollEnabled = true
             this.textContainerInset = .zero
             this.textContainer.lineFragmentPadding = 0
+            this.layer.cornerRadius = 8
         }
 
         textViewPlaceHolder = UILabel().apply { this in
@@ -68,15 +70,15 @@ extension CropUploadImageViewController {
             this.font = textView.font
             this.textColor = .lightGray
             this.snp.makeConstraints { make in
-                make.top.left.equalTo(textView)
+                make.top.left.equalTo(textView).inset(4)
             }
         }
 
         textViewNumberOfCharacters = UILabel().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.top.equalTo(textView.snp.bottom).offset(-20)
-                make.left.equalTo(textView.snp.right).offset(-50)
+                make.top.equalTo(textView.snp.bottom).offset(-25)
+                make.left.equalTo(textView.snp.right).offset(-55)
             }
             this.font = textView.font
             this.textColor = .black
@@ -113,6 +115,10 @@ extension CropUploadImageViewController {
             .drive(onNext: { [unowned self] textColor in self.textViewNumberOfCharacters.textColor = textColor })
             .disposed(by: disposeBag)
         output.submitButtonIsEnabled.asDriverOnErrorJustComplete().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-        output.submitButtonBackgroundColor.asDriverOnErrorJustComplete().drive(submitButton.rx.backgroundColor).disposed(by: disposeBag)
+        output.submitButtonBackgroundColor.asDriverOnErrorJustComplete()
+            .drive(onNext: { color in
+                UIView.animate(withDuration: 0.3, animations: { [unowned self] in self.submitButton.backgroundColor = color })
+            })
+            .disposed(by: disposeBag)
     }
 }
