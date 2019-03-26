@@ -33,28 +33,22 @@ extension CropUploadImageViewController {
     private func makeViews() {
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "シェア", style: .plain, target: nil, action: nil)
-        let stackView = UIStackView().apply { this in
+        imageView = UIImageView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
-                make.left.right.equalTo(view)
-            }
-            this.axis = .vertical
-            this.alignment = .fill
-            this.distribution = .fill
-            this.spacing = 12
-        }
-        imageView = UIImageView().apply { this in
-            stackView.addArrangedSubview(this)
-            this.snp.makeConstraints { make in
-                make.left.right.equalTo(view)
+                make.top.equalTo(view.safeAreaLayoutGuide)
+                make.left.equalTo(view)
+                make.width.lessThanOrEqualTo(view)
+                make.height.lessThanOrEqualTo(view.snp.width)
             }
         }
         let textView = UITextView().apply { this in
-            stackView.addArrangedSubview(this)
+            view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.left.equalTo(stackView).inset(16)
+                make.top.equalTo(imageView.snp.bottom).offset(12)
                 make.bottom.equalTo(view.safeAreaLayoutGuide).inset(12)
+                make.left.equalTo(view).offset(16)
+                make.right.equalTo(view).offset(-16)
                 make.height.greaterThanOrEqualTo(100)
             }
             this.textColor = .black
@@ -62,8 +56,8 @@ extension CropUploadImageViewController {
             this.isScrollEnabled = true
             this.textContainerInset = .zero
             this.textContainer.lineFragmentPadding = 0
-            connectKeyboardEvents(to: this, bottomInset: 12, disposeBag: disposeBag)
         }
+        connectKeyboardEvents(top: imageView, bottom: textView, bottomInset: 12, disposeBag: disposeBag)
 
         UILabel().apply { this in
             textView.addSubview(this)
