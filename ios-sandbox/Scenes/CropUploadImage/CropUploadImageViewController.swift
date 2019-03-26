@@ -78,7 +78,7 @@ extension CropUploadImageViewController {
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(textView.snp.bottom).offset(-25)
-                make.left.equalTo(textView.snp.right).offset(-75)
+                make.left.equalTo(textView.snp.right).offset(-60)
             }
             this.font = textView.font
             this.textColor = .black
