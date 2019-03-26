@@ -7,6 +7,9 @@ class CropUploadImageViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: CropUploadImageViewModel
     private var imageView: UIImageView!
+    private var textView: UITextView!
+    private var textViewPlaceHolder: UILabel!
+    private var textViewNumberOfCharacters: UILabel!
 
     init(viewModel: CropUploadImageViewModel) {
         self.viewModel = viewModel
@@ -41,12 +44,13 @@ extension CropUploadImageViewController {
                 make.height.lessThanOrEqualTo(view.snp.width)
             }
         }
-        let textView = UITextView().apply { this in
+        textView = UITextView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(imageView.snp.bottom).offset(12)
                 make.left.equalTo(view).offset(16)
                 make.right.equalTo(view).offset(-16)
+                make.width.equalTo(view).offset(-32)
                 make.height.greaterThanOrEqualTo(100)
             }
             this.textColor = .black
@@ -56,7 +60,7 @@ extension CropUploadImageViewController {
             this.textContainer.lineFragmentPadding = 0
         }
 
-        UILabel().apply { this in
+        textViewPlaceHolder = UILabel().apply { this in
             textView.addSubview(this)
             this.text = "概要を入力"
             this.font = textView.font
@@ -64,10 +68,16 @@ extension CropUploadImageViewController {
             this.snp.makeConstraints { make in
                 make.top.left.equalTo(textView)
             }
-            textView.rx.text.asObservable()
-                .map { $0?.count ?? 0 > 0 }
-                .bind(to: this.rx.isHidden)
-                .disposed(by: disposeBag)
+        }
+
+        textViewNumberOfCharacters = UILabel().apply { this in
+            view.addSubview(this)
+            this.font = textView.font
+            this.textColor = .black
+            this.snp.makeConstraints { make in
+                make.top.equalTo(textView.snp.bottom).offset(-20)
+                make.left.equalTo(textView.snp.right).offset(-50)
+            }
         }
 
         makeConstraintsWithKeyboard(top: imageView, bottom: textView, bottomInset: 12, disposeBag: disposeBag)
@@ -75,10 +85,17 @@ extension CropUploadImageViewController {
 
     private func bindViewModel() {
         let input = CropUploadImageViewModel.Input(
-            share: navigationItem.rightBarButtonItem!.rx.tap.map { _ in }
+            share: navigationItem.rightBarButtonItem!.rx.tap.map { _ in },
+            currentText: textView.rx.text.asObservable()
         )
+
         let output = viewModel.transform(input: input)
         output.croppedImage.asDriverOnErrorJustComplete().drive(imageView.rx.image).disposed(by: disposeBag)
         output.shared.asDriverOnErrorJustComplete().drive().disposed(by: disposeBag)
+        output.textViewPlaceHolderIsHidden.asDriverOnErrorJustComplete().drive(textViewPlaceHolder.rx.isHidden).disposed(by: disposeBag)
+        output.textViewNumberOfCharactersText.asDriverOnErrorJustComplete().drive(textViewNumberOfCharacters.rx.text).disposed(by: disposeBag)
+        output.textViewNumberOfCharactersTextColor.asDriverOnErrorJustComplete()
+            .drive(onNext: { [unowned self] textColor in self.textViewNumberOfCharacters.textColor = textColor })
+            .disposed(by: disposeBag)
     }
 }

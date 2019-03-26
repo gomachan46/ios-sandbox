@@ -14,11 +14,15 @@ class CropUploadImageViewModel {
 extension CropUploadImageViewModel: ViewModelType {
     struct Input {
         let share: Observable<Void>
+        let currentText: Observable<String?>
     }
 
     struct Output {
         let croppedImage: Observable<UIImage>
         let shared: Observable<Void>
+        let textViewPlaceHolderIsHidden: Observable<Bool>
+        let textViewNumberOfCharactersText: Observable<String>
+        let textViewNumberOfCharactersTextColor: Observable<UIColor>
     }
 
     func transform(input: Input) -> Output {
@@ -37,6 +41,17 @@ extension CropUploadImageViewModel: ViewModelType {
                     }
             }
         )
-        return Output(croppedImage: croppedImage, shared: shared)
+        let numberOfCharacters = input.currentText.map { $0?.count ?? 0 }
+        let textViewPlaceHolderIsHidden = numberOfCharacters.map { $0 > 0 }
+        let textViewNumberOfCharactersText = numberOfCharacters.map { "\($0) / 150" }
+        let textViewNumberOfCharactersTextColor: Observable<UIColor> = numberOfCharacters.map { $0 > 150 ? .red : .black }
+
+        return Output(
+            croppedImage: croppedImage,
+            shared: shared,
+            textViewPlaceHolderIsHidden: textViewPlaceHolderIsHidden,
+            textViewNumberOfCharactersText: textViewNumberOfCharactersText,
+            textViewNumberOfCharactersTextColor: textViewNumberOfCharactersTextColor
+        )
     }
 }
