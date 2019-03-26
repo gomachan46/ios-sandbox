@@ -36,7 +36,6 @@ extension CropUploadImageViewController {
         imageView = UIImageView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide)
                 make.left.equalTo(view)
                 make.width.lessThanOrEqualTo(view)
                 make.height.lessThanOrEqualTo(view.snp.width)
@@ -46,7 +45,6 @@ extension CropUploadImageViewController {
             view.addSubview(this)
             this.snp.makeConstraints { make in
                 make.top.equalTo(imageView.snp.bottom).offset(12)
-                make.bottom.equalTo(view.safeAreaLayoutGuide).inset(12)
                 make.left.equalTo(view).offset(16)
                 make.right.equalTo(view).offset(-16)
                 make.height.greaterThanOrEqualTo(100)
@@ -57,7 +55,6 @@ extension CropUploadImageViewController {
             this.textContainerInset = .zero
             this.textContainer.lineFragmentPadding = 0
         }
-        connectKeyboardEvents(top: imageView, bottom: textView, bottomInset: 12, disposeBag: disposeBag)
 
         UILabel().apply { this in
             textView.addSubview(this)
@@ -72,6 +69,8 @@ extension CropUploadImageViewController {
                 .bind(to: this.rx.isHidden)
                 .disposed(by: disposeBag)
         }
+
+        makeConstraintsWithKeyboard(top: imageView, bottom: textView, bottomInset: 12, disposeBag: disposeBag)
     }
 
     private func bindViewModel() {
