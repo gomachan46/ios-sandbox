@@ -41,10 +41,11 @@ extension CropUploadImageViewController {
         imageView = UIImageView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.left.equalTo(view)
-                make.width.lessThanOrEqualTo(view)
-                make.height.lessThanOrEqualTo(view.snp.width)
+                make.left.right.equalTo(view)
+                make.width.equalTo(view)
+                make.height.equalTo(this.snp.width)
             }
+            this.contentMode = .scaleAspectFill
         }
         textView = UITextView().apply { this in
             view.addSubview(this)
@@ -60,7 +61,7 @@ extension CropUploadImageViewController {
             this.font = .systemFont(ofSize: 14)
             this.isScrollEnabled = true
             this.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-            this.textContainer.lineFragmentPadding = 0
+            this.textContainer.lineFragmentPadding = 5.0
             this.layer.cornerRadius = 8
         }
 
