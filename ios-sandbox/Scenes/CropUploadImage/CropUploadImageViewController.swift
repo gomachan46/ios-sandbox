@@ -91,8 +91,8 @@ extension CropUploadImageViewController {
                 make.height.equalTo(70)
             }
             this.setTitle("応募", for: .normal)
-            this.setTitleColor(.black, for: .normal)
-            this.setTitleColor(.darkGray, for: .disabled)
+            this.setTitleColor(.white, for: .normal)
+            this.layer.cornerRadius = 8
         }
 
         makeConstraintsWithKeyboard(top: imageView, bottom: submitButton, bottomInset: 12, disposeBag: disposeBag)
@@ -113,5 +113,6 @@ extension CropUploadImageViewController {
             .drive(onNext: { [unowned self] textColor in self.textViewNumberOfCharacters.textColor = textColor })
             .disposed(by: disposeBag)
         output.submitButtonIsEnabled.asDriverOnErrorJustComplete().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
+        output.submitButtonBackgroundColor.asDriverOnErrorJustComplete().drive(submitButton.rx.backgroundColor).disposed(by: disposeBag)
     }
 }

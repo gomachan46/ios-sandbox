@@ -24,6 +24,7 @@ extension CropUploadImageViewModel: ViewModelType {
         let textViewNumberOfCharactersText: Observable<String>
         let textViewNumberOfCharactersTextColor: Observable<UIColor>
         let submitButtonIsEnabled: Observable<Bool>
+        let submitButtonBackgroundColor: Observable<UIColor>
     }
 
     func transform(input: Input) -> Output {
@@ -47,6 +48,7 @@ extension CropUploadImageViewModel: ViewModelType {
         let textViewNumberOfCharactersText = numberOfCharacters.map { "\($0) / 150" }
         let textViewNumberOfCharactersTextColor: Observable<UIColor> = numberOfCharacters.map { $0 <= 150 ? .black : .red }
         let submitButtonIsEnabled = numberOfCharacters.map { $0 <= 150 }
+        let submitButtonBackgroundColor = submitButtonIsEnabled.map { $0 ? UIColor(red: 0.82, green: 0.62, blue: 0.61, alpha: 1) : UIColor.lightGray }
 
         return Output(
             croppedImage: croppedImage,
@@ -54,7 +56,8 @@ extension CropUploadImageViewModel: ViewModelType {
             textViewPlaceHolderIsHidden: textViewPlaceHolderIsHidden,
             textViewNumberOfCharactersText: textViewNumberOfCharactersText,
             textViewNumberOfCharactersTextColor: textViewNumberOfCharactersTextColor,
-            submitButtonIsEnabled: submitButtonIsEnabled
+            submitButtonIsEnabled: submitButtonIsEnabled,
+            submitButtonBackgroundColor: submitButtonBackgroundColor
         )
     }
 }
