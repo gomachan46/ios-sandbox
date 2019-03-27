@@ -12,3 +12,7 @@ identifier_name:
 type_name:
   min_length: 1
   max_length: 50
+
+# 自動生成されるものはlintかけてもしかたないので除外
+excluded:
+  - "R.generated.swift"

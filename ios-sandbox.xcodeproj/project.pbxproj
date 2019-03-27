@@ -66,7 +66,6 @@
 		36EBCB65F95BD8CA58A29F24 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBCE869487ED1C75DD4922 /* Story.swift */; };
 		36EBCBEFF627028FE22BF742 /* KeyboardConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC75032B7589AC5CC8B4D /* KeyboardConstraints.swift */; };
 		36EBCC58AE0C09E601618833 /* ZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC51FB356B0DC43CF00C4 /* ZoomTransitioning.swift */; };
-		36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC38B5886667E5222E083 /* R.generated.swift */; };
 		36EBCCBF816638904ABC241D /* ZoomTransitionImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC4A08E6C685799D40CB3 /* ZoomTransitionImageDelegate.swift */; };
 		36EBCCF019DEE6134799025C /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC322FD16DB56B627A4A6 /* ItemViewController.swift */; };
 		36EBCD2EDCABB62F492237A8 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBC0CD8C3DD25405764E36 /* ViewModelType.swift */; };
@@ -85,6 +84,7 @@
 		CE978F5A222925BC008F7862 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F59222925BC008F7862 /* RxDataSources.framework */; };
 		CE978F5C22293813008F7862 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE978F5B22293813008F7862 /* Differentiator.framework */; };
 		CEA0504D220D57D400E26B76 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA0504C220D57D400E26B76 /* Lottie.framework */; };
+		CEEB02F9224B6D2A00674E59 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB02F8224B6D2A00674E59 /* R.generated.swift */; };
 		CEFA974922098490005796AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA974822098490005796AF /* AppDelegate.swift */; };
 		CEFA975022098491005796AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFA974F22098491005796AF /* Assets.xcassets */; };
 		CEFA975E22098491005796AF /* ios_sandboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA975D22098491005796AF /* ios_sandboxTests.swift */; };
@@ -125,7 +125,6 @@
 		36EBC2C39069E8D33ADC273A /* SampleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleViewModel.swift; sourceTree = "<group>"; };
 		36EBC322FD16DB56B627A4A6 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		36EBC385E19C20F442008E76 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = file.yml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		36EBC38B5886667E5222E083 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		36EBC3A9DB3321260EBF1BB9 /* AllTopicsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTopicsCollectionView.swift; sourceTree = "<group>"; };
 		36EBC3E6CE2E44702A0F74F5 /* TopicCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewController.swift; sourceTree = "<group>"; };
 		36EBC438BB829F0881B1159D /* CropUploadImageNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropUploadImageNavigator.swift; sourceTree = "<group>"; };
@@ -187,6 +186,7 @@
 		CE978F59222925BC008F7862 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
 		CE978F5B22293813008F7862 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		CEA0504C220D57D400E26B76 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
+		CEEB02F8224B6D2A00674E59 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		CEFA974522098490005796AF /* ios-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFA974822098490005796AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEFA974F22098491005796AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -462,10 +462,10 @@
 		CEFA974722098490005796AF /* ios-sandbox */ = {
 			isa = PBXGroup;
 			children = (
+				CEEB02F8224B6D2A00674E59 /* R.generated.swift */,
 				CEFA974822098490005796AF /* AppDelegate.swift */,
 				CEFA974F22098491005796AF /* Assets.xcassets */,
 				CEFA975422098491005796AF /* Info.plist */,
-				36EBC38B5886667E5222E083 /* R.generated.swift */,
 				36EBC35925B17D543A666A81 /* ViewControllers(deprecated) */,
 				36EBCBE40E5B95A5E1785DF6 /* Models */,
 				36EBC26D8A39F62353332061 /* Extensions */,
@@ -562,6 +562,7 @@
 				TargetAttributes = {
 					CEFA974422098490005796AF = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					CEFA975822098491005796AF = {
 						CreatedOnToolsVersion = 10.1;
@@ -686,7 +687,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEFA974922098490005796AF /* AppDelegate.swift in Sources */,
-				36EBCC6CF040D53BA6E272D0 /* R.generated.swift in Sources */,
 				36EBC5175ADE645743001D44 /* ItemCollectionViewController.swift in Sources */,
 				36EBC51F519A3BCDDEF79D8C /* FeedViewController.swift in Sources */,
 				36EBC0C39DE8C9FE5B8CE11F /* ImageCropController.swift in Sources */,
@@ -697,6 +697,7 @@
 				36EBCDAD20FA2046F2FBFAFE /* ReactiveExtensions.swift in Sources */,
 				36EBC7E629C45C51D2B9F472 /* ImagePickerCell.swift in Sources */,
 				36EBCA80E1A1F9724BD31B53 /* StoriesView.swift in Sources */,
+				CEEB02F9224B6D2A00674E59 /* R.generated.swift in Sources */,
 				36EBC04AB69F4D75292109A4 /* ItemCollectionViewCell.swift in Sources */,
 				36EBC26C67AFD1477E95253C /* StoryImageView.swift in Sources */,
 				36EBCD2EDCABB62F492237A8 /* ViewModelType.swift in Sources */,
@@ -915,7 +916,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.gomachan46.ios-sandbox";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -940,7 +941,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.gomachan46.ios-sandbox";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
