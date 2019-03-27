@@ -41,9 +41,7 @@ extension CropUploadImageViewController {
         imageView = UIImageView().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.left.right.equalTo(view)
-                make.width.equalTo(view)
-                make.height.equalTo(this.snp.width)
+                make.left.equalTo(view)
             }
             this.contentMode = .scaleAspectFill
         }
@@ -88,10 +86,10 @@ extension CropUploadImageViewController {
         submitButton = UIButton().apply { this in
             view.addSubview(this)
             this.snp.makeConstraints { make in
-                make.top.equalTo(textView.snp.bottom).offset(100)
+                make.top.equalTo(textView.snp.bottom).offset(10)
                 make.left.equalTo(textView)
                 make.width.equalTo(textView)
-                make.height.equalTo(70)
+                make.height.greaterThanOrEqualTo(50)
             }
             this.setTitle("応募", for: .normal)
             this.setTitleColor(.white, for: .normal)
